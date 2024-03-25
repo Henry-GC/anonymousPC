@@ -1,0 +1,27 @@
+.navBar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5vw auto;
+    width: 60vw;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .navBar-container ul{
+    display: flex;
+    width: 60vw;
+    height: 3vw;
+    background: #190425;
+    border-radius: 10vw;
+    justify-content: space-evenly;
+  }
+  .navBar-container li{
+    display: flex;
+    list-style: none;
+    align-self: center;
+  }
+  .navBar{
+    color: rgb(255, 255, 255);
+    font-size: 1.5vw;
+  }

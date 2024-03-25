@@ -1,0 +1,8 @@
+.container-product{
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+.container-product-body{
+    display: flex;
+}

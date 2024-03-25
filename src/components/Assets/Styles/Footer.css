@@ -1,0 +1,72 @@
+.container-footer{
+    display: flex;
+    text-align: center;
+    background-color: black;
+    color: #fff;
+	width: 100%;
+	height: 7vw;
+	margin-top: 2vw;
+	align-items: center;
+    gap: 2vw;
+}
+.footer-items{
+    margin: auto;
+}
+.sep-bar{
+    background-color: #fff;
+    height: 60%;
+    width: .2vw;
+}
+.footer-logo{
+    display: flex;
+	align-items: center;
+	color: #fff;
+    margin-left: 2vw;
+    gap: 3vw;
+}
+.logo-picture{
+    display: flex;
+    width: 5vw
+}
+.footer-correo{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#logo-mail{
+	font-size: 2vw;
+}
+#support-mail{
+    font-size: 1.2vw;
+}
+.footer-redes{
+    display: flex;
+    gap: 4vw;
+}
+.footer-social{
+    font-size: 2.5vw;
+}
+.firma-dev{
+    display: flex;
+    flex-direction: column;
+    gap: .4vw;
+}
+.firma-dev section{
+    display: flex;
+    gap: 1vw;
+    align-self: center;
+    font-size: 1.7vw;
+}
+.footer-form{
+    display: flex;
+    justify-content: center;
+}
+.footer-form form{
+    display: flex;
+    flex-direction: column;
+	align-items: center;
+	color: #2c0344;
+}
+#footer-input{
+    width: 20vw;
+}

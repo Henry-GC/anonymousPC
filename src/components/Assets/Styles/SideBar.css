@@ -1,0 +1,28 @@
+.Side-Bar{
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+    padding: 1vw;
+	border-radius: 0.8vw;
+    background-color: #190425;
+    list-style: none;
+    gap: 0.5vw;
+}
+.Side-Bar li{
+    text-align: center;
+    align-items: center;
+    width: 15vw;
+	padding: 0.8vw 0;
+    border-radius: 0.3vw;
+	background-color: #e7e7e7;
+	transition-property: background;
+	transition-duration: .1s;
+    cursor: pointer;
+}
+.Side-Bar li:hover{
+	background: #190425;
+	color: #ffffff;
+}
+li div{
+    font-size: 1.3vw;
+}

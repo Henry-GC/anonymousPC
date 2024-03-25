@@ -1,0 +1,5 @@
+.container-search{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

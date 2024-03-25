@@ -1,0 +1,21 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: sans-serif;
+  background: linear-gradient(to right, #7c11b9,#2c0344);
+}
+img{
+  max-width: 100%;
+}
+a{
+	text-decoration: none;
+}
+a:visited{
+	color: #fff;
+}
+a:link{
+	color: #fff;
+}
