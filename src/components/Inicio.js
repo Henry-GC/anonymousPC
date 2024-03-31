@@ -8,7 +8,6 @@ function Inicio(){
     return(
         <div>
             <Productos/>
-            <Footer/>
         </div>
     )
 }

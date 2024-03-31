@@ -25,7 +25,6 @@ function Productos() {
         <SideBar/>
         <Main resultado={items}/>
       </div>
-      <Footer />
     </div>
     
   );
