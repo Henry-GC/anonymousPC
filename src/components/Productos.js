@@ -1,7 +1,6 @@
 import Searching from "./Searching";
 import SideBar from "./SideBar";
 import Main from "./Main"
-import Footer from "./Footer";
 import "./Assets/Styles/Productos.css"
 import { useEffect, useState } from "react";
 

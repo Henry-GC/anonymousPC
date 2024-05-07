@@ -4,7 +4,11 @@ import { FormLogin } from "./FormLogin";
 function Login(){
     return (
         <div>
-            <FormLogin/>
+            <img id="logo" src="logo.png" alt="Logo AnonymousPC" width="200vw"/>
+            <div class="datos">
+                <h1>Ingresar</h1>
+                <FormLogin/>
+            </div>
         </div>
     )
 }

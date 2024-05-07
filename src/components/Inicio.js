@@ -1,6 +1,5 @@
 import React from "react";
 import Productos from "./Productos";
-import Footer from "./Footer";
 
 
 function Inicio(){
