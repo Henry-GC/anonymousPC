@@ -44,7 +44,7 @@ const Footer = () =>{
             <div className="footer-form footer-items">
                 <form>
                     <i id="send" class="fa-solid fa-paper-plane"></i>
-					<input id="footer-input" type="email" placeholder="e-mail" width/>
+					<input id="footer-input" type="email" placeholder="e-mail"/>
 					<button>Enviar</button>
                 </form>
             </div>

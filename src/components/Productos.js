@@ -9,12 +9,11 @@ function Productos() {
   const [items, setItems] = useState([]);
 
   useEffect(()=>{
-    fetch('http://localhost:5000/base')
+    fetch('http://localhost:5000/api/productos')
     .then((response)=>response.json())
     .then((data)=>setItems(data))
     .catch((error)=>console.log(error));
   },[])
-
   const searchItem = [];
   
   return (
