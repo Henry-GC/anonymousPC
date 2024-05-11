@@ -9,7 +9,7 @@ function Productos() {
   const [items, setItems] = useState([]);
 
   useEffect(()=>{
-    fetch('https://anonymousbackend.onrender.com/api/productos')
+    fetch('http://localhost:5000/api/productos')
     .then((response)=>response.json())
     .then((data)=>setItems(data))
     .catch((error)=>console.log(error));
