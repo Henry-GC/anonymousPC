@@ -1,7 +1,8 @@
-import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
+import { Box, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
 import { useFormik } from "formik"
 import { Link } from "react-router-dom"
 import * as Yup from "yup"
+import React from "react"
 
 export const FormLogin =()=>{
 
@@ -37,7 +38,7 @@ export const FormLogin =()=>{
                 />
                 <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
             </FormControl>
-            <label class="link"><Link>¿Olvidaste la contraseña?</Link></label>
+            <Box><Link>¿Olvidaste la contraseña?</Link></Box>
             <button type="submit">Entrar</button>
         </form>
     )

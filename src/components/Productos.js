@@ -14,6 +14,7 @@ function Productos() {
     .then((data)=>setItems(data))
     .catch((error)=>console.log(error));
   },[])
+
   const searchItem = [];
   
   return (
