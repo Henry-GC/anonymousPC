@@ -1,13 +1,18 @@
 import React from "react";
 import Productos from "./Productos";
+import { Box } from "@chakra-ui/react";
 
 
 function Inicio(){
     
     return(
-        <div>
+        <Box
+            display="flex"
+            flexDirection="column"
+            flexGrow="1"
+        >
             <Productos/>
-        </div>
+        </Box>
     )
 }
 export default Inicio

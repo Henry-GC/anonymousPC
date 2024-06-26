@@ -5,7 +5,7 @@ import * as Yup from "yup"
 import React from "react"
 import Axios from "../utils/axiosConfig"
 
-export const FormLogin =()=>{
+const FormLogin =()=>{
 
     const formik = useFormik({
         initialValues:{
@@ -56,3 +56,5 @@ export const FormLogin =()=>{
         </form>
     )
 }
+
+export default FormLogin;
