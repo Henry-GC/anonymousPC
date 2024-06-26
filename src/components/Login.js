@@ -22,8 +22,14 @@ function Login(){
                     alt="Logo AnonymousPC"
                     width="200vw"
                 />
-                <Box className="datos">
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    className="datos"
+                >
                     <h1>Ingresar</h1>
+                    <h2>Registrar</h2>
                     <FormLogin/>
                 </Box>
             </Box>

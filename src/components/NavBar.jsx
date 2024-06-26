@@ -9,7 +9,7 @@ function NavBar (){
                 <li><Link to="/productos" className='navBar'>Productos</Link></li>
                 <li><Link to="/ensambles" className='navBar'>Emsambles</Link></li>
                 <li><Link to="/nosotros" className='navBar'>Nosotros</Link></li>
-                <li><Link to="/login" className='navBar'>Login</Link></li>
+                <li><Link to="/login" className='navBar'>Cuenta</Link></li>
             </ul>
         </nav>
     )
