@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormLogin from "./FormLogin";
 import { Box } from "@chakra-ui/react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "./Assets/Image/Logo.png"
 import FormRegister from "./FormRegister";
 

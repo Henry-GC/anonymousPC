@@ -3,6 +3,7 @@ import SideBar from "./SideBar";
 import Main from "./Main"
 import "./Assets/Styles/Productos.css"
 import { useEffect, useState } from "react";
+import { Box } from "@chakra-ui/react";
 
 function Productos() {
 
@@ -18,13 +19,13 @@ function Productos() {
   const searchItem = [];
   
   return (
-    <div className="container-product">
+    <Box className="container-product">
       <Searching onSearch={searchItem} />
       <div className="container-product-body">
         <SideBar/>
         <Main resultado={items}/>
       </div>
-    </div>
+    </Box>
     
   );
 }
