@@ -1,3 +1,44 @@
-.container-main{
-    width: 70vw;
+.container-main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Define 3 columnas de igual ancho */
+    row-gap: 1vw; /* Espaciado entre los elementos (opcional) */
+    column-gap: 2vw;
+}
+
+#item-prod {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    width: 18vw;
+    height: 30vh;
+    border-radius: 10px;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+#item-prod img{
+    display: flex;
+    align-self: center;
+}
+.item-text{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    background: #fff;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    /* align-self: flex-end; */
+}
+#item-name{
+    display: flex;
+    width: 100%;
+}
+#item-box{
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 10px;
+    font-size: 1.05vw;
+    border-top: solid 1px #999;
+}
+.item-text p{
+    color: rgb(0, 0, 0);
 }

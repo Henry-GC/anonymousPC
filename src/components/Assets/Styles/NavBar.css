@@ -7,6 +7,9 @@
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
   }
   .navBar-container ul{
     display: flex;

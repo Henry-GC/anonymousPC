@@ -6,4 +6,7 @@
 }
 .container-product-body{
     display: flex;
+    align-items: self-start;
+    gap: 1%;
+    padding: 0 1vw;
 }

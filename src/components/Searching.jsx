@@ -24,7 +24,7 @@ function Searching(props){
         <i id="lupa" class="fa-solid fa-magnifying-glass"></i>
       </button>
     </form>
-      <button>
+      <button id='botton-car'>
         <i class="fa-solid fa-cart-shopping"></i>
       </button>
     </div>
