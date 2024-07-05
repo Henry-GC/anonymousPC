@@ -1,4 +1,4 @@
-// src/utils/axiosConfig.js
+// Configuración AXIOS BASICA
 import axios from 'axios';
 
 const instance = axios.create({
@@ -8,7 +8,7 @@ const instance = axios.create({
   }
 });
 
-// Interceptor para agregar el token de autorización a todas las solicitudes
+// Interceptor para agregar el TOKEN de autorización a todas las solicitudes
 // instance.interceptors.request.use(
 //   (config) => {
 //     const token = localStorage.getItem('token');

@@ -20,10 +20,29 @@
 	transition-duration: .1s;
     cursor: pointer;
 }
+.Side-Bar button{
+    text-align: center;
+    align-items: center;
+    width: 15vw;
+	padding: 0.8vw 0;
+    border-radius: 0.3vw;
+	background-color: #e7e7e7;
+	transition-property: background;
+	transition-duration: .1s;
+    cursor: pointer;
+    border: none;
+}
 .Side-Bar li:hover{
 	background: #190425;
 	color: #ffffff;
 }
+.Side-Bar button:hover{
+	background: #190425;
+	color: #ffffff;
+}
 li div{
+    font-size: 1.3vw;
+}
+button div{
     font-size: 1.3vw;
 }

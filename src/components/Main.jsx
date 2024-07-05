@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import Pruv from "./Assets/Image/pc gamer.jpg"
 
 const Main = (props) => {
-  console.log(props.resultado)
+
   return ( props.resultado.length > 0 ? 
     ( 
       <Box className="container-main"> 
