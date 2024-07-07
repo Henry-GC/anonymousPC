@@ -5,7 +5,7 @@ import * as Yup from "yup"
 import React from "react"
 import Axios from "../utils/axiosConfig"
 
-const FormLogin =()=>{
+const FormLogin =(props)=>{
 
     const formik = useFormik({
         initialValues:{
@@ -29,30 +29,31 @@ const FormLogin =()=>{
         formik.handleSubmit();
     }
 
-
     return (
-        <form onSubmit={handleSubmit}>
-            <FormControl isInvalid={formik.touched.user && formik.errors.user}>
-                <FormLabel htmlFor="user">Usuario</FormLabel>
+        <form onSubmit={handleSubmit} className={props.classForm}>
+            <FormControl isInvalid={formik.touched.user && formik.errors.user} className={props.classControl}>
+                <FormLabel htmlFor="user" className={props.classLabel}>Usuario</FormLabel>
                 <Input
                     id="user"
                     name="user"
+                    className={props.classInput}
                     {...formik.getFieldProps("user")}
                 />
-                <FormErrorMessage>{formik.errors.user}</FormErrorMessage>
+                <FormErrorMessage className={props.classError}>{formik.errors.user}</FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={formik.touched.pass && formik.errors.pass}>
-                <FormLabel htmlFor="pass">Contraseña</FormLabel>
+            <FormControl isInvalid={formik.touched.pass && formik.errors.pass} className={props.classControl}>
+                <FormLabel htmlFor="pass" className={props.classLabel}>Contraseña</FormLabel>
                 <Input
                     id="pass"
                     name="pass"
                     type="password"
+                    className={props.classInput}
                     {...formik.getFieldProps("pass")}
                 />
-                <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+                <FormErrorMessage className={props.classError}>{formik.errors.pass}</FormErrorMessage>
             </FormControl>
             <Box><Link id="reset">¿Olvidaste la contraseña?</Link></Box>
-            <button type="submit">Entrar</button>
+            <button type="submit" className={props.classButton}>Entrar</button>
         </form>
     )
 }

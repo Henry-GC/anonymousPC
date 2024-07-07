@@ -10,3 +10,28 @@
     gap: 1%;
     padding: 0 1vw;
 }
+.container-side{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.container-login-prod{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 2rem 0;
+    border-radius: 1rem;
+    gap: 2rem;
+}
+.form-login-productos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: large;
+    background-color: rgb(255, 255, 255);
+}
+.form-control{
+    
+}

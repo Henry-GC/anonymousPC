@@ -17,6 +17,9 @@ function Login() {
             flexGrow="1"
         >
             <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
                 bg="#fff"
                 padding="2rem"
                 borderRadius="1rem"
@@ -32,25 +35,32 @@ function Login() {
                     flexDirection="column"
                     alignItems="center"
                     className="datos"
+                    gap="0.5rem"
                 >
-                    <h1>
-                        <Link
-                            id="log-link"
-                            to="#"
-                            onClick={() => setIsRegistering(false)}
-                        >
-                            Ingresar
-                        </Link>
-                    </h1>
-                    <h2>
-                        <Link
-                            id="log-link"
-                            to="#"
-                            onClick={() => setIsRegistering(true)}
-                        >
-                            Registrar
-                        </Link>
-                    </h2>
+                    <Box
+                        display="flex"
+                        gap="0.5rem"
+                    >
+                        <h2>
+                            <Link
+                                id="log-link"
+                                to="#"
+                                onClick={() => setIsRegistering(false)}
+                            >
+                                Ingresar
+                            </Link>
+                        </h2>
+                        <h2>/</h2>
+                        <h2>
+                            <Link
+                                id="log-link"
+                                to="#"
+                                onClick={() => setIsRegistering(true)}
+                            >
+                                Registrar
+                            </Link>
+                        </h2>
+                    </Box>
                     {isRegistering ? <FormRegister /> : <FormLogin />}
                 </Box>
             </Box>
