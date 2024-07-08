@@ -13,10 +13,12 @@ function Productos() {
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState("productos")
   const [page, setPage] = useState(1)
+  const [typeSort, setTypeSort] = useState("priceLow")
 
   const fetchProductos = async () => {
     try {
       const response = await Axios.get(`/api/${filter}`)
+      // response.data.sort((a, b) => a.price_prod - b.price_prod)
       setBD(response.data)
     } catch (error) {
       console.error(`Error fetching ${filter}`, error);
@@ -28,11 +30,33 @@ function Productos() {
   },[filter]);
 
   useEffect(()=>{
-    const prods = bd.slice((page-1)*12,page*12)
-    setItems(prods)
-  },[bd,page])
+    const newBD = [...bd]
+    newBD.sort((a,b)=>{
+      switch (typeSort){
+        case "priceLow":
+          return a.price_prod - b.price_prod;
+        case "priceHig":
+          return b.price_prod - a.price_prod;
+        case "asc":
+          return a.name_prod.localeCompare(b.name_prod);
+        case "des":
+          return b.name_prod.localeCompare(a.name_prod);
+        default:
+          return 0;
+      }
+    })
+
+    const prods = newBD.slice((page-1)*12,page*12)
+    setItems(prods);
+
+
+  },[bd,page,typeSort])
 
   const searchItem = [];
+
+  const handleSort = (e) => {
+    setTypeSort(e.target.value);
+  }
 
   const nextPage = () =>{
     if (page*12<bd.length){
@@ -86,11 +110,11 @@ function Productos() {
                 alignItems="center"
               >
                 <strong>Ordenar por: </strong>
-                <select className="select-container">
-                  <option><p>Menor Precio Primero</p></option>
-                  <option><p>Mayor Precio Primero</p></option>
-                  <option><p>A-Z Ascendente</p></option>
-                  <option><p>Z-A Descendente</p></option>
+                <select className="select-container" onChange={handleSort}>
+                  <option value="priceLow"><p>Menor Precio Primero</p></option>
+                  <option value="priceHig"><p>Mayor Precio Primero</p></option>
+                  <option value="asc"><p>A-Z Ascendente</p></option>
+                  <option value="des"><p>Z-A Descendente</p></option>
                 </select>
               </Box>
               <Box
