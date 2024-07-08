@@ -1,6 +1,6 @@
 import "./Assets/Styles/Main.css"
 import { Box } from "@chakra-ui/react";
-import Pruv from "./Assets/Image/pc gamer.jpg"
+import Pruv from "./Assets/Image/work.png"
 
 const Main = (props) => {
 
