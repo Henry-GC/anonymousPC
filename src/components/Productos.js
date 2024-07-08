@@ -9,23 +9,45 @@ import FormLogin from "./FormLogin";
 
 function Productos() {
 
+  const [bd, setBD] = useState([])
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState("productos")
+  const [page, setPage] = useState(1)
 
   const fetchProductos = async () => {
     try {
-      const response = await Axios.get(`/api/${filter}`);
-      setItems(response.data);
+      const response = await Axios.get(`/api/${filter}`)
+      setBD(response.data)
     } catch (error) {
       console.error(`Error fetching ${filter}`, error);
     }
   };
 
   useEffect(()=>{
-    fetchProductos();
+    fetchProductos()
   },[filter]);
 
+  useEffect(()=>{
+    const prods = bd.slice((page-1)*12,page*12)
+    setItems(prods)
+  },[bd,page])
+
   const searchItem = [];
+
+  const nextPage = () =>{
+    if (page*12<bd.length){
+      setPage(page+1);
+    }
+  }
+
+  const prevPage = () =>{
+    if (page === 1){
+      return;
+    } else {
+      const newPage = page - 1;
+      setPage(newPage)
+    }
+  }
   
   return (
     <Box className="container-product">
@@ -53,16 +75,22 @@ function Productos() {
             <Box
               display="flex"
               justifyContent="space-between"
+              alignItems="center"
             >
               <Box
                 display="flex"
+                color="#fff"
+                gap="0.5rem"
+                fontSize="1.3rem"
+                alignContent="center"
+                alignItems="center"
               >
-                <p>Ordenar por: </p>
-                <select>
-                  <option>Menor Precio Primero</option>
-                  <option>Mayor Precio Primero</option>
-                  <option>A-Z Ascendente</option>
-                  <option>Z-A Descendente</option>
+                <strong>Ordenar por: </strong>
+                <select className="select-container">
+                  <option><p>Menor Precio Primero</p></option>
+                  <option><p>Mayor Precio Primero</p></option>
+                  <option><p>A-Z Ascendente</p></option>
+                  <option><p>Z-A Descendente</p></option>
                 </select>
               </Box>
               <Box
@@ -77,9 +105,9 @@ function Productos() {
             </Box>
             <Main
               resultado={items}
-              prevPage=""
-              nextPage=""
-              currentPage="0"
+              prevPage={prevPage}
+              nextPage={nextPage}
+              currentPage={page}
             />
         </Box>
       </div>

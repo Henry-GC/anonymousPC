@@ -3,8 +3,6 @@ import "./Assets/Styles/SideBar.css"
 
 const SideBar = (props) =>{
 
-    // const [filter, setFilter] = useState ("")
-
     const handleClick = (tipo) =>{
         props.buscar(tipo);
     };
@@ -12,7 +10,7 @@ const SideBar = (props) =>{
     return (
         <ul className="Side-Bar">
             <button onClick={()=>handleClick("productos")}>
-                <div>Todo</div>
+                <div>Destacados</div>
             </button>
             <button onClick={()=>handleClick("procesadores")}>
                 <div>Procesador</div>

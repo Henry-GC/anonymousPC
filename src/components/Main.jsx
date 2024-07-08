@@ -4,6 +4,9 @@ import Pruv from "./Assets/Image/pc gamer.jpg"
 
 const Main = (props) => {
 
+  const prev = `<<`
+  const next = `>>`
+
   return ( props.resultado.length > 0 ? 
     ( 
       <Box
@@ -41,10 +44,11 @@ const Main = (props) => {
         <Box
           display="flex"
           gap="0.5rem"
+          color="#aaa"
         >
-          <button onClick={props.prevPage}>Prev</button>
+          <button onClick={props.prevPage}>{prev}</button>
           <p>{props.currentPage}</p>
-          <button onClick={props.nextPage}>Next</button>
+          <button onClick={props.nextPage}>{next}</button>
         </Box>
       </Box>
     ) : (<h1>Data pending...</h1>)

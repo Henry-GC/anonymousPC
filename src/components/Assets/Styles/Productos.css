@@ -35,3 +35,14 @@
 .form-control{
     
 }
+.select-container {
+    appearance: none; /* Removes default dropdown arrow */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }

@@ -13,7 +13,7 @@ const Footer = () =>{
                 </picture>
                 <div className="footer-correo">
                     <i id="logo-mail" class="fa-regular fa-envelope"></i>
-                    <p id="support-mail">Support@anonymouspc.com</p>
+                    <p id="support-mail">Soporte@anonymouspc.com</p>
                 </div>
             </div>
             <div className="sep-bar"></div>
