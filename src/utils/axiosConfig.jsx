@@ -5,6 +5,7 @@ const instance = axios.create({
   baseURL: 'https://anonymousbackend.onrender.com',
   headers: {
     'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "*"
   }
 });
 
