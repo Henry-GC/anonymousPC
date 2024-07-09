@@ -17,10 +17,9 @@ function Productos() {
 
   const fetchProductos = async () => {
     try {
-      const response = await Axios.get()
-      console.log(response);
-      // response.data.sort((a, b) => a.price_prod - b.price_prod)
-      // setBD(response.data)
+      const response = await Axios.get(`/api/${filter}`)
+      response.data.sort((a, b) => a.price_prod - b.price_prod)
+      setBD(response.data)
     } catch (error) {
       console.error(`Error fetching ${filter}`, error);
     }
