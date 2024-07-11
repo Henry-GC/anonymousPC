@@ -17,11 +17,9 @@ function Productos() {
 
   const fetchProductos = async () => {
     try {
-      const response = await Axios.get(`/prueba`)
-      console.log(response.data);
-      // const response = await Axios.get(`/api/${filter}`)
-      // response.data.sort((a, b) => a.price_prod - b.price_prod)
-      // setBD(response.data)
+      const response = await Axios.get(`/api/${filter}`)
+      response.data.sort((a, b) => a.price_prod - b.price_prod)
+      setBD(response.data)
     } catch (error) {
       console.error(`Error fetching ${filter}`, error);
     }
@@ -31,28 +29,28 @@ function Productos() {
     fetchProductos()
   },[filter]);
 
-  // useEffect(()=>{
-  //   const newBD = [...bd]
-  //   newBD.sort((a,b)=>{
-  //     switch (typeSort){
-  //       case "priceLow":
-  //         return a.price_prod - b.price_prod;
-  //       case "priceHig":
-  //         return b.price_prod - a.price_prod;
-  //       case "asc":
-  //         return a.name_prod.localeCompare(b.name_prod);
-  //       case "des":
-  //         return b.name_prod.localeCompare(a.name_prod);
-  //       default:
-  //         return 0;
-  //     }
-  //   })
+  useEffect(()=>{
+    const newBD = [...bd]
+    newBD.sort((a,b)=>{
+      switch (typeSort){
+        case "priceLow":
+          return a.price_prod - b.price_prod;
+        case "priceHig":
+          return b.price_prod - a.price_prod;
+        case "asc":
+          return a.name_prod.localeCompare(b.name_prod);
+        case "des":
+          return b.name_prod.localeCompare(a.name_prod);
+        default:
+          return 0;
+      }
+    })
 
-  //   const prods = newBD.slice((page-1)*12,page*12)
-  //   setItems(prods);
+    const prods = newBD.slice((page-1)*12,page*12)
+    setItems(prods);
 
 
-  // },[bd,page,typeSort])
+  },[bd,page,typeSort])
 
   const searchItem = [];
 

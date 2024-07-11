@@ -7,6 +7,13 @@ const Main = (props) => {
   const prev = `<<`
   const next = `>>`
 
+  const price = props.resultado.map((producto)=>{
+    return producto = {
+      ...producto,
+      price_prod : parseFloat(producto.price_prod).toFixed(2)
+    }
+  })
+
   return ( props.resultado.length > 0 ? 
     ( 
       <Box
@@ -16,7 +23,7 @@ const Main = (props) => {
         gap="1rem"
       >
         <Box className="container-main"> 
-          {props.resultado.map((producto)=>(
+          {price.map((producto)=>(
             <Box
               key={producto.id_prod}
               id="item-prod"
