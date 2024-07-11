@@ -58,7 +58,11 @@ const Main = (props) => {
           <button onClick={props.nextPage}>{next}</button>
         </Box>
       </Box>
-    ) : (<h1>Data pending...</h1>)
+    ) : (<img
+      src={Pruv}
+      alt="IMAGEN PRODUCTO"
+      id="img-prod"
+  />)
   );
 };
 
