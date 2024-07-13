@@ -1,11 +1,22 @@
-import React from "react";
+import { useContext, useEffect } from "react";
+import { CartContext } from "../Context/CartContext";
 
-function pruv(){
-    return (
-        <div background="#000" width="100px">
+function useCart() {
+  const { addCart, setAddCart } = useContext(CartContext);
 
-        </div>
-    )
+  function addToCart(prod) {
+    const exists = addCart.some(item => item.id === prod.id);
+    if (!exists) {
+      const newCart = [...addCart, prod];
+      setAddCart(newCart);
+    }
+  }
+
+  useEffect(() => {
+    console.log(addCart);
+  }, [addCart]);
+
+  return { addCart, addToCart };
 }
 
-export default pruv;
+export default useCart;

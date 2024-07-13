@@ -12,7 +12,7 @@ const Footer = () =>{
                         width="100%"/>
                 </picture>
                 <div className="footer-correo">
-                    <i id="logo-mail" class="fa-regular fa-envelope"></i>
+                    <i id="logo-mail" className="fa-regular fa-envelope"></i>
                     <p id="support-mail">Soporte@anonymouspc.com</p>
                 </div>
             </div>
@@ -20,17 +20,17 @@ const Footer = () =>{
             <div className="footer-redes footer-items">
                 <div className="footer-social">
 					<a href="https://www.facebook.com/people/Anonymous-PC/100063737155824/" target="_blank" rel="noopener noreferrer">
-						<i id="facebook" class="fa-brands fa-facebook"></i>
+						<i id="facebook" className="fa-brands fa-facebook"></i>
 					</a>
 				</div>
 				<div className="footer-social">
 					<a href="https://www.instagram.com/anypcstore?igsh=YmExbjFramp3eWM3" target="_blank" rel="noopener noreferrer">
-						<i id="instagram" class="fa-brands fa-instagram"></i>
+						<i id="instagram" className="fa-brands fa-instagram"></i>
 					</a>
 				</div>
 				<div className="footer-social">
 					<a href="https://wa.me/message/2JTWMYLMV4B6I1" target="_blank" rel="noopener noreferrer">
-						<i id="wsp" class="fa-brands fa-square-whatsapp"></i>
+						<i id="wsp" className="fa-brands fa-square-whatsapp"></i>
 					</a>
 				</div>
             </div>
@@ -39,14 +39,14 @@ const Footer = () =>{
                 <p>developed by:</p>
                 <h2><strong>Henry GC</strong></h2>
                 <section>
-                    <i class="fa-brands fa-github"></i>
-                    <i class="fa-brands fa-linkedin"></i>
+                    <i className="fa-brands fa-github"></i>
+                    <i className="fa-brands fa-linkedin"></i>
                 </section>
             </div>
             <div className="sep-bar"></div>
             <div className="footer-form footer-items">
                 <form>
-                    <i id="send" class="fa-solid fa-paper-plane"></i>
+                    <i id="send" className="fa-solid fa-paper-plane"></i>
 					<input id="footer-input" type="email" placeholder="e-mail"/>
 					<button>Enviar</button>
                 </form>

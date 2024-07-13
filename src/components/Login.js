@@ -61,7 +61,12 @@ function Login() {
                             </Link>
                         </h2>
                     </Box>
-                    {isRegistering ? <FormRegister /> : <FormLogin />}
+                    {isRegistering ? <FormRegister /> : (
+                        <>
+                            <FormLogin />
+                            <Link id="reset">¿Olvidaste la contraseña?</Link>
+                        </>
+                        )}
                 </Box>
             </Box>
         </Box>

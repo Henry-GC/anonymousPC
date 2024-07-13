@@ -1,8 +1,11 @@
 import "./Assets/Styles/Main.css"
 import { Box } from "@chakra-ui/react";
 import Pruv from "./Assets/Image/work.png"
+import useCart from "./Hooks/useCart.jsx";
 
 const Main = (props) => {
+  
+  const {addToCart} = useCart();
 
   const prev = `<<`
   const next = `>>`
@@ -32,15 +35,13 @@ const Main = (props) => {
                   src={Pruv}
                   alt="IMAGEN PRODUCTO"
                   id="img-prod"
-                  width="200vw"
-                  height="200vw"
               />
               <Box className="item-text">
                 <Box id="item-name">{producto.name_prod}</Box>
                 <Box id="item-box">
-                  <button>
-                    Comprar
-                    <i class="fa-solid fa-cart-shopping"></i>
+                  <button onClick={()=>addToCart(producto)}>
+                    Añadir al carrito
+                    <i className="fa-solid fa-cart-shopping"></i>
                   </button>
                   <p>${producto.price_prod}</p>
                 </Box>

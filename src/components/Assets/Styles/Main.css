@@ -18,6 +18,8 @@
 #item-prod img{
     display: flex;
     align-self: center;
+    width: 70%;
+    height: 60%;
 }
 .item-text{
     display: flex;
@@ -29,8 +31,9 @@
     /* align-self: flex-end; */
 }
 #item-name{
+    align-self: center;
     display: flex;
-    width: 100%;
+    width: 90%;
 }
 #item-box{
     display: flex;
@@ -38,6 +41,12 @@
     padding: 7px 10px;
     font-size: 1.05vw;
     border-top: solid 1px #999;
+}
+#item-box button{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.1rem;
 }
 .item-text p{
     color: rgb(0, 0, 0);

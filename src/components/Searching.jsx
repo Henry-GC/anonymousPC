@@ -2,6 +2,7 @@ import React from 'react';
 import "./Assets/Styles/Searching.css"
 import { useState } from 'react';
 import Logo from "./Assets/Image/Logo.png"
+import { ShopCart } from './ShopCart';
 
 function Searching(props){
   const [buscar,setBuscar]= useState("")
@@ -21,12 +22,10 @@ function Searching(props){
     <form onSubmit={searchSubmit}>  
       <input type="text" value={buscar} onChange={searchChange} placeholder='Buscar...'/>
       <button type='submit' disabled={!buscar}>
-        <i id="lupa" class="fa-solid fa-magnifying-glass"></i>
+        <i id="lupa" className="fa-solid fa-magnifying-glass"></i>
       </button>
     </form>
-      <button id='botton-car'>
-        <i class="fa-solid fa-cart-shopping"></i>
-      </button>
+      <ShopCart/>
     </div>
   );
 }

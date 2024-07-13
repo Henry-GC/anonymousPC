@@ -9,31 +9,31 @@ const SideBar = (props) =>{
 
     return (
         <ul className="Side-Bar">
-            <button onClick={()=>handleClick("productos")}>
+            <button onClick={()=>handleClick("destacado")}>
                 <div>Destacados</div>
             </button>
-            <button onClick={()=>handleClick("procesadores")}>
+            <button onClick={()=>handleClick("CPU")}>
                 <div>Procesador</div>
             </button>
-            <button onClick={()=>handleClick("mobo")}>
+            <button onClick={()=>handleClick("MBO")}>
                 <div>Placa Madre</div>
             </button>
-            <button onClick={()=>handleClick("gpu")}>
+            <button onClick={()=>handleClick("GPU")}>
                 <div>Tarjeta de Video</div>
             </button>
-            <button onClick={()=>handleClick("ram")}>
+            <button onClick={()=>handleClick("RAM")}>
                 <div>Memoria Ram</div>
             </button>
-            <button onClick={()=>handleClick("almacenamiento")}>
+            <button onClick={()=>handleClick("STG")}>
                 <div>Almacenamiento</div>
             </button>
-            <button onClick={()=>handleClick("fuentes")}>
+            <button onClick={()=>handleClick("PSU")}>
                 <div>Fuente de Poder</div>
             </button>
-            <button onClick={()=>handleClick("case")}>
+            <button onClick={()=>handleClick("CASE")}>
                 <div>Carcasa</div>
             </button>
-            <button onClick={()=>handleClick("acc")}>
+            <button onClick={()=>handleClick("ACC")}>
                 <div>Accesorios</div>
             </button>
         </ul>

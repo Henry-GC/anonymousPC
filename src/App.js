@@ -7,21 +7,24 @@ import Ensambles from './components/Ensambles';
 import Nosotros from './components/Nosotros';
 import Login from './components/Login';
 import Footer from './components/Footer';
+import { CartProvider } from './components/Context/CartContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className='container'>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<Inicio />} />
-        <Route path='/productos' element={<Productos/>} />
-        <Route path='/ensambles' element={<Ensambles />} />
-        <Route path='/nosotros' element={<Nosotros />} />
-        <Route path='/login' element={<Login />} />
-      </Routes>
-      <Footer/>
-      </div>
+      <CartProvider>
+        <div className='container'>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<Inicio />} />
+          <Route path='/productos' element={<Productos/>} />
+          <Route path='/ensambles' element={<Ensambles />} />
+          <Route path='/nosotros' element={<Nosotros />} />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+        <Footer/>
+        </div>
+      </CartProvider>
     </BrowserRouter>
   );
 }

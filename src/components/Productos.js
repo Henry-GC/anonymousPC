@@ -6,22 +6,35 @@ import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
 import Axios from "../utils/axiosConfig"
 import FormLogin from "./FormLogin";
+import { Link } from "react-router-dom";
 
 function Productos() {
 
   const [bd, setBD] = useState([])
   const [items, setItems] = useState([]);
-  const [filter, setFilter] = useState("productos")
+  const [filter, setFilter] = useState("destacado")
   const [page, setPage] = useState(1)
   const [typeSort, setTypeSort] = useState("priceLow")
 
   const fetchProductos = async () => {
     try {
-      const response = await Axios.get(`/api/${filter}`)
+      const response = await Axios.get(`/api/productos`)
+      const filterBD = response.data.filter(producto=>{
+        if(filter === "destacado"){
+          return(
+            producto.destacado === 1 
+          )
+        } else {
+          return(
+            producto.type_prod === filter
+          )
+        } 
+      })
       response.data.sort((a, b) => a.price_prod - b.price_prod)
-      setBD(response.data)
+      setBD(filterBD)
+      setPage(1)
     } catch (error) {
-      console.error(`Error fetching ${filter}`, error);
+      console.error(`Error fetching`, error);
     }
   };
 
@@ -89,6 +102,7 @@ function Productos() {
                   classError="form-error"
                   classButton="button-login"
                 />
+                <Link id="reset">¿Olvidaste la contraseña?</Link>
             </Box>
         </Box>
         <Box
@@ -111,10 +125,10 @@ function Productos() {
               >
                 <strong>Ordenar por: </strong>
                 <select className="select-container" onChange={handleSort}>
-                  <option value="priceLow"><p>Menor Precio Primero</p></option>
-                  <option value="priceHig"><p>Mayor Precio Primero</p></option>
-                  <option value="asc"><p>A-Z Ascendente</p></option>
-                  <option value="des"><p>Z-A Descendente</p></option>
+                  <option value="priceLow">Menor Precio Primero</option>
+                  <option value="priceHig">Mayor Precio Primero</option>
+                  <option value="asc">A-Z Ascendente</option>
+                  <option value="des">Z-A Descendente</option>
                 </select>
               </Box>
               <Box
@@ -123,8 +137,8 @@ function Productos() {
                 color="#fff"
                 fontSize="2rem"
               >
-                <i class="fa-solid fa-list"></i>
-                <i class="fa-solid fa-table-cells"></i>
+                <i className="fa-solid fa-list"></i>
+                <i className="fa-solid fa-table-cells"></i>
               </Box>
             </Box>
             <Main

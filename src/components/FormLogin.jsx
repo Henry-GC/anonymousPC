@@ -1,6 +1,5 @@
-import { Box, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
+import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
 import { useFormik } from "formik"
-import { Link } from "react-router-dom"
 import * as Yup from "yup"
 import React from "react"
 import Axios from "../utils/axiosConfig"
@@ -52,7 +51,6 @@ const FormLogin =(props)=>{
                 />
                 <FormErrorMessage className={props.classError}>{formik.errors.pass}</FormErrorMessage>
             </FormControl>
-            <Box><Link id="reset">¿Olvidaste la contraseña?</Link></Box>
             <button type="submit" className={props.classButton}>Entrar</button>
         </form>
     )
