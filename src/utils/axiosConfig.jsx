@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://anonymousbackend.onrender.com/',
+  baseURL: 'https://anonymousbackend.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   }

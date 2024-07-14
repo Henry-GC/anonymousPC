@@ -23,32 +23,42 @@ export const ShopCart = () => {
 
             <div className="shop-cart">
                 <div className="title-cart">
-                    <h1>CARRITO</h1>
-                    <button onClick={closeCart}><i className="fa-regular fa-circle-xmark"></i></button>
+                    <h1>Carrito <i className="fa-solid fa-cart-shopping"></i></h1>
+                    <button onClick={closeCart}><i class="fa-solid fa-right-long"></i></button>
                 </div>
                 
                 <div className="body-cart">
                     <ul>
                         {addCart.map((item,index)=>(
-                            <li className="item-cart">
-                                <div className="image-item-cart">
-                                    <img src={Pruv} width="100%" alt="PRODUCTO"/>
+                            <li
+                                className="item-shopCart"
+                                key={item.id_prod}
+                            >
+                                <div className="delete-button">
+                                    <button onClick={()=>delToCart(index)}>
+                                        <i className="fa-regular fa-circle-xmark"></i>
+                                    </button>
                                 </div>
-                                <div className="body-item-cart">
-                                    <strong>{item.name_prod}</strong>
-                                    <div className="delete-item-cart">
-                                        <button><i className="fa-solid fa-plus"></i></button>
-                                        <span>{1}</span>
-                                        <button><i className="fa-solid fa-minus"></i></button>
-                                        <button onClick={()=>delToCart(index)}><i className="fa-solid fa-trash"></i></button>
+                                <div className="item-cart">
+                                    <div className="image-item-cart">
+                                        <img src={Pruv} width="100%" alt="PRODUCTO CARRITO"/>
+                                    </div>
+                                    <div className="body-item-cart">
+                                        <strong>{item.name_prod}</strong>
+                                        <div className="count-item-cart">
+                                            <button><i className="fa-solid fa-plus"></i></button>
+                                            <span>{1}</span>
+                                            <button><i className="fa-solid fa-minus"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
                         ))}
                     </ul>
+                    {numCart>0 ? <button className="send-cart">Finalizar compra</button> : <h2>Aún no hay artículos agregados</h2>}
+                    
                 </div>
 
-                <button>Comprar</button>
             </div>
 
 
