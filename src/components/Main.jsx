@@ -54,9 +54,13 @@ const Main = (props) => {
           gap="0.5rem"
           color="#aaa"
         >
-          <button onClick={props.prevPage}>{prev}</button>
-          <p>{props.currentPage}</p>
-          <button onClick={props.nextPage}>{next}</button>
+          {props.bd.length>12?(
+            <>
+              <button onClick={props.prevPage}>{prev}</button>
+              <p>{props.currentPage}</p>
+              <button onClick={props.nextPage}>{next}</button>
+            </>):(<></>)}
+          
         </Box>
       </Box>
     ) : (<img

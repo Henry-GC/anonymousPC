@@ -1,23 +1,35 @@
-import { useId, useState } from "react"
+import { useEffect, useId, useState } from "react"
 import "./Assets/Styles/ShopCart.css"
 import Pruv from "./Assets/Image/work.png"
 import useCart from "./Hooks/useCart"
 
 export const ShopCart = () => {
-    const {addCart, delToCart} = useCart()
+    const {addCart, delToCart, plusCart, minusCart} = useCart()
     const numCart = addCart.length
     const CartId = useId()
     const [isCheked,setChecked] = useState(false)
+    const [totalPrice, setTotalPrice] = useState("")
 
     const closeCart = () => {
         setChecked(false)
     }
 
+    useEffect(()=>{
+        var totalCart = 0;
+        for (let i = 0; i < addCart.length; i++) {
+            totalCart += parseFloat(addCart[i].price_prod)*addCart[i].count;
+        }
+        const total = parseFloat(totalCart).toFixed(2)
+        setTotalPrice(total)
+    
+    },[addCart])
+
     return (
         <div className="cart-container">
             <label htmlFor={CartId} className="cart-button">
                 <i className="fa-solid fa-cart-shopping"></i>
-                <div>{numCart}</div>
+                {numCart>0?<div>{numCart}</div>:<></>}
+                {/* <div>{numCart}</div> */}
             </label>
             <input id={CartId} type="checkbox" checked={isCheked} onChange={(e)=>setChecked(e.target.checked)} hidden />
 
@@ -44,18 +56,33 @@ export const ShopCart = () => {
                                         <img src={Pruv} width="100%" alt="PRODUCTO CARRITO"/>
                                     </div>
                                     <div className="body-item-cart">
-                                        <strong>{item.name_prod}</strong>
+                                        <div className="text-item-cart">
+                                            <strong>{item.name_prod}</strong>
+                                            <div className="text-price">
+                                                <div className="price-item">$ {item.price_prod}</div>
+                                                <div> - </div>
+                                                <div className="price-item-total">$ {parseFloat(item.price_prod*item.count).toFixed(2)}</div>
+                                            </div>
+                                        </div>
                                         <div className="count-item-cart">
-                                            <button><i className="fa-solid fa-plus"></i></button>
-                                            <span>{1}</span>
-                                            <button><i className="fa-solid fa-minus"></i></button>
+                                            <button onClick={()=>plusCart(index)}><i className="fa-solid fa-plus"></i></button>
+                                            <span>{item.count}</span>
+                                            <button onClick={()=>minusCart(index)}><i className="fa-solid fa-minus"></i></button>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                         ))}
                     </ul>
-                    {numCart>0 ? <button className="send-cart">Finalizar compra</button> : <h2>Aún no hay artículos agregados</h2>}
+                    {numCart>0 ? (
+                        <div className="footer-cart">   
+                            <div className="price-cart">
+                                PRECIO TOTAL:
+                                <div> $ {totalPrice}</div>
+                            </div>
+                            <button className="send-cart">Finalizar compra</button>
+                        </div>
+                        ) : <h2>Aún no hay artículos agregados</h2>}
                     
                 </div>
 

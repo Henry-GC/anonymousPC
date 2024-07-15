@@ -146,6 +146,7 @@ function Productos() {
               prevPage={prevPage}
               nextPage={nextPage}
               currentPage={page}
+              bd={bd}
             />
         </Box>
       </div>

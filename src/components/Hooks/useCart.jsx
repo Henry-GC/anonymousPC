@@ -3,11 +3,14 @@ import { CartContext } from "../Context/CartContext"
 
 function useCart (){
     const {addCart,setAddCart} = useContext(CartContext)
-  
+
     function addToCart (prod) {
       const elemento = addCart.some(arr => arr.id_prod === prod.id_prod)
       if(!elemento){
-        const newCart = [...addCart, prod]
+        const newCart = [...addCart, {
+          ...prod,
+          count : 1
+        }]
         setAddCart(newCart)
       }
     }
@@ -18,11 +21,25 @@ function useCart (){
         setAddCart(newCart)
     }
 
+    function plusCart (index) {
+      const cart = [...addCart]
+      cart[index].count = cart[index].count + 1
+      setAddCart(cart)
+    }
+
+    function minusCart (index) {
+      const cart = [...addCart]
+      if (cart[index].count > 1){
+        cart[index].count = cart[index].count - 1
+      }
+      setAddCart(cart)
+    }
+
     useEffect(()=>{
       console.log(addCart);
     },[addCart]);
 
-    return {addCart,addToCart,delToCart};
+    return {addCart,addToCart,delToCart,plusCart,minusCart};
   }
 
 export default useCart;
