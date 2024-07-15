@@ -139,7 +139,7 @@
 }
 .price-item-total{
     font-size: 1.2rem;
-    color: rgb(0, 255, 34);
+    color: rgb(255, 255, 255);
     font-weight: bolder;
 }
 .count-item-cart{
@@ -184,6 +184,7 @@
     align-self: center;
     font-size: 1.5rem;
     font-weight: 900;
+    color:  rgb(0, 255, 34);
 }
 .body-cart .send-cart{
     background-color: blueviolet;
