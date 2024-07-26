@@ -4,8 +4,9 @@
   box-sizing: border-box;
 }
 body{
-  font-family: sans-serif;
+  font-family: "Roboto";
   background: linear-gradient(to right, #7c11b9,#2c0344);
+  overflow-x: hidden;
 }
 img{
   max-width: 100%;

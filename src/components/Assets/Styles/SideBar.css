@@ -1,48 +1,29 @@
 .Side-Bar{
     display: flex;
-    height: auto;
-	flex-direction: column;
+    justify-content: center;
 	align-items: center;
-    padding: 1vw;
-	border-radius: 0.8vw;
-    background-color: #190425;
+    background-color: #2D0346;
     list-style: none;
-    gap: 0.5vw;
-}
-.Side-Bar li{
-    text-align: center;
-    align-items: center;
-    width: 15vw;
-	padding: 0.8vw 0;
-    border-radius: 0.3vw;
-	background-color: #e7e7e7;
-	transition-property: background;
-	transition-duration: .1s;
-    cursor: pointer;
 }
 .Side-Bar button{
+    height: 1.8rem;
     text-align: center;
     align-items: center;
-    width: 15vw;
-	padding: 0.8vw 0;
-    border-radius: 0.3vw;
-	background-color: #e7e7e7;
+	background-color: transparent;
 	transition-property: background;
 	transition-duration: .1s;
     cursor: pointer;
     border: none;
-}
-.Side-Bar li:hover{
-	background: #190425;
-	color: #ffffff;
+    color: #ffffff;
+    border-left: #ffffff solid 1px;
+    border-right: #ffffff solid 1px;
+    padding: 0 1rem;
 }
 .Side-Bar button:hover{
 	background: #190425;
 	color: #ffffff;
 }
-li div{
-    font-size: 1.3vw;
-}
 button div{
-    font-size: 1.3vw;
+    font-weight: 400;
+    font-size: 1rem;
 }

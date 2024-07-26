@@ -7,67 +7,38 @@ const Main = (props) => {
   
   const {addToCart} = useCart();
 
-  const prev = `<<`
-  const next = `>>`
-
-  const price = props.resultado.map((producto)=>{
-    return producto = {
-      ...producto,
-      price_prod : parseFloat(producto.price_prod).toFixed(2)
-    }
-  })
-
   return ( props.resultado.length > 0 ? 
     ( 
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        gap="1rem"
-      >
-        <Box className="container-main"> 
-          {price.map((producto)=>(
-            <Box
-              key={producto.id_prod}
-              id="item-prod"
-            >
-              <img
-                  src={Pruv}
-                  alt="IMAGEN PRODUCTO"
-                  id="img-prod"
-              />
+      <Box className="container-main">
+        <Box className="container-prod-main"> 
+          {props.resultado.map((producto)=>(
+            <Box key={producto.id_prod} className="item-prod-main">
+              <Box className="item-image-main">
+                <img src={Pruv} alt="IMAGEN PRODUCTO" width="100%"/>
+              </Box>
               <Box className="item-text">
-                <Box id="item-name">{producto.name_prod}</Box>
-                <Box id="item-box">
+                <Box className="item-name">{producto.name_prod}</Box>
+                <Box className="item-box">
                   <button onClick={()=>addToCart(producto)}>
-                    Añadir al carrito
-                    <i className="fa-solid fa-cart-shopping"></i>
+                    Comprar <i className="fa-solid fa-cart-shopping"></i>
                   </button>
-                  <p>${producto.price_prod}</p>
+                  <p>${parseFloat(producto.price_prod).toFixed(2)}</p>
                 </Box>
               </Box>
             </Box>
           ))}
         </Box>
-        <Box
-          display="flex"
-          gap="0.5rem"
-          color="#aaa"
-        >
+        <Box className="arrow-prod-main">
           {props.bd.length>12?(
             <>
-              <button onClick={props.prevPage}>{prev}</button>
+              <button onClick={props.prevPage}>{`<<`}</button>
               <p>{props.currentPage}</p>
-              <button onClick={props.nextPage}>{next}</button>
+              <button onClick={props.nextPage}>{`>>`}</button>
             </>):(<></>)}
           
         </Box>
       </Box>
-    ) : (<img
-      src={Pruv}
-      alt="IMAGEN PRODUCTO"
-      id="img-prod"
-  />)
+    ) : (<img src={Pruv} alt="IMAGEN PRODUCTO"/>)
   );
 };
 

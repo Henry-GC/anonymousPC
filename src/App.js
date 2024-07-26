@@ -1,23 +1,31 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from './components/NavBar';
-import Inicio from './components/Inicio';
-import Productos from './components/Productos';
-import Ensambles from './components/Ensambles';
-import Nosotros from './components/Nosotros';
-import Login from './components/Login';
+import Inicio from './components/Routes/Inicio';
+import Productos from './components/Routes/Productos';
+import Ensambles from './components/Routes/Ensambles';
+import Nosotros from './components/Routes/Nosotros';
+import Login from './components/Routes/Login';
 import Footer from './components/Footer';
 import { CartProvider } from './components/Context/CartContext';
+import Header from './components/Header';
 
 function App() {
   return (
     <BrowserRouter>
       <CartProvider>
         <div className='container'>
-        <NavBar />
+        <Header/>
         <Routes>
           <Route path='/' element={<Inicio />} />
-          <Route path='/productos' element={<Productos/>} />
+          <Route path='/productos' element={<Productos />} />
+          <Route path='/productos/procesador' element={<Productos />} />
+          <Route path='/productos/tarjeta-grafica' element={<Productos />} />
+          <Route path='/productos/placa-madre' element={<Productos />} />
+          <Route path='/productos/memoria-ram' element={<Productos />} />
+          <Route path='/productos/almacenamiento' element={<Productos />} />
+          <Route path='/productos/fuente-de-poder' element={<Productos />} />
+          <Route path='/productos/carcasa' element={<Productos />} />
+          <Route path='/productos/accesorios' element={<Productos />} />
           <Route path='/ensambles' element={<Ensambles />} />
           <Route path='/nosotros' element={<Nosotros />} />
           <Route path='/login' element={<Login />} />

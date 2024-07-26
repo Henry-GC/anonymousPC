@@ -3,15 +3,14 @@ import "./Assets/Styles/ShopCart.css"
 import Pruv from "./Assets/Image/work.png"
 import useCart from "./Hooks/useCart"
 
-export const ShopCart = () => {
+export const ShopCart = (props) => {
     const {addCart, delToCart, plusCart, minusCart} = useCart()
     const numCart = addCart.length
     const CartId = useId()
-    const [isCheked,setChecked] = useState(false)
     const [totalPrice, setTotalPrice] = useState("")
 
     const closeCart = () => {
-        setChecked(false)
+        props.setChecked(false)
     }
 
     useEffect(()=>{
@@ -29,13 +28,12 @@ export const ShopCart = () => {
             <label htmlFor={CartId} className="cart-button">
                 <i className="fa-solid fa-cart-shopping"></i>
                 {numCart>0?<div>{numCart}</div>:<></>}
-                {/* <div>{numCart}</div> */}
             </label>
-            <input id={CartId} type="checkbox" checked={isCheked} onChange={(e)=>setChecked(e.target.checked)} hidden />
+            <input id={CartId} type="checkbox" checked={props.isCheked} onChange={(e)=>props.setChecked(e.target.checked)} hidden />
 
             <div className="shop-cart">
                 <div className="title-cart">
-                    <h1>Carrito <i className="fa-solid fa-cart-shopping"></i></h1>
+                    <h1>Carrito</h1>
                     <button onClick={closeCart}><i class="fa-solid fa-right-long"></i></button>
                 </div>
                 

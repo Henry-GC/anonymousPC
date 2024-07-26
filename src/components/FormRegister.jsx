@@ -1,7 +1,6 @@
 // FormRegister.js
-import { Box, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
+import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
 import { useFormik } from "formik"
-import { Link } from "react-router-dom"
 import * as Yup from "yup"
 import React from "react"
 import Axios from "../utils/axiosConfig"
