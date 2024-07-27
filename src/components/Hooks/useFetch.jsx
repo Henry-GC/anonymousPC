@@ -4,13 +4,38 @@ import { useLocation } from "react-router-dom";
 
 export default function useFetch (){
 
-    const [bd, setBD] = useState([]);
-    const [items, setItems] = useState([]);
+    const [relevantProducts,setRelevantProducts] = useState([]) //ESTADO PRODUCTOS DESTACADOS
+    const [builds,setBuilds] = useState([]) //ESTADO EMSABLES DESTACADOS
+    const [bd, setBD] = useState([]); // ESTADO PRODUCTOS FILTRADOS
+    const [items, setItems] = useState([]); // ESTADO PRODUCTOS PAGINADOS
     const [filter, setFilter] = useState("destacado");
     const [page, setPage] = useState(1);
     const [typeSort, setTypeSort] = useState("priceLow");
     const location = useLocation();
 
+    // REQUEST PRODUCTOS DESTACADOS
+    const fetchRelevants = async() => {
+        const response = await Axios.get("/api/productos")
+        const data = response.data.filter(prod => prod.destacado === 1 && prod.type_prod !== "BUILD")
+        setRelevantProducts(data)
+    }
+
+    useEffect(()=>{
+        fetchRelevants();
+    },[])
+
+    // REQUEST ENSAMBLES DESTACADOS
+    const fetchingBuilds = async () =>{
+        const response = await Axios.get("/api/gamerBuilds")
+        const data = response.data
+        setBuilds(data)
+    }
+
+    useEffect(()=>{
+        fetchingBuilds()
+    },[])
+
+    // CAMBIAR ESTADO DEL FILTRO
     useEffect(()=>{
         switch (location.pathname) {
             case "/productos/procesador":
@@ -91,5 +116,5 @@ export default function useFetch (){
 
     },[bd,page,typeSort])
 
-    return{items,bd,setFilter,page,setPage,setTypeSort}
+    return{items,bd,setFilter,page,setPage,setTypeSort,builds,relevantProducts}
 }

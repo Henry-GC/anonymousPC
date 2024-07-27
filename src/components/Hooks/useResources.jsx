@@ -6,33 +6,45 @@ import ssdImage from "../Assets/Image/ssd-image.png"
 import psuImage from "../Assets/Image/psu-image.png"
 import caseImage from "../Assets/Image/case-image.png"
 import accImage from "../Assets/Image/acc-image.png"
+import cpuIcon from "../Assets/Image/cpu-icon.png"
+import gpuIcon from "../Assets/Image/gpu-icon.png"
+import mboIcon from "../Assets/Image/mbo-icon.png"
+import ssdIcon from "../Assets/Image/ssd-icon.png"
+import ramIcon from "../Assets/Image/ram-icon.png"
+import psuIcon from "../Assets/Image/psu-icon.png"
 
-export default function useFilter (){
+export default function useResources (){
 
     const sections = [
         {
             section: "PROCESADORES",
-            image: cpuImage
+            image: cpuImage,
+            icon: cpuIcon
         },
         {
             section: "PLACA MADRE",
-            image: mboImage
+            image: mboImage,
+            icon: mboIcon
         },
         {
             section: "TARJETA GRÁFICA",
-            image: gpuImage
+            image: gpuImage,
+            icon: gpuIcon
         },
         {
             section: "MEMORIA RAM",
-            image: ramImage
+            image: ramImage,
+            icon: ramIcon
         },
         {
             section: "ALMACENAMIENTO",
-            image: ssdImage
+            image: ssdImage,
+            icon: ssdIcon
         },
         {
             section: "FUENTES DE PODER",
-            image: psuImage
+            image: psuImage,
+            icon: psuIcon
         },
         {
             section: "CARCASA",

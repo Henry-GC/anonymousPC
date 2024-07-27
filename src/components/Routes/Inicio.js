@@ -2,8 +2,9 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import "../Assets/Styles/Inicio.css"
 import pruv from "../Assets/Image/work.png"
-import useFilter from "../Hooks/useFilter";
-import useFetchBuilds from "../Hooks/useFetchBuilds";
+import useResources from "../Hooks/useResources";
+import useFetch from "../Hooks/useFetch";
+import useCart from "../Hooks/useCart";
 import bigAdv from "../Assets/Image/adv2.jpg"
 import boxAdv1 from "../Assets/Image/adv1.jpg"
 import boxAdv2 from "../Assets/Image/adv3.jpg"
@@ -13,8 +14,9 @@ import banner from "../Assets/Image/banner 1.png"
 
 function Inicio(){
 
-    const {sections} = useFilter()
-    const {builds} = useFetchBuilds()
+    const {sections} = useResources()
+    const {builds,relevantProducts} = useFetch()
+    const {addToCart} = useCart()
     
     return(
         <Box className="inicio-container">
@@ -64,21 +66,23 @@ function Inicio(){
                         PRODUCTOS DESTACADOS
                         <button>VER TODO</button>
                     </Box>
-                    <ul className="builds-destacados">
-                        {builds.map((ensamble)=>(
-                            <div key={ensamble.id} className="build-destacado">
-                                <div className="img-build-container">
-                                    <img src={pruv} alt="IMAGEN DEL ENSAMBLE" width="100%"/>
+                    <ul className="relevant-products">
+                        {relevantProducts.map((producto)=>(
+                            <div key={producto.id_prod} className="relevant-product">
+                                <div className="img-product-container">
+                                    <img src={pruv} alt="IMAGEN DEL PRODUCTO" width="100%"/>
                                 </div>
-                                <div className="text-build-container">
-                                    <h2>{ensamble.name}</h2>
-                                    <p>A partir de:</p>
-                                    <strong>$ {parseFloat(ensamble.price).toFixed(2)}</strong>
-                                    <div className="details-build-container">
-
+                                <div className="text-product-container">
+                                    <div>
+                                        {producto.name_prod}
+                                    </div>
+                                    <div className="item-box">
+                                        <button onClick={()=>addToCart(producto)}>
+                                            Comprar <i className="fa-solid fa-cart-shopping"></i>
+                                        </button>
+                                        <p>${parseFloat(producto.price_prod).toFixed(2)}</p>
                                     </div>
                                 </div>
-                                <button>Añadir al carrito</button>
                             </div>
                         ))}
                     </ul>
@@ -90,19 +94,72 @@ function Inicio(){
                     </Box>
                     <ul className="builds-destacados">
                         {builds.map((ensamble)=>(
-                            <div key={ensamble.id} className="build-destacado">
+                            <div key={ensamble.id_prod} className="build-destacado">
                                 <div className="img-build-container">
                                     <img src={pruv} alt="IMAGEN DEL ENSAMBLE" width="100%"/>
                                 </div>
                                 <div className="text-build-container">
-                                    <h2>{ensamble.name}</h2>
+                                    <h2>{ensamble.name_prod}</h2>
                                     <p>A partir de:</p>
-                                    <strong>$ {parseFloat(ensamble.price).toFixed(2)}</strong>
+                                    <strong>$ {parseFloat(ensamble.price_prod).toFixed(2)}</strong>
                                     <div className="details-build-container">
-
+                                            {ensamble.CPU?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[0].icon} alt="CPU ICON" width="100%"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Procesador</p>
+                                                    <strong>{ensamble.CPU}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.MBO?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[1].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Placa Madre</p>
+                                                    <strong>{ensamble.MBO}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.GPU?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[2].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Tarjeta Gráfica</p>
+                                                    <strong>{ensamble.GPU}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.RAM?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[3].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Memoria Ram</p>
+                                                    <strong>{ensamble.RAM}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.SSD?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[4].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Almacenamiento</p>
+                                                    <strong>{ensamble.SSD}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.PSU?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[5].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Fuente de Poder</p>
+                                                    <strong>{ensamble.PSU}</strong>
+                                                </div>
+                                            </div>):(<></>)}
                                     </div>
                                 </div>
-                                <button>Añadir al carrito</button>
+                                <button onClick={()=>addToCart(ensamble)}>Añadir al carrito</button>
                             </div>
                         ))}
                     </ul>
@@ -114,19 +171,72 @@ function Inicio(){
                     </Box>
                     <ul className="builds-destacados">
                         {builds.map((ensamble)=>(
-                            <li key={ensamble.id} className="build-destacado">
+                            <li key={ensamble.id_prod} className="build-destacado">
                                 <div className="img-build-container">
                                     <img src={pruv} alt="IMAGEN DEL ENSAMBLE" width="100%"/>
                                 </div>
                                 <div className="text-build-container">
-                                    <h2>{ensamble.name}</h2>
+                                    <h2>{ensamble.name_prod}</h2>
                                     <p>A partir de:</p>
-                                    <strong>$ {parseFloat(ensamble.price).toFixed(2)}</strong>
+                                    <strong>$ {parseFloat(ensamble.price_prod).toFixed(2)}</strong>
                                     <div className="details-build-container">
-
+                                            {ensamble.CPU?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[0].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Procesador</p>
+                                                    <strong>{ensamble.CPU}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.MBO?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[1].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Procesador</p>
+                                                    <strong>{ensamble.MBO}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.GPU?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[2].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Procesador</p>
+                                                    <strong>{ensamble.GPU}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.RAM?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[3].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Procesador</p>
+                                                    <strong>{ensamble.RAM}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.SSD?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[4].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Procesador</p>
+                                                    <strong>{ensamble.SSD}</strong>
+                                                </div>
+                                            </div>):(<></>)}
+                                            {ensamble.PSU?(<div className="build-component-container">
+                                                <div className="img-build-component">
+                                                    <img src={sections[5].icon} alt="CPU ICON"/>
+                                                </div>
+                                                <div className="component-title">
+                                                    <p>Procesador</p>
+                                                    <strong>{ensamble.PSU}</strong>
+                                                </div>
+                                            </div>):(<></>)}
                                     </div>
                                 </div>
-                                <button>Añadir al carrito</button>
+                                <button onClick={()=>addToCart(ensamble)}>Añadir al carrito</button>
                             </li>
                         ))}
                     </ul>
