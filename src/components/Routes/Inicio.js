@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box , Button } from "@chakra-ui/react";
 import "../Assets/Styles/Inicio.css"
 import pruv from "../Assets/Image/work.png"
 import useResources from "../Hooks/useResources";
@@ -11,7 +11,7 @@ function Inicio(){
 
     const {sections} = useResources()
     const {builds,relevantProducts} = useFetch()
-    const {addToCart} = useCart()
+    const {addCart,addToCart,loading,handleButtonCart} = useCart()
     
     return(
         <Box className="inicio-container">
@@ -70,9 +70,11 @@ function Inicio(){
                                 <div className="text-product-container">
                                     <div className="name-product-container">{producto.name_prod}</div>
                                     <div className="price-product-container">
-                                        <button onClick={()=>addToCart(producto)}>
+                                        {addCart.some((arr)=>arr.id_prod === producto.id_prod)?(<div>Articulo agregado</div>):(
+                                            <Button isLoading={producto.id_prod === loading ? true : null} onClick={()=>handleButtonCart(producto)}>
                                             Comprar <i className="fa-solid fa-cart-shopping"></i>
-                                        </button>
+                                            </Button>
+                                        )}
                                         <p>${parseFloat(producto.price_prod).toFixed(2)}</p>
                                     </div>
                                 </div>

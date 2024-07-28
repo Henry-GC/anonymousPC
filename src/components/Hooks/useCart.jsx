@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect , useState } from "react"
 import { CartContext } from "../Context/CartContext"
 
 function useCart (){
     const {addCart,setAddCart} = useContext(CartContext)
+    const [loading,setLoading] = useState(null)
 
     function addToCart (prod) {
       const elemento = addCart.some(arr => arr.id_prod === prod.id_prod)
@@ -35,11 +36,19 @@ function useCart (){
       setAddCart(cart)
     }
 
+    const handleButtonCart = (producto) =>{
+      setLoading(producto.id_prod)
+      setTimeout(()=>{
+        addToCart(producto)
+        setLoading(null)
+      },"500")
+    }
+
     useEffect(()=>{
       console.log(addCart);
     },[addCart]);
 
-    return {addCart,addToCart,delToCart,plusCart,minusCart};
+    return {addCart,addToCart,delToCart,plusCart,minusCart,loading,handleButtonCart};
   }
 
 export default useCart;
