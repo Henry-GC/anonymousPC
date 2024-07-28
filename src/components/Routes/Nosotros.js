@@ -18,9 +18,7 @@ function Nosotros(){
             </Box>
             <Box className="about-history-container">
                 <h2>NUESTRA HISTORIA</h2>
-                <p>Anonymous PC nace de la necesidad de tener acceso a productos de primera calidad a un precio justo en la ciudad de Esmeraldas, 
-                Anonymous PC nace de la necesidad de tener acceso a productos de primera calidad a un precio justo en la ciudad de Esmeraldas,
-                </p>
+                <p>Anonymous PC nace de la necesidad de tener acceso a productos de primera calidad a un precio justo en la ciudad de Esmeraldas. Nuestra misión es proporcionar a los entusiastas de la tecnología y a los gamers equipos de alto rendimiento que satisfagan sus expectativas y necesidades. Con una amplia gama de componentes y sistemas personalizados, nos esforzamos por ofrecer soluciones que no solo sean accesibles, sino también innovadoras y confiables.</p>
             </Box>
             <Box className="about-adv-container">
                 <div className="pictures-adv-container">
@@ -60,7 +58,10 @@ function Nosotros(){
                         <h1>ENTENDEMOS LO QUE BUSCAS</h1>
                     </div>
                     <p>
-
+                        Comprometidos con la satisfacción de nuestros clientes, en Anonymous PC no solo vendemos productos, sino que también brindamos asesoramiento y soporte técnico continuo. Sabemos lo importante que es tener un equipo confiable para tus proyectos y entretenimiento, por eso trabajamos arduamente para ser tu aliado de confianza en el mundo de la informática.
+                    </p>
+                    <p>
+                        Nuestro objetivo es transformar la manera en que se adquieren y utilizan los equipos de computación en Esmeraldas, brindando una experiencia de compra única y satisfactoria. Desde nuestra fundación, hemos crecido gracias a la confianza de nuestros clientes y seguimos dedicándonos a superar sus expectativas con cada producto y servicio que ofrecemos.
                     </p>
                 </div>
             </Box>

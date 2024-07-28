@@ -1,11 +1,19 @@
 import "./Assets/Styles/Main.css"
-import { Box } from "@chakra-ui/react";
+import { Box , Button } from "@chakra-ui/react";
 import Pruv from "./Assets/Image/work.png"
 import useCart from "./Hooks/useCart.jsx";
+import { useState } from "react";
 
 const Main = (props) => {
-  
+
   const {addToCart} = useCart();
+  const [loading,setLoading] = useState(null)
+
+  const handleButton = (producto) =>{
+    setLoading(producto.id_prod)
+    addToCart(producto)
+    setTimeout(()=>setLoading(""),"1000")
+  }
 
   return ( props.resultado.length > 0 ? 
     ( 
@@ -19,9 +27,9 @@ const Main = (props) => {
               <Box className="item-text">
                 <Box className="item-name">{producto.name_prod}</Box>
                 <Box className="item-box">
-                  <button onClick={()=>addToCart(producto)}>
+                  <Button isLoading={producto.id_prod == loading ? true : null} onClick={()=>handleButton(producto)}>
                     Comprar <i className="fa-solid fa-cart-shopping"></i>
-                  </button>
+                  </Button>
                   <p>${parseFloat(producto.price_prod).toFixed(2)}</p>
                 </Box>
               </Box>
