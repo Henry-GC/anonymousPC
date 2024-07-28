@@ -1,5 +1,4 @@
 import "./Assets/Styles/Footer.css"
-import Logo from "../components/Assets/Image/Logo.png"
 
 const Footer = () =>{
     return (
@@ -7,7 +6,7 @@ const Footer = () =>{
             <div className="footer-logo footer-item">
                 <picture className="logo-picture">
                     <img
-                        src={Logo}
+                        src="/multimedia/Logo.png"
                         alt="AnonymousPC"
                         width="100%"/>
                 </picture>

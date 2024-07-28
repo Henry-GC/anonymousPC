@@ -6,6 +6,7 @@
 body{
   font-family: "Roboto";
   background: linear-gradient(to right, #7c11b9,#2c0344);
+  /* background: #2c0344; */
   overflow-x: hidden;
 }
 img{

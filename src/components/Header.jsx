@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import "./Assets/Styles/Header.css"
 import { ShopCart } from "./ShopCart";
 import { Link, useLocation } from "react-router-dom";
-import isologo from "./Assets/Image/isologo.png"
 import SideBar from "./SideBar"
 
 export default function Header (props){
@@ -51,7 +50,7 @@ export default function Header (props){
         <div className="header" ref={headerRef}>
             <div className="header-container">
                 <div className="home-container">
-                    <div className="logo-container"><Link to="/"><img alt="ISOLOGO" src={isologo} width="100%"/></Link></div>
+                    <div className="logo-container"><Link to="/"><img alt="ISOLOGO" src="/multimedia/isologo.png" width="100%"/></Link></div>
                     <div className="search-container">
                         <form onSubmit={searchSubmit}>
                             <button type='submit'>

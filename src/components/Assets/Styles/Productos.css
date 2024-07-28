@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 2vw;
     flex-grow: 1;
+    padding-bottom: 2vw;
 }
 .container-product-body{
     display: flex;

@@ -1,0 +1,86 @@
+.builds-section-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20vw;
+}
+.builds-gamer-container{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 40vh;
+    padding-top: 10vh;
+}
+.build-gamer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.img-gamer-build-container{
+    display: flex;
+    width: 40vw;
+}
+.img-gamer-build-container img{
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5));  
+}
+.text-gamer-build-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+.text-gamer-build-container h1{
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    filter:drop-shadow(1px 1px 5px #000000);
+}
+.text-gamer-build-container p{
+    align-self: flex-start;
+    color: #fff;
+    font-family: 'Roboto';
+    font-weight: 400;
+    padding-left: 5vw;
+}
+.text-gamer-build-container strong{
+    color: #009317;
+    font-size: 2.5rem;
+    font-family: 'Montserrat';
+    font-weight: 900;
+    filter:drop-shadow(1px 1px 5px #000000);
+}
+.render-components-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1vw;
+}
+.row-component-container{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+.row-component-img{
+    width: 4vw;
+    height: 4vw;
+}
+.row-component-title{
+    display: flex;
+    flex-direction: column;
+}
+.row-component-title p{
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #05A2BC;
+    padding-left: 0;
+}
+.row-component-title h2{
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 90%;
+}

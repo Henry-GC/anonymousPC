@@ -5,11 +5,6 @@ import pruv from "../Assets/Image/work.png"
 import useResources from "../Hooks/useResources";
 import useFetch from "../Hooks/useFetch";
 import useCart from "../Hooks/useCart";
-import bigAdv from "../Assets/Image/adv2.jpg"
-import boxAdv1 from "../Assets/Image/adv1.jpg"
-import boxAdv2 from "../Assets/Image/adv3.jpg"
-import boxAdv3 from "../Assets/Image/redragon.png"
-import boxAdv4 from "../Assets/Image/adv4.png"
 import banner from "../Assets/Image/banner 1.png"
 
 function Inicio(){
@@ -39,23 +34,23 @@ function Inicio(){
                 <Box className="adv-container">
                     <Box className="adv-inside">
                         <Box className="big-adv">
-                            <img alt="big Adv" src={bigAdv} width="110%"/>
+                            <img alt="big Adv" src="/multimedia/advBig.jpg" width="110%"/>
                         </Box>
                         <Box className="sb-column">
                             <Box className="sb-row">
                                 <Box className="small-box">
-                                    <img alt="small adv" src={boxAdv1} width="100%"/>
+                                    <img alt="small adv" src="/multimedia/adv1.jpg" width="100%"/>
                                 </Box>
                                 <Box className="small-box">
-                                    <img alt="small adv" src={boxAdv2} width="100%"/>
+                                    <img alt="small adv" src="/multimedia/adv2.jpg" width="100%"/>
                                 </Box>
                             </Box>
                             <Box className="sb-row">
                                 <Box className="small-box">
-                                    <img alt="small adv" src={boxAdv3} width="100%"/>
+                                    <img alt="small adv" src="/multimedia/adv3.png" width="100%"/>
                                 </Box>
                                 <Box className="small-box">
-                                    <img alt="small adv" src={boxAdv4} width="100%"/>
+                                    <img alt="small adv" src="/multimedia/adv4.png" width="100%"/>
                                 </Box>
                             </Box>
                         </Box>
@@ -73,10 +68,8 @@ function Inicio(){
                                     <img src={pruv} alt="IMAGEN DEL PRODUCTO" width="100%"/>
                                 </div>
                                 <div className="text-product-container">
-                                    <div>
-                                        {producto.name_prod}
-                                    </div>
-                                    <div className="item-box">
+                                    <div className="name-product-container">{producto.name_prod}</div>
+                                    <div className="price-product-container">
                                         <button onClick={()=>addToCart(producto)}>
                                             Comprar <i className="fa-solid fa-cart-shopping"></i>
                                         </button>
@@ -240,9 +233,6 @@ function Inicio(){
                             </li>
                         ))}
                     </ul>
-                </Box>
-                <Box className="brand-container">
-
                 </Box>
                 <Box className="subs-container">
 

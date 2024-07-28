@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import FormLogin from "../FormLogin";
 import { Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import Logo from "../Assets/Image/Logo.png"
 import FormRegister from "../FormRegister";
 
 function Login() {
@@ -26,7 +25,7 @@ function Login() {
             >
                 <img
                     id="logo"
-                    src={Logo}
+                    src="/multimedia/Logo.png"
                     alt="Logo AnonymousPC"
                     width="200vw"
                 />
