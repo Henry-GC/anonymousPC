@@ -19,7 +19,7 @@ const Main = (props) => {
               <Box className="item-text">
                 <Box className="item-name">{producto.name_prod}</Box>
                 <Box className="item-box">
-                  {addCart.some((arr)=>arr.id_prod === producto.id_prod)?(<div>Articulo agregado</div>):(
+                  {addCart.some((arr)=>arr.id_prod === producto.id_prod)?(<div className="verify-cart">Artículo agregado</div>):(
                     <Button isLoading={producto.id_prod === loading ? true : null} onClick={()=>handleButtonCart(producto)}>
                       Comprar <i className="fa-solid fa-cart-shopping"></i>
                     </Button>

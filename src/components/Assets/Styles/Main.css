@@ -46,6 +46,10 @@
     font-size: 1.05vw;
     border-top: solid 1px #999;
 }
+.verify-cart{
+    color: #009317;
+    font-weight: 700;
+}
 .item-box button{
     display: flex;
     gap: 0.5rem;
@@ -56,6 +60,7 @@
     border: none;
     border-radius: 0.3rem;
     align-items: center;
+    cursor: pointer;
 }
 .item-text p{
     color: rgb(0, 0, 0);

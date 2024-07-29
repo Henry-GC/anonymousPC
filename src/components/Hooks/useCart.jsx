@@ -41,7 +41,7 @@ function useCart (){
       setTimeout(()=>{
         addToCart(producto)
         setLoading(null)
-      },"500")
+      },"300")
     }
 
     useEffect(()=>{

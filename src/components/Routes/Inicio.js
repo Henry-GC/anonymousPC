@@ -6,12 +6,13 @@ import useResources from "../Hooks/useResources";
 import useFetch from "../Hooks/useFetch";
 import useCart from "../Hooks/useCart";
 import banner from "../Assets/Image/banner 1.png"
+import { Link } from "react-router-dom";
 
 function Inicio(){
 
     const {sections} = useResources()
     const {builds,relevantProducts} = useFetch()
-    const {addCart,addToCart,loading,handleButtonCart} = useCart()
+    const {addCart,loading,handleButtonCart} = useCart()
     
     return(
         <Box className="inicio-container">
@@ -23,9 +24,9 @@ function Inicio(){
                     <ul>
                         {sections.map((section)=>(
                             <li className="section-inside" key={section.section}>
-                                <div className="section-img">
+                                <Link to={section.url} className="section-img">
                                     <img alt="IMAGEN CATEGORÍA" src={section.image} width="100%"/>
-                                </div>
+                                </Link>
                                 <div className="section-title">{section.section}</div>
                             </li>
                         ))}
@@ -72,7 +73,7 @@ function Inicio(){
                                     <div className="price-product-container">
                                         {addCart.some((arr)=>arr.id_prod === producto.id_prod)?(<div>Articulo agregado</div>):(
                                             <Button isLoading={producto.id_prod === loading ? true : null} onClick={()=>handleButtonCart(producto)}>
-                                            Comprar <i className="fa-solid fa-cart-shopping"></i>
+                                                Comprar <i className="fa-solid fa-cart-shopping"></i>
                                             </Button>
                                         )}
                                         <p>${parseFloat(producto.price_prod).toFixed(2)}</p>
@@ -154,7 +155,11 @@ function Inicio(){
                                             </div>):(<></>)}
                                     </div>
                                 </div>
-                                <button onClick={()=>addToCart(ensamble)}>Añadir al carrito</button>
+                                {addCart.some((arr)=>arr.id_prod === ensamble.id_prod)?(<div>Articulo agregado</div>):(
+                                            <Button isLoading={ensamble.id_prod === loading ? true : null} onClick={()=>handleButtonCart(ensamble)}>
+                                                Añadir al carrito <i className="fa-solid fa-cart-shopping"></i>
+                                            </Button>
+                                        )}
                             </div>
                         ))}
                     </ul>
@@ -231,7 +236,11 @@ function Inicio(){
                                             </div>):(<></>)}
                                     </div>
                                 </div>
-                                <button onClick={()=>addToCart(ensamble)}>Añadir al carrito</button>
+                                {addCart.some((arr)=>arr.id_prod === ensamble.id_prod)?(<div>Articulo agregado</div>):(
+                                    <Button isLoading={ensamble.id_prod === loading ? true : null} onClick={()=>handleButtonCart(ensamble)}>
+                                        Añadir al carrito <i className="fa-solid fa-cart-shopping"></i>
+                                    </Button>
+                                )}
                             </li>
                         ))}
                     </ul>

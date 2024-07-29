@@ -3,7 +3,7 @@ import "../Assets/Styles/Nosotros.css"
 import useResources from "../Hooks/useResources"
 
 function Nosotros(){
-    const {videoAdv,imageAdv} = useResources();
+    const {videoAdv,imageAdv,brands} = useResources();
     return (
         <Box className="about-section-container">
             <Box className="about-video-container">
@@ -66,7 +66,41 @@ function Nosotros(){
                 </div>
             </Box>
             <Box className="about-brand-container">
-
+                <h1>CONTAMOS CON LAS MEJORES MARCAS DEL MERCADO</h1>
+                <div className="about-brand-images">
+                    <div className="about-images-row">
+                        <div className="about-image-brand">
+                            <img src={brands[0].image} alt="Brand 0" width="100%"/>
+                        </div>
+                        <div className="about-image-brand">
+                            <img src={brands[1].image} alt="Brand 1" width="100%"/>
+                        </div>
+                        <div className="about-image-brand">
+                            <img src={brands[2].image} alt="Brand 2" width="100%"/>
+                        </div>
+                        <div className="about-image-brand">
+                            <img src={brands[3].image} alt="Brand 3" width="100%"/>
+                        </div>
+                        <div className="about-image-brand">
+                            <img src={brands[4].image} alt="Brand 4" width="100%"/>
+                        </div>
+                    </div>
+                    <div className="about-images-row">
+                        <div className="about-image-brand">
+                            <img src={brands[5].image} alt="Brand 5" width="100%"/>
+                        </div>
+                        <div className="about-image-brand">
+                            <img src={brands[6].image} alt="Brand 6" width="100%"/>
+                        </div>
+                        <div className="about-image-brand">
+                            <img src={brands[7].image} alt="Brand 7" width="100%"/>
+                        </div>
+                        <div className="about-image-brand">
+                            <img src={brands[8].image} alt="Brand 8" width="100%"/>
+                        </div>
+                    </div>
+                </div>
+                <p>Y MÁS...</p>
             </Box>
         </Box>
     )

@@ -6,6 +6,7 @@
     display: flex;
     color: aliceblue;
     font-size: 2rem;
+    cursor: pointer;
 }
 .cart-button div{
     display: flex;
@@ -21,6 +22,7 @@
     right: 0;
     font-size: 1.1rem;
     font-weight: bold;
+    border: #fff solid 2px;
 }
 .shop-cart{
     background: #000000;
@@ -54,6 +56,7 @@
     width: fit-content;
     background-color: transparent;
     color: aliceblue;
+    cursor: pointer;
 }
 .title-cart button i{
     color: aliceblue;
@@ -69,89 +72,72 @@
 .body-cart h2{
     display: flex;
     height: 40rem;
+    width: 100%;
     color: aliceblue;
-    text-align: center;
     align-items: center;
+    justify-content: center;
 }
 .body-cart ul{
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 56vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    gap: 3vh;
 }
 .item-shopCart{
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.delete-button{
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    top: .8rem;
-    right: -.2rem;
-}
-.delete-button button{
-    border: none;
-    height: fit-content;
-    width: fit-content;
-    background-color: transparent;
-}
-.delete-button button i{
-    color: rgb(255, 255, 255);
-    font-size: 1.2rem;
-    font-weight: bolder;
-}
 .item-cart{
     display: flex;
-    flex-direction: row;
     width: 100%;
     height: fit-content;
-    background-color: blueviolet;
-    padding: .5rem;
-    border-radius: 1rem;
+    gap: 1vw;
 }
 .image-item-cart{
-    display: flex;
-    width: 7rem;
+    width: 8rem;
     height: 6rem;
     border-radius: 1rem;
     overflow: hidden;
 }
-.body-item-cart{
-    display: flex;
-    margin-left: .5rem;
-    width: 70%;
-    height: 6rem;
-}
 .text-item-cart{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.text-body-cart{
+    height: 100%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: .5vh 0;
 }
-.body-item-cart strong{
-    font-size: .8rem;
+.text-body-cart strong{
+    font-size: 1rem;
     color: aliceblue;
 }
-.text-price{
-    display: flex;
-    justify-content: space-evenly;
-}
-.price-item{
-    font-size: 1.2rem;
-    color: #d6d6d6;
-}
 .price-item-total{
+    display: flex;
     font-size: 1.2rem;
     color: rgb(255, 255, 255);
     font-weight: bolder;
+    height: 100%;
+    align-items: center;
 }
 .count-item-cart{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
     color: aliceblue;
-    height: 100%;
+    gap: 1vw;
+}
+.count-item-cart div{
+    display: flex;
+    gap: 1vw;
+    align-items: center;
 }
 .count-item-cart span{
     color: aqua;
@@ -165,38 +151,62 @@
     justify-content: center;
     align-items: center;
     color: aliceblue;
+    cursor: pointer;
+}
+.delete-button-cart{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+.delete-button-cart button{
+    display: flex;
+    color: rgba(255, 0, 0, 0.76);
+    font-size: 1rem;
+    align-items: center;
+    cursor: pointer;
 }
 .footer-cart{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    width: 100%;
+    height: 25vh;
+    background-color: #000000;
+    position: fixed;
+    top: 65vh;
+    border-top: solid 1px #fff;
+    gap: 2vh;
+    justify-content: center;
 }
-.price-cart{
+.footer-cart-column{
     display: flex;
-    align-items: center;
-    align-content: center;
-    color: aliceblue;
-    font-size: 1.3rem;
-    font-weight: 900;
-    gap: .5rem;
-    height: 2rem;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 0 1vw;
 }
-.price-cart div{
+.footer-cart-row{
     display: flex;
-    align-self: center;
-    font-size: 1.5rem;
-    font-weight: 900;
-    color:  rgb(0, 255, 34);
+    justify-content: space-between;
+    color: #fff;
+    font-size: 1.2rem;
+}
+.footer-cart-row-total{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    color: #fff;
+}
+.footer-cart-price{
+    color: rgb(233, 205, 47);
 }
 .body-cart .send-cart{
-    background-color: blueviolet;
+    background-color: rgb(233, 205, 47);
     border: none;
-    color: aliceblue;
-    font-weight: bolder;
+    color: rgb(0, 0, 0);
+    font-weight: 900;
     width: fit-content;
     height: fit-content;
     padding: 1rem 1rem;
+    align-self: center;
 }
 .cart-button ~ input:checked ~ .shop-cart{
     transform: translateX(0);

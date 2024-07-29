@@ -17,6 +17,7 @@ export default function useFetch (){
     const fetchRelevants = async() => {
         const response = await Axios.get("/api/productos")
         const data = response.data.filter(prod => prod.destacado === 1 && prod.type_prod !== "BUILD")
+        data.sort((a, b) => a.price_prod - b.price_prod)
         setRelevantProducts(data)
     }
 
@@ -81,7 +82,7 @@ export default function useFetch (){
             )
             } 
         })
-        response.data.sort((a, b) => a.price_prod - b.price_prod)
+        filterBD.sort((a, b) => a.price_prod - b.price_prod)
         setBD(filterBD)
         setPage(1)
         } catch (error) {
