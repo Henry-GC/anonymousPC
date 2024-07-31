@@ -5,7 +5,7 @@ import * as Yup from "yup"
 import React from "react"
 import Axios from "../utils/axiosConfig"
 
-function FormRegister({className}) {
+function FormRegister() {
 
     const formik = useFormik({
         initialValues:{
@@ -34,7 +34,7 @@ function FormRegister({className}) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className={className}>
+        <form onSubmit={handleSubmit}>
             <FormControl isInvalid={formik.touched.email && formik.errors.email}>
                 <FormLabel htmlFor="email">Correo Electrónico</FormLabel>
                 <Input

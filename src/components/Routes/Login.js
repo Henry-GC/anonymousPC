@@ -1,71 +1,39 @@
 import React, { useState } from "react";
 import FormLogin from "../FormLogin";
 import { Box } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes} from "react-router-dom";
 import FormRegister from "../FormRegister";
+import FormRecovery from "../FormRecovery";
+import "../Assets/Styles/Login.css"
 
 function Login() {
-    const [isRegistering, setIsRegistering] = useState(false);
+    const [recovery, setRecovery] = useState(false);
 
     return (
-        <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            flexGrow="1"
-        >
-            <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                bg="#fff"
-                padding="2rem"
-                borderRadius="1rem"
-            >
-                <img
-                    id="logo"
-                    src="/multimedia/Logo.png"
-                    alt="Logo AnonymousPC"
-                    width="200vw"
-                />
-                <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="center"
-                    className="datos"
-                    gap="0.5rem"
-                >
-                    <Box
-                        display="flex"
-                        gap="0.5rem"
-                    >
+        <Box className="login-section-container">
+            <Box className="login-inside-container">
+                <img src="/multimedia/Logo.png" alt="Logo AnonymousPC" width="200vw"/>
+                <Box className="login-data-container">
+                    <Box className="login-data-title">
                         <h2>
-                            <Link
-                                id="log-link"
-                                to="#"
-                                onClick={() => setIsRegistering(false)}
-                            >
+                            <Link id="log-link" to="/login/" onClick={()=>setRecovery(false)}>
                                 Ingresar
                             </Link>
                         </h2>
                         <h2>/</h2>
                         <h2>
-                            <Link
-                                id="log-link"
-                                to="#"
-                                onClick={() => setIsRegistering(true)}
-                            >
+                            <Link id="log-link" to="/login/register" onClick={()=>setRecovery(true)}>
                                 Registrar
                             </Link>
                         </h2>
                     </Box>
-                    {isRegistering ? <FormRegister /> : (
-                        <>
-                            <FormLogin />
-                            <Link id="reset">¿Olvidaste la contraseña?</Link>
-                        </>
-                        )}
+                    
+                    <Routes>
+                        <Route path="/" element={<FormLogin/>}/>
+                        <Route path="/register" element={<FormRegister/>}/>
+                        <Route path="/recovery" element={<FormRecovery/>}/>
+                    </Routes>
+                    {!recovery?(<Link id="log-link" to="/login/recovery" onClick={()=>setRecovery(true)}>¿Olvidaste tu contraseña?</Link>):(<></>)}
                 </Box>
             </Box>
         </Box>

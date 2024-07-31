@@ -1,25 +1,25 @@
-// Configuración AXIOS BASICA
 import axios from 'axios';
 
+// CONFIG DE CONEXIÓN AXIOS
 const instance = axios.create({
-  baseURL: 'https://anonymousbackend.onrender.com/',
+  baseURL: 'https://anonymous-back-end.vercel.app/',
   headers: {
     'Content-Type': 'application/json',
   }
 });
 
-// Interceptor para agregar el TOKEN de autorización a todas las solicitudes
-// instance.interceptors.request.use(
-//   (config) => {
-//     const token = localStorage.getItem('token');
-//     if (token) {
-//       config.headers.Authorization = `Token ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
+// INTERCEPTORS PARA EL TOKEN
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Token ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default instance;

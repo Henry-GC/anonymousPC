@@ -4,12 +4,15 @@ import Inicio from './components/Routes/Inicio';
 import Productos from './components/Routes/Productos';
 import Ensambles from './components/Routes/Ensambles';
 import Nosotros from './components/Routes/Nosotros';
+import Usuario from './components/Routes/Usuario'
 import Login from './components/Routes/Login';
 import Footer from './components/Footer';
 import { CartProvider } from './components/Context/CartContext';
 import Header from './components/Header';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
+
   return (
     <BrowserRouter>
       <CartProvider>
@@ -28,7 +31,12 @@ function App() {
           <Route path='/productos/accesorios' element={<Productos />} />
           <Route path='/ensambles' element={<Ensambles />} />
           <Route path='/nosotros' element={<Nosotros />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/usuario' element={
+            <ProtectedRoute>
+              <Usuario/>
+            </ProtectedRoute>
+          }/>
+          <Route path='/login/*' element={<Login/>}/>
         </Routes>
         <Footer/>
         </div>

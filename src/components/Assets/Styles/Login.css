@@ -1,0 +1,28 @@
+.login-section-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+.login-inside-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.login-data-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.login-data-title{
+    display: flex;
+    gap: 0.5rem;
+}
+#log-link{
+    color: black;
+}

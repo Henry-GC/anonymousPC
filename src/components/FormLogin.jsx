@@ -1,10 +1,13 @@
 import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
 import { useFormik } from "formik"
+import { useNavigate } from "react-router-dom"
 import * as Yup from "yup"
 import React from "react"
 import Axios from "../utils/axiosConfig"
 
-const FormLogin =(props)=>{
+const FormLogin =()=>{
+
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues:{
@@ -19,6 +22,8 @@ const FormLogin =(props)=>{
             console.log("Form values:", values);
             // Aquí puedes añadir la lógica para manejar el envío del formulario, por ejemplo, hacer una solicitud a la API
             const response = await Axios.post('/api/login/',values)
+            localStorage.setItem('token',response.data.token)
+            navigate("/usuario",{replace:true})
             console.log(response);
         }
     })
@@ -29,31 +34,29 @@ const FormLogin =(props)=>{
     }
 
     return (
-        <form onSubmit={handleSubmit} className={props.classForm}>
-            <FormControl isInvalid={formik.touched.user && formik.errors.user} className={props.classControl}>
-                <FormLabel htmlFor="user" className={props.classLabel}>Usuario</FormLabel>
-                <Input
-                    id="user"
-                    name="user"
-                    className={props.classInput}
-                    {...formik.getFieldProps("user")}
-                />
-                <FormErrorMessage className={props.classError}>{formik.errors.user}</FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={formik.touched.pass && formik.errors.pass} className={props.classControl}>
-                <FormLabel htmlFor="pass" className={props.classLabel}>Contraseña</FormLabel>
-                <Input
-                    id="pass"
-                    name="pass"
-                    type="password"
-                    className={props.classInput}
-                    {...formik.getFieldProps("pass")}
-                />
-                <FormErrorMessage className={props.classError}>{formik.errors.pass}</FormErrorMessage>
-            </FormControl>
-            <button type="submit" className={props.classButton}>Entrar</button>
-        </form>
-    )
+                <form onSubmit={handleSubmit}>
+                    <FormControl isInvalid={formik.touched.user && formik.errors.user}>
+                        <FormLabel htmlFor="user">Usuario</FormLabel>
+                        <Input
+                            id="user"
+                            name="user"
+                            {...formik.getFieldProps("user")}
+                        />
+                        <FormErrorMessage>{formik.errors.user}</FormErrorMessage>
+                    </FormControl>
+                    <FormControl isInvalid={formik.touched.pass && formik.errors.pass}>
+                        <FormLabel htmlFor="pass">Contraseña</FormLabel>
+                        <Input
+                            id="pass"
+                            name="pass"
+                            type="password"
+                            {...formik.getFieldProps("pass")}
+                        />
+                        <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+                    </FormControl>
+                    <button type="submit">Entrar</button>
+                </form>
+    );
 }
 
 export default FormLogin;
