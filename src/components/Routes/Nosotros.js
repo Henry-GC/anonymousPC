@@ -1,10 +1,12 @@
 import { Box } from "@chakra-ui/react"
 import "../Assets/Styles/Nosotros.css"
 import useResources from "../Hooks/useResources"
+import Footer from "../Footer";
 
 function Nosotros(){
     const {videoAdv,imageAdv,brands} = useResources();
     return (
+        <>
         <Box className="about-section-container">
             <Box className="about-video-container">
                 <video autoPlay muted loop playsInline className="video-about-us">
@@ -103,6 +105,8 @@ function Nosotros(){
                 <p>Y MÁS...</p>
             </Box>
         </Box>
+        <Footer/>
+        </>
     )
 }
 export default Nosotros

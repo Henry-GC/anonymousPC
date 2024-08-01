@@ -1,17 +1,23 @@
 import { Box } from "@chakra-ui/react"
-import { useNavigate } from "react-router-dom"
+import { Route, Routes} from "react-router-dom"
 import "../Assets/Styles/Usuario.css"
+import UserSideBar from "../UserSideBar"
+import UserDashboard from "../UserDashboard"
+import UserMiCarrito from "../UserMiCarrito"
 
 function Usuario (){
-    const navigate = useNavigate()
-    const handleButton = () =>{
-        localStorage.removeItem('token')
-        navigate("/",{replace:true})
-    }
+    
     return (
         <Box className="user-main-container">
-            DASHBOARD
-            <button onClick={handleButton}>CERRAR SESION</button>
+            <div className="user-main-container-col1">
+                <UserSideBar/>
+            </div>
+            <div className="user-main-container-col2">
+                <Routes>
+                    <Route path="/" element={<UserDashboard/>}/>
+                    <Route path="/micarrito" element={<UserMiCarrito/>}/>
+                </Routes>
+            </div>
         </Box>
     )
 }

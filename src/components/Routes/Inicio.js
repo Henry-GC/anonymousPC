@@ -7,6 +7,7 @@ import useFetch from "../Hooks/useFetch";
 import useCart from "../Hooks/useCart";
 import banner from "../Assets/Image/banner 1.png"
 import { Link } from "react-router-dom";
+import Footer from "../Footer";
 
 function Inicio(){
 
@@ -15,6 +16,7 @@ function Inicio(){
     const {addCart,loading,handleButtonCart} = useCart()
     
     return(
+        <>
         <Box className="inicio-container">
             <Box className="landing-container">
                 <Box className="banner-container">
@@ -250,6 +252,8 @@ function Inicio(){
                 </Box>
             </Box>
         </Box>
+        <Footer/>
+        </>
     )
 }
 export default Inicio

@@ -1,5 +1,5 @@
 // FormRegister.js
-import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
+import { Button, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import React from "react"
@@ -73,7 +73,7 @@ function FormRegister() {
                 />
                 <FormErrorMessage>{formik.errors.pass2}</FormErrorMessage>
             </FormControl>
-            <button type="submit">Registrar</button>
+            <Button type="submit">Registrar</Button>
         </form>
     );
 }

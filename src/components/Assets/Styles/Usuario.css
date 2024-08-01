@@ -1,4 +1,12 @@
 .user-main-container{
     display: flex;
     flex-grow: 1;
+    width: 100%;
+    justify-content: center;
+}
+.user-main-container-col1{
+    width: 30%;
+}
+.user-main-container-col2{
+    width: 60%;
 }

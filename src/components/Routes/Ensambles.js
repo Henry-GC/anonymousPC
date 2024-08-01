@@ -4,6 +4,7 @@ import "../Assets/Styles/Ensambles.css"
 import useFetch from "../Hooks/useFetch";
 import build1 from "../Assets/Image/case 1.png"
 import useRender from "../Hooks/useRender";
+import Footer from "../Footer";
 
 function Ensambles(){
 
@@ -11,6 +12,7 @@ function Ensambles(){
     const {renderComponents} = useRender()
 
     return (
+        <>
         <Box className="builds-section-container">
             <Box className="builds-gamer-container">
                 {builds.map((build)=>{
@@ -50,6 +52,8 @@ function Ensambles(){
                 )})}
             </Box>
         </Box>
+        <Footer/>
+        </>
     )
 }
 export default Ensambles

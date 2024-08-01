@@ -2,6 +2,7 @@ import Main from "../Main"
 import "../Assets/Styles/Productos.css"
 import { Box } from "@chakra-ui/react";
 import useFetch from "../Hooks/useFetch";
+import Footer from "../Footer";
 
 function Productos() {
 
@@ -27,6 +28,7 @@ function Productos() {
   }
   
   return (
+    <>
     <Box className="container-product">
       <div className="container-product-body">
         <Box className="container-side">
@@ -78,7 +80,8 @@ function Productos() {
         </Box>
       </div>
     </Box>
-    
+    <Footer/>
+    </>
   );
 }
 export default Productos;

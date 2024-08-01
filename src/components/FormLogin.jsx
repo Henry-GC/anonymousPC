@@ -1,12 +1,12 @@
-import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
+import { Button , FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
 import { useFormik } from "formik"
 import { useNavigate } from "react-router-dom"
 import * as Yup from "yup"
-import React from "react"
+import React, { useState } from "react"
 import Axios from "../utils/axiosConfig"
 
 const FormLogin =()=>{
-
+    const [isLoading,setIsLoading]=useState(false)
     const navigate = useNavigate()
 
     const formik = useFormik({
@@ -27,6 +27,16 @@ const FormLogin =()=>{
             console.log(response);
         }
     })
+
+    const handleButton = (e) =>{
+        e.preventDefault();
+        setIsLoading(true);
+        try {
+            formik.handleSubmit();
+        } catch (error) {
+            setIsLoading()
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -54,7 +64,9 @@ const FormLogin =()=>{
                         />
                         <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
                     </FormControl>
-                    <button type="submit">Entrar</button>
+                    <Button type="submit" isLoading={isLoading} onClick={handleButton}>
+                      Entrar
+                    </Button>
                 </form>
     );
 }

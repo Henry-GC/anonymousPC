@@ -1,0 +1,29 @@
+.user-dashboard-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+.user-data-dashboard-container{
+    display: flex;
+}
+.user-avatar-dashboard-container{
+    border-radius: 50%;
+    overflow: hidden;
+    width: 15vw;
+    height: 15vw;
+}
+.user-icon-range{
+    width: 3vw;
+}
+.user-achiev-dashboard-container{
+    align-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1vw;
+}
+.achievment-container{
+    width: 14vw;
+    height: 12vw;
+    background: #aaa;
+    border-radius: 1vw;
+}
