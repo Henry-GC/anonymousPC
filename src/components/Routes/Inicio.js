@@ -66,19 +66,19 @@ function Inicio(){
                     </Box>
                     <ul className="relevant-products">
                         {relevantProducts.map((producto)=>(
-                            <div key={producto.id_prod} className="relevant-product">
+                            <div key={producto.id} className="relevant-product">
                                 <div className="img-product-container">
                                     <img src={pruv} alt="IMAGEN DEL PRODUCTO" width="100%"/>
                                 </div>
                                 <div className="text-product-container">
-                                    <div className="name-product-container">{producto.name_prod}</div>
+                                    <div className="name-product-container">{producto.name}</div>
                                     <div className="price-product-container">
-                                        {addCart.some((arr)=>arr.id_prod === producto.id_prod)?(<div>Articulo agregado</div>):(
-                                            <Button isLoading={producto.id_prod === loading ? true : null} onClick={()=>handleButtonCart(producto)}>
+                                        {addCart.some((arr)=>arr.id === producto.id)?(<div>Articulo agregado</div>):(
+                                            <Button isLoading={producto.id === loading ? true : null} onClick={()=>handleButtonCart(producto)}>
                                                 Comprar <i className="fa-solid fa-cart-shopping"></i>
                                             </Button>
                                         )}
-                                        <p>${parseFloat(producto.price_prod).toFixed(2)}</p>
+                                        <p>${parseFloat(producto.price).toFixed(2)}</p>
                                     </div>
                                 </div>
                             </div>
@@ -92,14 +92,14 @@ function Inicio(){
                     </Box>
                     <ul className="builds-destacados">
                         {builds.map((ensamble)=>(
-                            <div key={ensamble.id_prod} className="build-destacado">
+                            <div key={ensamble.id} className="build-destacado">
                                 <div className="img-build-container">
                                     <img src={pruv} alt="IMAGEN DEL ENSAMBLE" width="100%"/>
                                 </div>
                                 <div className="text-build-container">
-                                    <h2>{ensamble.name_prod}</h2>
+                                    <h2>{ensamble.name}</h2>
                                     <p>A partir de:</p>
-                                    <strong>$ {parseFloat(ensamble.price_prod).toFixed(2)}</strong>
+                                    <strong>$ {parseFloat(ensamble.price).toFixed(2)}</strong>
                                     <div className="details-build-container">
                                             {ensamble.CPU?(<div className="build-component-container">
                                                 <div className="img-build-component">
@@ -157,8 +157,8 @@ function Inicio(){
                                             </div>):(<></>)}
                                     </div>
                                 </div>
-                                {addCart.some((arr)=>arr.id_prod === ensamble.id_prod)?(<div>Articulo agregado</div>):(
-                                            <Button isLoading={ensamble.id_prod === loading ? true : null} onClick={()=>handleButtonCart(ensamble)}>
+                                {addCart.some((arr)=>arr.id === ensamble.id)?(<div>Articulo agregado</div>):(
+                                            <Button isLoading={ensamble.id === loading ? true : null} onClick={()=>handleButtonCart(ensamble)}>
                                                 Añadir al carrito <i className="fa-solid fa-cart-shopping"></i>
                                             </Button>
                                         )}
@@ -173,14 +173,14 @@ function Inicio(){
                     </Box>
                     <ul className="builds-destacados">
                         {builds.map((ensamble)=>(
-                            <li key={ensamble.id_prod} className="build-destacado">
+                            <li key={ensamble.id} className="build-destacado">
                                 <div className="img-build-container">
                                     <img src={pruv} alt="IMAGEN DEL ENSAMBLE" width="100%"/>
                                 </div>
                                 <div className="text-build-container">
-                                    <h2>{ensamble.name_prod}</h2>
+                                    <h2>{ensamble.name}</h2>
                                     <p>A partir de:</p>
-                                    <strong>$ {parseFloat(ensamble.price_prod).toFixed(2)}</strong>
+                                    <strong>$ {parseFloat(ensamble.price).toFixed(2)}</strong>
                                     <div className="details-build-container">
                                             {ensamble.CPU?(<div className="build-component-container">
                                                 <div className="img-build-component">
@@ -238,8 +238,8 @@ function Inicio(){
                                             </div>):(<></>)}
                                     </div>
                                 </div>
-                                {addCart.some((arr)=>arr.id_prod === ensamble.id_prod)?(<div>Articulo agregado</div>):(
-                                    <Button isLoading={ensamble.id_prod === loading ? true : null} onClick={()=>handleButtonCart(ensamble)}>
+                                {addCart.some((arr)=>arr.id === ensamble.id)?(<div>Articulo agregado</div>):(
+                                    <Button isLoading={ensamble.id === loading ? true : null} onClick={()=>handleButtonCart(ensamble)}>
                                         Añadir al carrito <i className="fa-solid fa-cart-shopping"></i>
                                     </Button>
                                 )}

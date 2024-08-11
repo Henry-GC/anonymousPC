@@ -16,8 +16,8 @@ export default function useFetch (){
     // REQUEST PRODUCTOS DESTACADOS
     const fetchRelevants = async() => {
         const response = await Axios.get("/api/productos")
-        const data = response.data.filter(prod => prod.destacado === 1 && prod.type_prod !== "BUILD")
-        data.sort((a, b) => a.price_prod - b.price_prod)
+        const data = response.data.filter(prod => prod.relevant === true && prod.category_id !== 8)
+        data.sort((a, b) => a.price - b.price)
         setRelevantProducts(data)
     }
 
@@ -40,28 +40,28 @@ export default function useFetch (){
     useEffect(()=>{
         switch (location.pathname) {
             case "/productos/procesador":
-                setFilter("CPU");
+                setFilter(1);
                 break;
             case "/productos/placa-madre":
-                setFilter("MBO");
+                setFilter(3);
                 break;
             case "/productos/tarjeta-grafica":
-                setFilter("GPU");
+                setFilter(2);
                 break;
             case "/productos/memoria-ram":
-                setFilter("RAM");
+                setFilter(4);
                 break;
             case "/productos/almacenamiento":
-                setFilter("SSD");
+                setFilter(5);
                 break;
             case "/productos/fuente-de-poder":
-                setFilter("PSU");
+                setFilter(6);
                 break;
             case "/productos/carcasa":
-                setFilter("CASE");
+                setFilter(7);
                 break;
             case "/productos/accesorios":
-                setFilter("ACC");
+                setFilter(9);
                 break;
             default:
                 setFilter("destacado");
@@ -71,18 +71,19 @@ export default function useFetch (){
     const fetchProductos = async () => {
         try {
         const response = await Axios.get(`/api/productos`)
+        
         const filterBD = response.data.filter(producto=>{
             if(filter === "destacado"){
             return(
-                producto.destacado === 1 
+                producto.relevant === true 
             )
             } else {
             return(
-                producto.type_prod === filter
+                producto.category_id === filter
             )
             } 
         })
-        filterBD.sort((a, b) => a.price_prod - b.price_prod)
+        filterBD.sort((a, b) => a.price - b.price)
         setBD(filterBD)
         setPage(1)
         } catch (error) {
@@ -99,13 +100,13 @@ export default function useFetch (){
         newBD.sort((a,b)=>{
         switch (typeSort){
             case "priceLow":
-            return a.price_prod - b.price_prod;
+            return a.price - b.price;
             case "priceHig":
-            return b.price_prod - a.price_prod;
+            return b.price - a.price;
             case "asc":
-            return a.name_prod.localeCompare(b.name_prod);
+            return a.name.localeCompare(b.name);
             case "des":
-            return b.name_prod.localeCompare(a.name_prod);
+            return b.name.localeCompare(a.name);
             default:
             return 0;
         }

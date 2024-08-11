@@ -33,8 +33,11 @@ const FormLogin =()=>{
         setIsLoading(true);
         try {
             formik.handleSubmit();
+            setTimeout(() => {
+                setIsLoading(false)
+            }, '2000');
         } catch (error) {
-            setIsLoading()
+            setIsLoading(false)
         }
     }
 

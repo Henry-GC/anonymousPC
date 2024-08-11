@@ -1,7 +1,9 @@
 .user-dashboard-container{
     display: flex;
     flex-direction: column;
-    gap: 2vw;
+    height: 100%;
+    justify-content: center;
+    gap: 2rem;
 }
 .user-data-dashboard-container{
     display: flex;
@@ -15,11 +17,19 @@
 .user-icon-range{
     width: 3vw;
 }
+.banner-temp {
+    position: absolute;
+    display: flex;
+    top: 70%;
+    left: 63%;
+    transform: translate(-50%, -50%);
+    width: 40rem;
+}
 .user-achiev-dashboard-container{
     align-self: center;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1vw;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
 .achievment-container{
     width: 14vw;

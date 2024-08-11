@@ -4,8 +4,15 @@ import "../Assets/Styles/Usuario.css"
 import UserSideBar from "../UserSideBar"
 import UserDashboard from "../UserDashboard"
 import UserMiCarrito from "../UserMiCarrito"
+import UserPedidos from "../UserPedidos"
+import UserWish from "../UserWish"
+import UserHelpCenter from "../UserHelpCenter"
+import UserProfile from "../UserProfile"
+import useDataUser from "../Hooks/useDataUser"
 
 function Usuario (){
+
+    const {user, cancelOrder} = useDataUser();
     
     return (
         <Box className="user-main-container">
@@ -14,8 +21,12 @@ function Usuario (){
             </div>
             <div className="user-main-container-col2">
                 <Routes>
-                    <Route path="/" element={<UserDashboard/>}/>
+                    <Route path="/" element={<UserDashboard user={user}/>}/>
                     <Route path="/micarrito" element={<UserMiCarrito/>}/>
+                    <Route path="/mispedidos" element={<UserPedidos user={user} cancelOrder={cancelOrder}/>}/>
+                    <Route path="/misdeseos" element={<UserWish user={user}/>}/>
+                    <Route path="/ayuda" element={<UserHelpCenter/>}/>
+                    <Route path="/perfil" element={<UserProfile user={user}/>}/>
                 </Routes>
             </div>
         </Box>

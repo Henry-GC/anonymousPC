@@ -3,6 +3,7 @@ import { CartContext } from "../Context/CartContext"
 
 function useCart (){
     const {addCart,setAddCart} = useContext(CartContext)
+    const [totalPrice, setTotalPrice] = useState("")
     const [loading,setLoading] = useState(null)
 
     function loadCart () {
@@ -19,7 +20,7 @@ function useCart (){
     }
 
     function addToCart (prod) {
-      const elemento = addCart.some(arr => arr.id_prod === prod.id_prod)
+      const elemento = addCart.some(arr => arr.id === prod.id)
       if(!elemento){
         const newCart = [...addCart, {
           ...prod,
@@ -54,7 +55,7 @@ function useCart (){
     }
 
     const handleButtonCart = (producto) =>{
-      setLoading(producto.id_prod)
+      setLoading(producto.id)
       setTimeout(()=>{
         addToCart(producto)
         setLoading(null)
@@ -62,10 +63,28 @@ function useCart (){
     }
 
     useEffect(()=>{
-      console.log(addCart);
-    },[addCart]);
+        var totalCart = 0;
+        for (let i = 0; i < addCart.length; i++) {
+            totalCart += parseFloat(addCart[i].price)*addCart[i].count;
+        }
+        const total = parseFloat(totalCart).toFixed(2)
+        setTotalPrice(total)
+    
+    },[addCart])
 
-    return {addCart,addToCart,delToCart,plusCart,minusCart,loading,handleButtonCart};
+    const buyCart = () => {
+      const cartDetails = addCart.map((item)=>{
+        return {
+          prod_id: item.id,
+          count: item.count,
+          price: item.price,
+          total: item.count*item.price
+        }
+      })
+      return {cartDetails};
+    }
+
+    return {addCart,setAddCart,addToCart,delToCart,plusCart,minusCart,loading,handleButtonCart,totalPrice,buyCart};
   }
 
 export default useCart;

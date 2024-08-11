@@ -12,12 +12,12 @@ function UserSideBar (){
         <Box className="userSideBar-container">
             <Link id="userSideBar-link" to="/usuario/">DASHBOARD</Link>
             <Link id="userSideBar-link" to="/usuario/micarrito" >MI CARRITO</Link>
-            <Link id="userSideBar-link" >MIS PEDIDOS</Link>
-            <Link id="userSideBar-link" >LISTA DE DESEOS</Link>
+            <Link id="userSideBar-link" to="/usuario/mispedidos" >MIS PEDIDOS</Link>
+            <Link id="userSideBar-link" to="/usuario/misdeseos" >LISTA DE DESEOS</Link>
             <Link id="userSideBar-link" >DIRECCIONES</Link>
             <Link id="userSideBar-link" >MÉTODOS DE PAGO</Link>
-            <Link id="userSideBar-link" >PERFIL</Link>
-            <Link id="userSideBar-link" >CENTRO DE AYUDA</Link>
+            <Link id="userSideBar-link" to="/usuario/perfil">PERFIL</Link>
+            <Link id="userSideBar-link" to="/usuario/ayuda">CENTRO DE AYUDA</Link>
             <Link id="userSideBar-link" to="/login" onClick={handleButton}>CERRAR SESIÓN</Link>
         </Box>
     )

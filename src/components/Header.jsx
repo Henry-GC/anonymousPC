@@ -4,13 +4,27 @@ import "./Assets/Styles/Header.css"
 import { ShopCart } from "./ShopCart";
 import { Link, useLocation } from "react-router-dom";
 import SideBar from "./SideBar"
+import useCart from "./Hooks/useCart";
 
 export default function Header (props){
     const [isCheked,setChecked] = useState(false)
     const [buscar,setBuscar]= useState("")
     const location = useLocation()
-
     const headerRef = useRef(null);
+
+    const {setAddCart}=useCart()
+
+    const cartSync = () => {
+        const cart = localStorage.getItem('cart')
+        if (cart && cart !== '[]') {
+            const newCart = JSON.parse(cart);
+            setAddCart(newCart)
+        }
+    }
+
+    useEffect(()=>{
+        cartSync();
+    },[])
 
     useEffect(() => {
         if (!isCheked){

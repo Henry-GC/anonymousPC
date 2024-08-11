@@ -1,0 +1,52 @@
+.user-profile-section{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 3rem;
+}
+.user-section-rows{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.user-section-row{
+    padding-left: 2rem;
+}
+.user-section-row-title{
+    color: #05A2BC;
+    font-family: 'Roboto';
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.user-section-row-value{
+    padding-left: 3rem;
+    color: #fff;
+    font-family: 'Montserrat';
+    font-size: 2rem;
+    font-weight: 700;
+}
+.user-section-date{
+    display: flex;
+    padding-left: 3rem;
+    color: #fff;
+    font-family: 'Montserrat';
+    font-size: 2rem;
+    font-weight: 700;
+    gap: 1rem;
+}
+.user-section-row input{
+    font-size: 1.9rem;
+}
+.reset-pass-button{
+    margin-left: 10rem;
+    width: fit-content;
+    padding: 1rem;
+    background: #bd4500;
+    border: none;
+    border-radius: 1rem;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 1rem 1rem 1rem #00000025;
+    cursor: pointer;
+}

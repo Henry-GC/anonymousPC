@@ -1,28 +1,36 @@
-import { useEffect, useId, useState } from "react"
+import { useId, useState } from "react"
 import "./Assets/Styles/ShopCart.css"
 import Pruv from "./Assets/Image/work.png"
 import useCart from "./Hooks/useCart"
-import { Box } from "@chakra-ui/react"
+import { Box, Button } from "@chakra-ui/react"
+import Axios from "../utils/axiosConfig"
 
 export const ShopCart = (props) => {
-    const {addCart, delToCart, plusCart, minusCart} = useCart()
+
+    const [isLoading,setIsLoading] = useState(false)
+    const {addCart,setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart } = useCart()
     const numCart = addCart.length
     const CartId = useId()
-    const [totalPrice, setTotalPrice] = useState("")
 
-    const closeCart = () => {
-        props.setChecked(false)
+    const handleBuy = async() => {
+        const {cartDetails} = buyCart()
+        const data = {
+            details: cartDetails,
+            total: totalPrice
+        }
+        const response = await Axios.post('/api/user/createorder',data)
+        localStorage.removeItem('cart')
+        setAddCart([])
+        console.log(response);
     }
 
-    useEffect(()=>{
-        var totalCart = 0;
-        for (let i = 0; i < addCart.length; i++) {
-            totalCart += parseFloat(addCart[i].price_prod)*addCart[i].count;
-        }
-        const total = parseFloat(totalCart).toFixed(2)
-        setTotalPrice(total)
-    
-    },[addCart])
+    const handleButton = () => {
+        setIsLoading(true)
+        setTimeout(()=>{
+            handleBuy();
+            setIsLoading(false)
+        },300)
+    }
 
     return (
         <div className="cart-container">
@@ -35,7 +43,7 @@ export const ShopCart = (props) => {
             <div className="shop-cart">
                 <div className="title-cart">
                     <h1>Carrito</h1>
-                    <button onClick={closeCart}><i class="fa-solid fa-right-long"></i></button>
+                    <button onClick={()=>props.setChecked(false)}><i class="fa-solid fa-right-long"></i></button>
                 </div>
                 
                 <div className="body-cart">
@@ -43,17 +51,14 @@ export const ShopCart = (props) => {
                     {numCart>0 ? (
                         <>
                         {addCart.map((item,index)=>(
-                            <li className="item-shopCart" key={item.id_prod}>
-                                <div className="delete-button">
-                                    
-                                </div>
+                            <li className="item-shopCart" key={item.id}>
                                 <div className="item-cart">
                                     <div className="image-item-cart">
                                         <img src={Pruv} width="100%" alt="PRODUCTO CARRITO"/>
                                     </div>
                                     <div className="text-item-cart">
                                         <div className="text-body-cart">
-                                            <strong>{item.name_prod}</strong>
+                                            <strong>{item.name}</strong>
                                             <div className="count-item-cart">
                                                 <div className="delete-button-cart">
                                                     <button onClick={()=>delToCart(index)}>
@@ -68,7 +73,7 @@ export const ShopCart = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="price-item-total">$ {parseFloat(item.price_prod*item.count).toFixed(2)}</div>
+                                        <div className="price-item-total">$ {parseFloat(item.price*item.count).toFixed(2)}</div>
                                     </div>
                                 </div>
                             </li>
@@ -92,7 +97,7 @@ export const ShopCart = (props) => {
                                     <h1 className="footer-cart-price">$ {totalPrice}</h1>
                                 </div>
                             </Box>
-                            <button className="send-cart">FINALIZAR COMPRA</button>
+                            <Button isLoading={isLoading} className="send-cart" onClick={()=>handleButton()}>FINALIZAR COMPRA</Button>
                         </div>
                 </div>
             </div>
