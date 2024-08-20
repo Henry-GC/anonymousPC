@@ -8,7 +8,14 @@ function UserHelpCenter () {
             <h1 className="user-section-title">CENTRO DE AYUDA</h1>
             <Accordion allowToggle className="user-helpCenter-section">
                 <AccordionItem>
-                    <AccordionButton className="user-helpCenter-section-title">
+                    <AccordionButton className="user-helpCenter-section-title"
+                        sx={{
+                            _hover:{
+                                background: 'transparent',
+                                color: '#fff'
+                            }}}
+                        _expanded={{bg: 'tomato',color: 'white'}}
+                    >
                         <Box flex={1} textAlign="left">{`PREGUNTAS FRECUENTES (FAQs)`}</Box>
                         <AccordionIcon/>
                     </AccordionButton>
@@ -49,7 +56,14 @@ function UserHelpCenter () {
                     </AccordionPanel>
                 </AccordionItem>
                 <AccordionItem>
-                    <AccordionButton className="user-helpCenter-section-title">
+                    <AccordionButton className="user-helpCenter-section-title"
+                        sx={{
+                            _hover:{
+                                background: 'transparent',
+                                color: '#fff'
+                            }}}
+                        _expanded={{bg: 'tomato',color: 'white'}}
+                    >
                         <Box flex={1} textAlign="left">{`DEVOLUCIONES Y GARANTÍAS`}</Box>
                         <AccordionIcon/>
                     </AccordionButton>
@@ -90,7 +104,14 @@ function UserHelpCenter () {
                     </AccordionPanel>
                 </AccordionItem>
                 <AccordionItem>
-                    <AccordionButton className="user-helpCenter-section-title">
+                    <AccordionButton className="user-helpCenter-section-title"
+                        sx={{
+                            _hover:{
+                                background: 'transparent',
+                                color: '#fff'
+                            }}}
+                        _expanded={{bg: 'tomato',color: 'white'}}
+                    >
                         <Box flex={1} textAlign="left">{`GUIAS Y TUTORIALES`}</Box>
                         <AccordionIcon/>
                     </AccordionButton>

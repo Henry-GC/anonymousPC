@@ -34,14 +34,14 @@ function UserPedidos (props) {
             <Accordion allowToggle className="user-orders">
                 {orders.map((order)=>{
                     return(
-                        <AccordionItem  key={order.id}>
+                        <AccordionItem  key={order.id} sx={{border:'none'}}>
                             <AccordionButton className="user-order">
                                 <div className="user-order-data">
                                     <div className="user-order-text">
                                         <strong>Orden # {order.id.toString().padStart(5,'0')}</strong>
                                         <div className="user-order-description">
                                             <span>{`Fecha: ${order.time_order.split('T')[0]}`}</span>
-                                            <span>{`Total: ${order.total}`}</span>
+                                            <span>{`Total: ${order.total_price}`}</span>
                                         </div>
                                     </div>
                                     {order.state === "CANCELADO" ? <></>: (

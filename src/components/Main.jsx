@@ -1,5 +1,5 @@
 import "./Assets/Styles/Main.css"
-import { Box , Button } from "@chakra-ui/react";
+import { Box , Button, Spinner } from "@chakra-ui/react";
 import Pruv from "./Assets/Image/work.png"
 import useCart from "./Hooks/useCart.jsx";
 import FavoriteStar from "./FavoriteStar.jsx";
@@ -24,8 +24,8 @@ const Main = (props) => {
                 <Box className="item-name">{producto.name}</Box>
                 <Box className="item-box">
                   {addCart.some((arr)=>arr.id === producto.id)?(<div className="verify-cart">Artículo agregado</div>):(
-                    <Button isLoading={producto.id === loading ? true : null} onClick={()=>handleButtonCart(producto)}>
-                      Comprar <i className="fa-solid fa-cart-shopping"></i>
+                    <Button sx={{_hover:{bg:'#aaa',color:'#000'}}} isLoading={producto.id === loading ? true : null} onClick={()=>handleButtonCart(producto)}>
+                     Añadir al carrito <i className="fa-solid fa-cart-shopping"></i>
                     </Button>
                   )}
                   <p>${parseFloat(producto.price).toFixed(2)}</p>
@@ -44,7 +44,13 @@ const Main = (props) => {
           
         </Box>
       </Box>
-    ) : (<img src={Pruv} alt="IMAGEN PRODUCTO"/>)
+    ) : (<Spinner
+      thickness='4px'
+      speed='0.65s'
+      emptyColor='gray.200'
+      color='blue.500'
+      size='xl'
+    />)
   );
 };
 

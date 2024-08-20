@@ -9,6 +9,7 @@ import UserWish from "../UserWish"
 import UserHelpCenter from "../UserHelpCenter"
 import UserProfile from "../UserProfile"
 import useDataUser from "../Hooks/useDataUser"
+import UserAddresses from "../UserAddresses"
 
 function Usuario (){
 
@@ -27,6 +28,7 @@ function Usuario (){
                     <Route path="/misdeseos" element={<UserWish user={user}/>}/>
                     <Route path="/ayuda" element={<UserHelpCenter/>}/>
                     <Route path="/perfil" element={<UserProfile user={user}/>}/>
+                    <Route path="/direcciones" element={<UserAddresses user={user}/>}/>
                 </Routes>
             </div>
         </Box>

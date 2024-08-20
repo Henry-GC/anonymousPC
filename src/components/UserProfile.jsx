@@ -1,10 +1,9 @@
 import "./Assets/Styles/UserProfile.css";
-import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import useProfileForm from "./Hooks/useProfileForm";
 
 function UserProfile({user}) {
-    const toast = useToast()
     const [edit, setEdit] = useState(false);
     const {initialValues,formik} = useProfileForm(user)
 
@@ -88,7 +87,7 @@ function UserProfile({user}) {
                         />
                     ) : (
                         <Box className="user-section-date">
-                            <Text>{formik.values.birthdate}</Text>
+                            <Text>{formik.values.birthdate.split('T')[0]}</Text>
                         </Box>
                     )}
                     <FormErrorMessage>{formik.errors.birthdate}</FormErrorMessage>

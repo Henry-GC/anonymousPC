@@ -16,7 +16,7 @@ export default function useFetch (){
     // REQUEST PRODUCTOS DESTACADOS
     const fetchRelevants = async() => {
         const response = await Axios.get("/api/productos")
-        const data = response.data.filter(prod => prod.relevant === true && prod.category_id !== 8)
+        const data = response.data.filter(prod => prod.relevant === true && prod.category_id !== 9)
         data.sort((a, b) => a.price - b.price)
         setRelevantProducts(data)
     }

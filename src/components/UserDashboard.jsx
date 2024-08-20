@@ -1,7 +1,11 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Spinner } from "@chakra-ui/react";
 import "./Assets/Styles/UserDashboard.css"
 
 function UserDashboard (props){
+
+    const userData = props.user.userData
+
+    if (!userData) return <Spinner>...</Spinner>
 
     return (
         <Box className="user-dashboard-container">
@@ -10,7 +14,7 @@ function UserDashboard (props){
                     <img src="/multimedia/avatar_1.jpg" alt="avatar"/>
                 </div>
                 <div className="user-title-dashboard-container">
-                    <h1>{props.user.name}</h1>
+                    <h1>{userData.nickname || `Sin registro`}</h1>
                     <div className="user-range-container">
                         <div className="user-icon-range">
                             <img src="/multimedia/range_0.png" alt="insignia"/>

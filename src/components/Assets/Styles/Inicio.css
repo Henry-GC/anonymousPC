@@ -97,6 +97,9 @@
     gap: 1rem;
     padding-bottom: 1rem;
 }
+.relevant-products::-webkit-scrollbar{
+    width: 0px;
+}
 .relevant-product{
     display: flex;
     flex-direction: column;
