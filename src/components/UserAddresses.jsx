@@ -1,30 +1,51 @@
-import { Box, HStack, Spinner, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Spinner, Text, VStack, Button } from "@chakra-ui/react";
+import './Assets/Styles/UserAddresses.css'
+import { useState } from "react";
 
 function UserAddresses ({user}) {
+    const [isDefault,setIsDefault] = useState("check-circle")
     const addresses = user.addresses
     if (!addresses) return <Spinner/>
 
+    const handleButton = () => {
+        if (isDefault === "check-circle"){
+            setIsDefault("uncheck-circle")
+        } else {
+            setIsDefault("check-circle")
+        }
+    }
+
     return (
-        <Box>
+        <Box className="user-addresses-container">
+            <Text as="h1" className="user-addresses-tittle">DIRECCIONES</Text>
             <Box>
                 {addresses.map((address)=>(
-                    <Box key={address.id}>
-                        <VStack>
-                            <Text as="h2">Provincia</Text>
-                            <Text as="h2">{address.province || 'Sin registro'}</Text>
-                        </VStack>
-                        <VStack>
-                            <Text as="h2">Ciudad</Text>
-                            <Text as="h2">{address.city || 'Sin registro'}</Text>
-                        </VStack>
-                        <VStack>
-                            <Text as="h2">Calles</Text>
-                            <Text as="h2">{address.street || 'Sin registro'}</Text>
-                        </VStack>
-                        <VStack>
-                            <Text as="h2">Referencia</Text>
-                            <Text as="h2">{address.reference || 'Sin registro'}</Text>
-                        </VStack>
+                    <Box key={address.id} className="address-item-container" onClick={handleButton}>
+                        <Box className="address-text-rows">
+                            <Box className="address-text-row-city">
+                                <Box className="address-text-row" width="50%">
+                                    <Text as="h2" className="address-text-title">Provincia:</Text>
+                                    <Text as="h2" className="address-text-data">{address.province || 'Sin registro'}</Text>
+                                </Box>
+                                <Box className="address-text-row" width="50%">
+                                    <Text as="h2" className="address-text-title">Ciudad:</Text>
+                                    <Text as="h2" className="address-text-data">{address.city || 'Sin registro'}</Text>
+                                </Box>
+                            </Box>
+                            <Box className="address-text-row">
+                                <Text as="h2" className="address-text-title">Calles:</Text>
+                                <Text as="h2" className="address-text-data">{address.street || 'Sin registro'}</Text>
+                            </Box>
+                            <Box className="address-text-row">
+                                <Text as="h2" className="address-text-title">Referencia:</Text>
+                                <Text as="h2" className="address-text-data">{address.reference || 'Sin registro'}</Text>
+                            </Box>
+                            <Button>
+                                Eliminar
+                            </Button>
+                        </Box>
+                        <Box className={`${isDefault}`}>
+                        </Box>
                     </Box>
                 ))}
             </Box>

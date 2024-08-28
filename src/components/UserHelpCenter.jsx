@@ -11,7 +11,7 @@ function UserHelpCenter () {
                     <AccordionButton className="user-helpCenter-section-title"
                         sx={{
                             _hover:{
-                                background: 'transparent',
+                                background: 'tomato',
                                 color: '#fff'
                             }}}
                         _expanded={{bg: 'tomato',color: 'white'}}
@@ -59,7 +59,7 @@ function UserHelpCenter () {
                     <AccordionButton className="user-helpCenter-section-title"
                         sx={{
                             _hover:{
-                                background: 'transparent',
+                                background: 'tomato',
                                 color: '#fff'
                             }}}
                         _expanded={{bg: 'tomato',color: 'white'}}
@@ -107,7 +107,7 @@ function UserHelpCenter () {
                     <AccordionButton className="user-helpCenter-section-title"
                         sx={{
                             _hover:{
-                                background: 'transparent',
+                                background: 'tomato',
                                 color: '#fff'
                             }}}
                         _expanded={{bg: 'tomato',color: 'white'}}
