@@ -2,13 +2,15 @@ import { Box, Button } from "@chakra-ui/react";
 import "./Assets/Styles/UserMiCarrito.css"
 import useCart from "./Hooks/useCart";
 import Pruv from "./Assets/Image/work.png"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Axios from "../utils/axiosConfig"
+import { ThemeContext } from "./Context/ThemeContext";
 
 function UserMiCarrito () {
     
     const {addCart, setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart} = useCart()
     const [isLoading,setIsLoading] = useState(false)
+    const {theme} = useContext(ThemeContext)
 
     const handleBuy = async() => {
         const {cartDetails} = buyCart()
@@ -64,7 +66,10 @@ function UserMiCarrito () {
                     )
                 })}
                 <div className="user-total-cart-container">   
-                <Box className="user-total-cart-rows">
+                <Box
+                    className="user-total-cart-rows"
+                    color={theme.color}
+                >
                     <div className="user-total-cart-row1">
                         <p>SUBTOTAL</p>
                         <p>$ {totalPrice}</p>
@@ -75,10 +80,10 @@ function UserMiCarrito () {
                     </div>
                     <div className="user-total-cart-row1">
                         <h2>TOTAL</h2>
-                        <h2><strong>$ {totalPrice}</strong></h2>
+                        <h2><strong color={theme.accentColor}>$ {totalPrice}</strong></h2>
                     </div>
                 </Box>
-                <Button isLoading={isLoading} onClick={handleButton}>
+                <Button isLoading={isLoading} onClick={handleButton} bgColor={theme.accentColor}>
                     HACER PEDIDO
                 </Button>
             </div>

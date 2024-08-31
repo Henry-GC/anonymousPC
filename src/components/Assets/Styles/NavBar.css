@@ -1,20 +1,10 @@
+.navBar{
+  display: flex;
+  justify-content: center;
+}
 .navBar-container{
     display: flex;
-  }
-  .navBar-container ul{
-    display: flex;
-    gap: 3rem;
-  }
-  .navBar-container li{
-    display: flex;
-    list-style: none;
-  }
-  .navBar{
-    color: rgb(255, 255, 255);
-    font-size: 1.5rem;
-    font-weight: 400;
+    justify-content: space-between;
+    width: 90%;
     font-family: 'Montserrat';
-  }
-  .fa-user{
-    font-size: 2rem;
   }

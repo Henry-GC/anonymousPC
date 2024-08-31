@@ -10,8 +10,6 @@ html{
 }
 body{
   font-family: "Roboto";
-  background: linear-gradient(to right, #7c11b9,#2c0344);
-  /* background: #2c0344; */
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -23,11 +21,11 @@ a{
 	text-decoration: none;
 }
 a:visited{
-	color: #fff;
+	color: #000000;
 }
 a:link{
-	color: #fff;
+	color: #000000;
 }
 #reset{
-  color: black;
+  color: rgb(255, 255, 255);
 }

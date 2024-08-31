@@ -1,11 +1,13 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Axios from "../utils/axiosConfig";
+import { ThemeContext } from "./Context/ThemeContext";
 
 const FormLogin = () => {
+  const {theme} = useContext(ThemeContext)
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
@@ -40,24 +42,38 @@ const FormLogin = () => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <FormControl isInvalid={formik.touched.user && formik.errors.user}>
-        <FormLabel htmlFor="user">Usuario</FormLabel>
-        <Input id="user" name="user" {...formik.getFieldProps("user")} />
-        <FormErrorMessage>{formik.errors.user}</FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={formik.touched.pass && formik.errors.pass}>
-        <FormLabel htmlFor="pass">Contraseña</FormLabel>
-        <Input id="pass" name="pass" type="password" {...formik.getFieldProps("pass")} />
-        <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
-      </FormControl>
-      {serverError && (
-        <FormControl isInvalid={true}>
-          <FormErrorMessage>{serverError}</FormErrorMessage>
+      <Box
+        display='flex'
+        flexDirection='column'
+      >
+        <FormControl isInvalid={formik.touched.user && formik.errors.user}>
+          <FormLabel htmlFor="user">Usuario</FormLabel>
+          <Input id="user" name="user" {...formik.getFieldProps("user")} />
+          <FormErrorMessage>{formik.errors.user}</FormErrorMessage>
         </FormControl>
-      )}
-      <Button type="submit" isLoading={isLoading}>
-        Entrar
-      </Button>
+        <FormControl isInvalid={formik.touched.pass && formik.errors.pass}>
+          <FormLabel htmlFor="pass">Contraseña</FormLabel>
+          <Input id="pass" name="pass" type="password" {...formik.getFieldProps("pass")} />
+          <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+        </FormControl>
+        {serverError && (
+          <FormControl isInvalid={true}>
+            <FormErrorMessage>{serverError}</FormErrorMessage>
+          </FormControl>
+        )}
+        <Button
+          type="submit"
+          isLoading={isLoading}
+          alignSelf='center'
+          bg={theme.backgroundColor}
+          color={theme.color}
+          border={`solid 1px ${theme.color}`}
+          sx={{ _hover: { bg: theme.highlightColor, color: theme.backgroundColor, borderColor:theme.highlightColor} }}
+          marginTop='1rem'
+        >
+          Entrar
+        </Button>
+      </Box>
     </form>
   );
 };

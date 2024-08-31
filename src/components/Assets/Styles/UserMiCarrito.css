@@ -64,20 +64,15 @@
     width: 70%;
 }
 .user-total-cart-row1{
-    color: #fff;
     display: flex;
     font-family: 'Montserrat';
     font-size: 1.5rem;
     justify-content: space-between;
 }
-.user-total-cart-row1 strong{
-    color: rgb(233, 205, 47);
-}
 .user-total-cart-container button{
     border-radius: 0.5rem;
     padding: 1rem;
     color: rgb(255, 255, 255);
-    background-color: #190425;
     font-size: 1.2rem;
     font-weight: 700;
     border: none;

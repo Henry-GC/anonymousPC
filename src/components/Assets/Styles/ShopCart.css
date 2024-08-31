@@ -4,34 +4,33 @@
 }
 .cart-button{
     display: flex;
-    color: aliceblue;
     font-size: 2rem;
     cursor: pointer;
 }
-.cart-button div{
+.cart-number{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border-radius: 50%;
-    background-color: rgb(177, 0, 0);
+    background-color: #006eb8;
+    color: #ffffff;
     position: relative;
     z-index: 500;
-    top: -20px;
-    right: 0;
-    font-size: 1.1rem;
+    top: -10px;
+    right: 5px;
+    font-size: 1rem;
     font-weight: bold;
-    border: #fff solid 2px;
+    border: #006eb8 solid 2px;
 }
 .shop-cart{
-    background: #000000;
     position: fixed;
     right: 0px;
-    top: 10vh;
+    top: 9vh;
     z-index: 500;
     width: 30rem;
-    height: 90vh;
+    height: 91vh;
     padding: .5rem 1rem 2rem 1rem;
     transform: translateX(100%);
     transition: transform .5s ease-in-out;
@@ -43,7 +42,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: aliceblue;
+    color: rgb(0, 0, 0);
     padding: .5rem 0;
 }
 .title-cart h1{
@@ -55,11 +54,11 @@
     height: fit-content;
     width: fit-content;
     background-color: transparent;
-    color: aliceblue;
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }
 .title-cart button i{
-    color: aliceblue;
+    color: rgb(0, 0, 0);
     font-size: 2.5rem;
 }
 .body-cart{
@@ -73,7 +72,7 @@
     display: flex;
     height: 40rem;
     width: 100%;
-    color: aliceblue;
+    color: rgb(0, 0, 0);
     align-items: center;
     justify-content: center;
 }
@@ -118,7 +117,7 @@
 }
 .text-body-cart strong{
     font-size: 1rem;
-    color: aliceblue;
+    color: rgb(0, 0, 0);
 }
 .price-item-total{
     display: flex;
@@ -170,10 +169,10 @@
     flex-direction: column;
     width: 100%;
     height: 25vh;
-    background-color: #000000;
+    background-color: #ffffff;
     position: fixed;
     top: 65vh;
-    border-top: solid 1px #fff;
+    border-top: solid 1px #000000;
     gap: 2vh;
     justify-content: center;
 }
@@ -186,14 +185,14 @@
 .footer-cart-row{
     display: flex;
     justify-content: space-between;
-    color: #fff;
+    color: #000000;
     font-size: 1.2rem;
 }
 .footer-cart-row-total{
     display: flex;
     justify-content: space-between;
     font-size: 1.2rem;
-    color: #fff;
+    color: #000000;
 }
 .footer-cart-price{
     color: rgb(233, 205, 47);

@@ -1,11 +1,13 @@
 import { Box } from "@chakra-ui/react";
 import { Link, Navigate } from "react-router-dom";
 import "./Assets/Styles/UserSideBar.css"
+import Axios from "../utils/axiosConfig"
 
 function UserSideBar (){
 
-    const handleButton = () =>{
+    const handleButton = async() =>{
         localStorage.removeItem('token')
+        await Axios.get('/api/logout')
         return <Navigate to="/login" replace/>
     }
     return(

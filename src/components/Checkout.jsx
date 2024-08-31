@@ -1,158 +1,135 @@
-import { Box, Flex, Heading, Text, Button, FormControl, FormLabel, Input, RadioGroup, Radio, Select, Textarea, Divider, IconButton, Link } from "@chakra-ui/react";
-import { FaCreditCard, FaDollarSign, FaLaptop, FaWallet } from "react-icons/fa";
+import { useState } from 'react';
+import { Button, Input, FormLabel, RadioGroup, Radio, Stack, Select, Box, Text, Heading } from '@chakra-ui/react';
+import { MapPin, CreditCard, Package, ChevronRight, Lock } from 'lucide-react';
 
-export default function Component() {
+// Direcciones guardadas de ejemplo
+const savedAddresses = [
+  { id: 1, provincia: "Buenos Aires", ciudad: "La Plata", calle: "Calle 7 1234", referencia: "Cerca del parque" },
+  { id: 2, provincia: "Córdoba", ciudad: "Córdoba", calle: "Av. Colón 5678", referencia: "Frente al centro comercial" },
+  { id: 3, provincia: "Santa Fe", ciudad: "Rosario", calle: "Bv. Oroño 9012", referencia: "Esquina con Pellegrini" },
+];
+
+export default function Checkout() {
+  const [step, setStep] = useState(1);
+  const [orderTotal] = useState(1299.99);
+  const [selectedAddress, setSelectedAddress] = useState(savedAddresses[0]);
+  const [useNewAddress, setUseNewAddress] = useState(false);
+
+  const nextStep = () => setStep(step + 1);
+
+  const handleAddressChange = (addressId) => {
+    const address = savedAddresses.find(addr => addr.id === addressId);
+    if (address) {
+      setSelectedAddress(address);
+      setUseNewAddress(false);
+    }
+  };
+
   return (
-    <Flex direction="column" minH="100vh">
-      <Box as="main" flex="1" py={12}>
-        <Flex maxW="container.xl" mx="auto" direction={{ base: "column", md: "row" }} gap={8}>
-          <Box bg="card" p={6} rounded="lg" shadow="md">
-            <Heading size="md" mb={4}>
-              Order Summary
-            </Heading>
-            <Flex justify="space-between" mb={4}>
-              <Box>
-                <Text fontSize="lg" fontWeight="medium">
-                  Item 1
-                </Text>
-                <Text color="gray.500">Laptop A</Text>
+    <Box className="container mx-auto px-4 py-8">
+      <Heading as="h1" size="xl" mb={8}>Checkout - Anonymous PC</Heading>
+      <Box display="flex" flexDirection={{ base: 'column', md: 'row' }} gap={8}>
+        <Box w={{ base: '100%', md: '66%' }}>
+          {step === 1 && (
+            <Box mb={8}>
+              <Heading as="h2" size="lg" mb={4} display="flex" alignItems="center">
+                <MapPin className="mr-2" /> 1. Dirección de envío
+              </Heading>
+              <Box border="1px" borderRadius="md" borderColor="gray.200" p={4} mb={4}>
+                <RadioGroup value={selectedAddress.id.toString()} onChange={(value) => handleAddressChange(parseInt(value))}>
+                  <Stack spacing={2}>
+                    {savedAddresses.map((address) => (
+                      <Radio key={address.id} value={address.id.toString()}>
+                        {address.calle}, {address.ciudad}, {address.provincia} - {address.referencia}
+                      </Radio>
+                    ))}
+                    <Radio value="new" onClick={() => setUseNewAddress(true)}>Usar una dirección nueva</Radio>
+                  </Stack>
+                </RadioGroup>
               </Box>
-              <Text fontSize="lg" fontWeight="medium">
-                $999.99
-              </Text>
-            </Flex>
-            <Flex justify="space-between" mb={4}>
-              <Box>
-                <Text fontSize="lg" fontWeight="medium">
-                  Item 2
-                </Text>
-                <Text color="gray.500">Mouse B</Text>
-              </Box>
-              <Text fontSize="lg" fontWeight="medium">
-                $49.99
-              </Text>
-            </Flex>
-            <Divider my={4} />
-            <Flex justify="space-between">
-              <Text fontSize="lg" fontWeight="medium">
-                Subtotal
-              </Text>
-              <Text fontSize="lg" fontWeight="medium">
-                $1,049.98
-              </Text>
-            </Flex>
-            <Flex justify="space-between">
-              <Text fontSize="lg" fontWeight="medium">
-                Shipping
-              </Text>
-              <Text fontSize="lg" fontWeight="medium">
-                $9.99
-              </Text>
-            </Flex>
-            <Flex justify="space-between">
-              <Text fontSize="lg" fontWeight="medium">
-                Total
-              </Text>
-              <Text fontSize="lg" fontWeight="medium">
-                $1,059.97
-              </Text>
-            </Flex>
-          </Box>
+              {useNewAddress && (
+                <Stack spacing={4} mb={4}>
+                  <Input placeholder="Provincia" />
+                  <Input placeholder="Ciudad" />
+                  <Input placeholder="Calle" />
+                  <Input placeholder="Referencia" />
+                </Stack>
+              )}
+              <Button onClick={nextStep} rightIcon={<ChevronRight />} colorScheme="blue">
+                Continuar
+              </Button>
+            </Box>
+          )}
 
-          <Box bg="card" p={6} rounded="lg" shadow="md">
-            <Heading size="md" mb={4}>
-              Payment
-            </Heading>
-            <RadioGroup defaultValue="credit-card">
-              <Flex direction="column" gap={2}>
-                <Flex align="center" gap={2}>
-                  <Radio value="credit-card" id="credit-card" />
-                  <FormLabel htmlFor="credit-card" mb={0} cursor="pointer">
-                    <Flex align="center" gap={2}>
-                      <FaCreditCard />
-                      <Text>Credit Card</Text>
-                    </Flex>
-                  </FormLabel>
-                </Flex>
-                <Flex align="center" gap={2}>
-                  <Radio value="paypal" id="paypal" />
-                  <FormLabel htmlFor="paypal" mb={0} cursor="pointer">
-                    <Flex align="center" gap={2}>
-                      <FaWallet />
-                      <Text>PayPal</Text>
-                    </Flex>
-                  </FormLabel>
-                </Flex>
-                <Flex align="center" gap={2}>
-                  <Radio value="apple-pay" id="apple-pay" />
-                  <FormLabel htmlFor="apple-pay" mb={0} cursor="pointer">
-                    <Flex align="center" gap={2}>
-                      <FaDollarSign />
-                      <Text>Apple Pay</Text>
-                    </Flex>
-                  </FormLabel>
-                </Flex>
-              </Flex>
-            </RadioGroup>
-            <Divider my={4} />
-            <Flex direction="column" gap={4}>
-              <FormControl>
-                <FormLabel htmlFor="name">Name on Card</FormLabel>
-                <Input id="name" placeholder="Enter your name" />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="card-number">Card Number</FormLabel>
-                <Input id="card-number" placeholder="Enter your card number" />
-              </FormControl>
-              <Flex gap={4}>
-                <FormControl>
-                  <FormLabel htmlFor="expiration-month">Expiration Month</FormLabel>
-                  <Select id="expiration-month" placeholder="Select month">
-                    <option value="01">January</option>
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                  </Select>
-                </FormControl>
-                <FormControl>
-                  <FormLabel htmlFor="expiration-year">Expiration Year</FormLabel>
-                  <Select id="expiration-year" placeholder="Select year">
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                  </Select>
-                </FormControl>
-                <FormControl>
-                  <FormLabel htmlFor="cvc">CVC</FormLabel>
-                  <Input id="cvc" placeholder="Enter CVC" />
-                </FormControl>
-              </Flex>
-              <FormControl>
-                <FormLabel htmlFor="address">Shipping Address</FormLabel>
-                <Textarea id="address" placeholder="Enter your shipping address" />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="billing-address">Billing Address</FormLabel>
-                <Textarea id="billing-address" placeholder="Enter your billing address" />
-              </FormControl>
-            </Flex>
-            <Button colorScheme="teal" size="lg" mt={4} w="full">
-              Place Order
-            </Button>
+          {step === 2 && (
+            <Box mb={8}>
+              <Heading as="h2" size="lg" mb={4} display="flex" alignItems="center">
+                <CreditCard className="mr-2" /> 2. Método de pago
+              </Heading>
+              <Box border="1px" borderRadius="md" borderColor="gray.200" p={4} mb={4}>
+                <RadioGroup defaultValue="card1">
+                  <Stack spacing={2}>
+                    <Radio value="card1">Visa terminada en 1234</Radio>
+                    <Radio value="card2">MasterCard terminada en 5678</Radio>
+                    <Radio value="new">Usar una tarjeta nueva</Radio>
+                  </Stack>
+                </RadioGroup>
+              </Box>
+              <Button onClick={nextStep} rightIcon={<ChevronRight />} colorScheme="blue">
+                Continuar
+              </Button>
+            </Box>
+          )}
+
+          {step === 3 && (
+            <Box mb={8}>
+              <Heading as="h2" size="lg" mb={4} display="flex" alignItems="center">
+                <Package className="mr-2" /> 3. Revisar y realizar pedido
+              </Heading>
+              <Box border="1px" borderRadius="md" borderColor="gray.200" p={4} mb={4}>
+                <Heading as="h3" size="md" mb={2}>Detalles del envío</Heading>
+                <Text>{selectedAddress.calle}, {selectedAddress.ciudad}, {selectedAddress.provincia}</Text>
+                <Text>Referencia: {selectedAddress.referencia}</Text>
+                <Heading as="h3" size="md" mt={4} mb={2}>Método de pago</Heading>
+                <Text>Visa terminada en 1234</Text>
+              </Box>
+              <Button w="100%" colorScheme="yellow" color="black">
+                Realizar pedido
+              </Button>
+            </Box>
+          )}
+        </Box>
+
+        <Box w={{ base: '100%', md: '33%' }}>
+          <Box border="1px" borderRadius="md" borderColor="gray.200" p={4} position="sticky" top={4}>
+            <Heading as="h2" size="lg" mb={4}>Resumen del pedido</Heading>
+            <Box display="flex" justifyContent="space-between" mb={2}>
+              <Text>PC Personalizada Anonymous</Text>
+              <Text>${orderTotal.toFixed(2)}</Text>
+            </Box>
+            <Box display="flex" justifyContent="space-between" mb={2}>
+              <Text>Envío</Text>
+              <Text>Gratis</Text>
+            </Box>
+            <Box display="flex" justifyContent="space-between" fontWeight="bold" mt={4}>
+              <Text>Total del pedido</Text>
+              <Text>${orderTotal.toFixed(2)}</Text>
+            </Box>
+            <Box mt={4}>
+              <FormLabel htmlFor="shippingMethod">Método de envío</FormLabel>
+              <Select placeholder="Selecciona un método de envío">
+                <option value="standard">Estándar (3-5 días hábiles)</option>
+                <option value="express">Express (1-2 días hábiles)</option>
+              </Select>
+            </Box>
+            {step === 3 && (
+              <Button w="100%" mt={4} colorScheme="yellow" color="black" display="flex" alignItems="center" justifyContent="center">
+                <Lock className="mr-2 h-4 w-4" /> Realizar pedido
+              </Button>
+            )}
           </Box>
-        </Flex>
+        </Box>
       </Box>
-    </Flex>
+    </Box>
   );
 }

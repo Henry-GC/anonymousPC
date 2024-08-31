@@ -1,30 +1,33 @@
 import NavBar from "./NavBar";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import "./Assets/Styles/Header.css"
 import { ShopCart } from "./ShopCart";
 import { Link, useLocation } from "react-router-dom";
-import SideBar from "./SideBar"
 import useCart from "./Hooks/useCart";
+import { Box, Text } from "@chakra-ui/react";
+import { ThemeContext } from "./Context/ThemeContext";
+import ThemeToggleSwitch from "./toggleThemeSwitch";
 
 export default function Header (props){
-    const [isCheked,setChecked] = useState(false)
-    const [buscar,setBuscar]= useState("")
-    const location = useLocation()
+    const {theme} = useContext(ThemeContext);
+    const [isCheked, setChecked] = useState(false);
+    const [buscar, setBuscar] = useState("");
+    const location = useLocation();
     const headerRef = useRef(null);
 
-    const {setAddCart}=useCart()
+    const { setAddCart } = useCart();
 
     const cartSync = () => {
-        const cart = localStorage.getItem('cart')
+        const cart = localStorage.getItem('cart');
         if (cart && cart !== '[]') {
             const newCart = JSON.parse(cart);
-            setAddCart(newCart)
+            setAddCart(newCart);
         }
     }
 
     useEffect(()=>{
         cartSync();
-    },[])
+    },[]);
 
     useEffect(() => {
         if (!isCheked){
@@ -51,35 +54,56 @@ export default function Header (props){
         } 
       }, [isCheked]);
 
-    const searchChange = (e) =>{
-      setBuscar(e.target.value);
+    const searchChange = (e) => {
+        setBuscar(e.target.value);
     };
-    const searchSubmit = (e) =>{
-      e.preventDefault();
-      props.onSearch(buscar);
-      setBuscar("")
+    const searchSubmit = (e) => {
+        e.preventDefault();
+        props.onSearch(buscar);
+        setBuscar("");
     };
 
     return(
-        <div className="header" ref={headerRef}>
-            <div className="header-container">
-                <div className="home-container">
-                    <div className="logo-container"><Link to="/"><img alt="ISOLOGO" src="/multimedia/isologo.png" width="100%"/></Link></div>
-                    <div className="search-container">
+        <Box
+            className={`header ${isCheked ? 'sticky' : ''}`}
+            ref={headerRef}
+            bg={theme.backgroundColor}
+        >
+            {/* <ThemeToggleSwitch/> */}
+            <Box
+                className="header-container"
+            >
+                <Box className="home-container">
+                    <Box className="logo-container"><Link to="/"><img alt="ISOLOGO" src="/multimedia/isologo.png" width="100%"/></Link></Box>
+                    <Box className="search-container">
                         <form onSubmit={searchSubmit}>
                             <button type='submit'>
                                 <i id="lupa" className="fa-solid fa-magnifying-glass"></i>
                             </button>
                             <input type="text" value={buscar} onChange={searchChange} placeholder='Buscar...'/>
                         </form>
-                    </div>
-                </div>
-                <div className="bar-container">
-                    <NavBar/>
+                    </Box>
+                </Box>
+                <Box className="bar-container">
+                    <Link
+                        to="/usuario"
+                        className='login'
+                    >
+                        <Box color={theme.color}>
+                            <i className="fa-regular fa-user"></i>
+                        </Box>
+                        <Box
+                            color={theme.color}
+                            fontSize='.8rem'
+                        >
+                            <Text as='h2' fontWeight='300'>Mi cuenta</Text>
+                            <Text as='strong'>Ingresar</Text>
+                        </Box>
+                    </Link>
                     <ShopCart isCheked={isCheked} setChecked={setChecked}/>
-                </div>
-            </div>
-            {location.pathname.includes("productos")?(<SideBar/>):(<></>)}
-        </div>
+                </Box>
+            </Box>
+            <NavBar/>
+        </Box>
     )
 }

@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box, theme } from "@chakra-ui/react"
 import { Route, Routes} from "react-router-dom"
 import "../Assets/Styles/Usuario.css"
 import UserSideBar from "../UserSideBar"
@@ -10,13 +10,20 @@ import UserHelpCenter from "../UserHelpCenter"
 import UserProfile from "../UserProfile"
 import useDataUser from "../Hooks/useDataUser"
 import UserAddresses from "../UserAddresses"
+import { useContext } from "react"
+import { ThemeContext } from "../Context/ThemeContext"
 
 function Usuario (){
 
     const {user, cancelOrder} = useDataUser();
+    const {theme} = useContext(ThemeContext)
     
     return (
-        <Box className="user-main-container">
+        <Box
+            className="user-main-container"
+            color={theme.color}
+            bg={theme.backgroundColor}
+        >
             <div className="user-main-container-col1">
                 <UserSideBar/>
             </div>

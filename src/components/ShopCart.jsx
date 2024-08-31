@@ -1,16 +1,19 @@
-import { useId, useState } from "react"
+import { useContext, useId, useState } from "react"
 import "./Assets/Styles/ShopCart.css"
 import Pruv from "./Assets/Image/work.png"
 import useCart from "./Hooks/useCart"
-import { Box, Button } from "@chakra-ui/react"
+import { Box, Button, Text } from "@chakra-ui/react"
 import Axios from "../utils/axiosConfig"
+import { ThemeContext } from "./Context/ThemeContext"
+import { useNavigate } from "react-router-dom"
 
 export const ShopCart = (props) => {
-
+    const {theme} = useContext(ThemeContext)
     const [isLoading,setIsLoading] = useState(false)
     const {addCart,setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart } = useCart()
     const numCart = addCart.length
     const CartId = useId()
+    const navigate = useNavigate()
 
     const handleBuy = async() => {
         const {cartDetails} = buyCart()
@@ -18,89 +21,109 @@ export const ShopCart = (props) => {
             details: cartDetails,
             total: totalPrice
         }
-        const response = await Axios.post('/api/user/createorder',data)
-        localStorage.removeItem('cart')
-        setAddCart([])
-        console.log(response);
+        try {
+            const response = await Axios.post('/api/user/createorder',data)
+            localStorage.removeItem('cart')
+            setAddCart([])
+            setIsLoading(false)
+            props.setChecked(false)
+            navigate('/checkout',{replace:true})
+        } catch (error) {
+            
+        }
     }
 
     const handleButton = () => {
         setIsLoading(true)
-        setTimeout(()=>{
-            handleBuy();
-            setIsLoading(false)
-        },300)
+        handleBuy();
     }
 
     return (
-        <div className="cart-container">
-            <label htmlFor={CartId} className="cart-button">
-                <i className="fa-solid fa-cart-shopping"></i>
-                {numCart>0?<div>{numCart}</div>:<></>}
+        <Box className="cart-container">
+            <label
+                htmlFor={CartId}
+                className="cart-button"
+                color={theme.color}
+            >
+                <Box color={theme.color}>
+                    <i className="fa-solid fa-cart-shopping"></i>
+                </Box>
+                <Box className="cart-number">{numCart}</Box>
+                <Box
+                    color={theme.color}
+                    fontSize='.8rem'
+                    fontFamily='Montserrat'
+                >
+                    <Text as='h2' fontWeight='300'>Mi carrito</Text>
+                    <Text as='strong'>${totalPrice}</Text>
+                </Box>
             </label>
             <input id={CartId} type="checkbox" checked={props.isCheked} onChange={(e)=>props.setChecked(e.target.checked)} hidden />
 
-            <div className="shop-cart">
-                <div className="title-cart">
+            <Box
+                className="shop-cart"
+                background={theme.secondaryBackground}
+            >
+                <Box className="title-cart">
                     <h1>Carrito</h1>
                     <button onClick={()=>props.setChecked(false)}><i class="fa-solid fa-right-long"></i></button>
-                </div>
+                </Box>
                 
-                <div className="body-cart">
+                <Box className="body-cart">
                     <ul>
                     {numCart>0 ? (
                         <>
                         {addCart.map((item,index)=>(
                             <li className="item-shopCart" key={item.id}>
-                                <div className="item-cart">
-                                    <div className="image-item-cart">
+                                <Box className="item-cart">
+                                    <Box className="image-item-cart">
                                         <img src={Pruv} width="100%" alt="PRODUCTO CARRITO"/>
-                                    </div>
-                                    <div className="text-item-cart">
-                                        <div className="text-body-cart">
+                                    </Box>
+                                    <Box className="text-item-cart">
+                                        <Box className="text-body-cart">
                                             <strong>{item.name}</strong>
-                                            <div className="count-item-cart">
-                                                <div className="delete-button-cart">
+                                            <Box className="count-item-cart">
+                                                <Box className="delete-button-cart">
                                                     <button onClick={()=>delToCart(index)}>
                                                         Quitar
                                                     </button>
-                                                </div>
+                                                </Box>
                                                 <p>Cantidad</p>
-                                                <div>
+                                                <Box>
                                                     <button onClick={()=>minusCart(index)}><i className="fa-solid fa-minus"></i></button>
                                                         <span>{item.count}</span>
                                                     <button onClick={()=>plusCart(index)}><i className="fa-solid fa-plus"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="price-item-total">$ {parseFloat(item.price*item.count).toFixed(2)}</div>
-                                    </div>
-                                </div>
+                                                </Box>
+                                            </Box>
+                                        </Box>
+                                        <Box className="price-item-total">$ {parseFloat(item.price*item.count).toFixed(2)}</Box>
+                                    </Box>
+                                </Box>
                             </li>
                         ))}
                         </>
                         ) : <h2>Aún no hay artículos agregados</h2>}
                         
                     </ul>
-                        <div className="footer-cart">   
+                        <Box className="footer-cart">   
                             <Box className="footer-cart-column">
-                                <div className="footer-cart-row">
+                                <Box className="footer-cart-row">
                                     <p>SUBTOTAL</p>
                                     <p>$ {totalPrice}</p>
-                                </div>
-                                <div className="footer-cart-row">
+                                </Box>
+                                <Box className="footer-cart-row">
                                     <p>DESCUENTO</p>
                                     <p>$ 0.00</p>
-                                </div>
-                                <div className="footer-cart-row-total">
+                                </Box>
+                                <Box className="footer-cart-row-total">
                                     <h1>TOTAL</h1>
                                     <h1 className="footer-cart-price">$ {totalPrice}</h1>
-                                </div>
+                                </Box>
                             </Box>
                             <Button isLoading={isLoading} className="send-cart" onClick={()=>handleButton()}>FINALIZAR COMPRA</Button>
-                        </div>
-                </div>
-            </div>
-        </div>
+                        </Box>
+                </Box>
+            </Box>
+        </Box>
     )
 }

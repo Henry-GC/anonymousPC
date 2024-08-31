@@ -13,7 +13,6 @@
 .item-prod-main{
     display: flex;
     flex-direction: column;
-    background: #fff;
     width: 18vw;
     height: 35vh;
     border-radius: 10px;
@@ -36,10 +35,9 @@
     display: flex;
     flex-direction: column;
     align-self: flex-end;
-    background: #fff;
     width: 100%;
     border-radius: 0 0 10px 10px;
-    /* align-self: flex-end; */
+    overflow: hidden;
 }
 .item-name{
     align-self: center;
@@ -51,7 +49,6 @@
     justify-content: space-between;
     padding: 7px 10px;
     font-size: 1.05vw;
-    border-top: solid 1px #999;
 }
 .verify-cart{
     color: #009317;
@@ -62,8 +59,6 @@
     gap: 0.5rem;
     align-items: center;
     padding: 0.3rem;
-    color: #fff;
-    background-color: #190425;
     border: none;
     border-radius: 0.3rem;
     align-items: center;

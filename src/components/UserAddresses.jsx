@@ -1,17 +1,13 @@
-import { Box, HStack, Spinner, Text, VStack, Button } from "@chakra-ui/react";
+import { Box, Spinner, Text, Button } from "@chakra-ui/react";
 import './Assets/Styles/UserAddresses.css'
-import { useState } from "react";
 
 function UserAddresses ({user}) {
-    const [isDefault,setIsDefault] = useState("check-circle")
     const addresses = user.addresses
     if (!addresses) return <Spinner/>
 
-    const handleButton = () => {
-        if (isDefault === "check-circle"){
-            setIsDefault("uncheck-circle")
-        } else {
-            setIsDefault("check-circle")
+    const handleButton = (is_default) => {
+        if (is_default === true && addresses.length > 1){
+
         }
     }
 
@@ -20,7 +16,7 @@ function UserAddresses ({user}) {
             <Text as="h1" className="user-addresses-tittle">DIRECCIONES</Text>
             <Box>
                 {addresses.map((address)=>(
-                    <Box key={address.id} className="address-item-container" onClick={handleButton}>
+                    <Box key={address.id} className="address-item-container" onClick={handleButton(address.is_default)}>
                         <Box className="address-text-rows">
                             <Box className="address-text-row-city">
                                 <Box className="address-text-row" width="50%">
@@ -40,11 +36,11 @@ function UserAddresses ({user}) {
                                 <Text as="h2" className="address-text-title">Referencia:</Text>
                                 <Text as="h2" className="address-text-data">{address.reference || 'Sin registro'}</Text>
                             </Box>
-                            <Button>
+                            <Button isDisabled={addresses.length===1}>
                                 Eliminar
                             </Button>
                         </Box>
-                        <Box className={`${isDefault}`}>
+                        <Box className={address.is_default?`check-circle`:`uncheck-circle`}>
                         </Box>
                     </Box>
                 ))}

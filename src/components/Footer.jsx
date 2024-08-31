@@ -8,109 +8,84 @@ import {
     Image,
     Text,
     Button,
-    IconButton
+    IconButton,
   } from '@chakra-ui/react';
   // Here we have used react-icons package for the icons
   import { FaGithub } from 'react-icons/fa';
   import { BsDiscord } from 'react-icons/bs';
+import { useContext } from 'react';
+import { ThemeContext } from './Context/ThemeContext';
+import './Assets/Styles/Footer.css'
   
   const Footer = () => {
+
+    const {theme} = useContext(ThemeContext)
+
     return (
-      <Box p={{ base: 5, md: 8 }} width="100%" marginInline="auto" bg="#000">
-        <Stack
-          spacing={{ base: 8, md: 0 }}
-          justifyContent="space-between"
-          direction={{ base: 'column', md: 'row' }}
+      <>
+        <Box
+          className='container-footer'
+          bg={theme.backgroundColor}
         >
-          <Box maxW="300px">
-            <Link href='#'>
-              <Image w="100px" src="/multimedia/Logo.png" alt="TemplatesKart" />
-            </Link>
-            <Text mt={2} color="gray.500" fontSize="md">
-              Build fully functional accessible web applications faster than ever
-            </Text>
+          <Box>
+            <Box className='logo-picture'>
+              <img src='/multimedia/logo.png' width='100%'/>
+            </Box>
+            <Box>
+              <Text>support@anonymouspc.net</Text>
+              <Box>
+                
+              </Box>
+            </Box>
           </Box>
-          <HStack
-            spacing={4}
-            d={{ base: 'none', sm: 'flex' }}
-            justifyContent={{ sm: 'space-between', md: 'normal' }}
-          >
-            <VStack spacing={4} alignItems="flex-start">
-              <Text fontSize="md" fontWeight="bold">
-                About
-              </Text>
-              <VStack spacing={2} alignItems="flex-start" color="gray.500">
-                <CustomLink>Contrinute</CustomLink>
-                <CustomLink>Media assets</CustomLink>
-                <CustomLink>Changelog</CustomLink>
-                <CustomLink>Releases</CustomLink>
-              </VStack>
-            </VStack>
-            <VStack spacing={4} alignItems="flex-start">
-              <Text fontSize="md" fontWeight="bold">
-                Community
-              </Text>
-              <VStack spacing={2} alignItems="flex-start" color="gray.500">
-                <CustomLink>Chat on Discord</CustomLink>
-                <CustomLink>Follow on Twitter</CustomLink>
-                <CustomLink>Follow on Github</CustomLink>
-                <CustomLink>Github discussions</CustomLink>
-              </VStack>
-            </VStack>
-            <VStack spacing={4} alignItems="flex-start">
-              <Text fontSize="md" fontWeight="bold">
-                Project
-              </Text>
-              <VStack spacing={2} alignItems="flex-start" color="gray.500">
-                <CustomLink>TemplatesKart</CustomLink>
-                <CustomLink>Documentation</CustomLink>
-                <CustomLink>Github organization</CustomLink>
-                <CustomLink>npm organization</CustomLink>
-              </VStack>
-            </VStack>
-          </HStack>
-        </Stack>
-  
-        <Divider my={4} />
-  
-        <Stack direction={{ base: 'column', md: 'row' }} spacing={3} justifyContent="space-between">
-          <Text fontSize="md">
-            Built by{' '}
-            <Link
-              href="https://github.com/MA-Ahmad"
-              textDecoration="underline"
-              _hover={{ textDecoration: 'underline' }}
-              isExternal
-            >
-              Muhammad Ahmad
-            </Link>
-          </Text>
-          <Stack spacing={2} direction={{ base: 'column', md: 'row' }}>
-            <Button leftIcon={<FaGithub />} as={Link} href="#" rounded="md" colorScheme="gray">
-              Github Discussions
-            </Button>
-            <Button
-              leftIcon={<BsDiscord />}
-              as={Link}
-              href="#"
-              rounded="md"
-              color="white"
-              bg="purple.500"
-              _hover={{ bg: 'purple.600' }}
-            >
-              Discord community
-            </Button>
-          </Stack>
-        </Stack>
-      </Box>
-    );
-  };
-  
-  const CustomLink = (props) => {
-    return (
-      <Link href="#" fontSize="sm" _hover={{ textDecoration: 'underline' }} {...props}>
-        {props.children}
-      </Link>
+
+          <Box className='footer-main'>
+            <Box className='footer-section'>
+              <Text className='title-footer-section'>Navegación</Text>
+              <Box className='footer-section-links'>
+                <Link href='#'>Inicio</Link>
+                <Link href='#'>Productos</Link>
+                <Link href='#'>Ensambles</Link>
+                <Link href='#'>Nosotros</Link>
+                <Link href='#'>Usuario</Link>
+              </Box>
+            </Box>
+            <Box className='footer-section'>
+              <Box className='title-footer-section'>Contacto</Box>
+              <Box className='footer-section-links'>
+                <Text href='#'>+593 962722446</Text>
+                <Text>Av Sucre y Manuel Espejo</Text>
+              </Box>
+            </Box>
+            <Box className='footer-section'>
+              <Box className='title-footer-section'>Síguenos</Box>
+              <Box className='social-media-links'>
+                <Link
+                  href='https://www.facebook.com/profile.php?id=100063737155824&mibextid=ZbWKwL'
+                  target='_blank'
+                  fontSize='2.5rem'
+                >
+                  <i class="fa-brands fa-facebook"></i>
+                </Link>
+                <Link
+                  href='https://www.instagram.com/anypcstore?igsh=YmExbjFramp3eWM3'
+                  target='_blank'
+                  fontSize='2.5rem'
+                >
+                  <i class="fa-brands fa-instagram"></i>
+                </Link>
+                <Link fontSize='2.5rem'><i class="fa-brands fa-tiktok"></i></Link>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          className='bottom-footer'
+          bg={theme.secondaryBackground}
+        >
+          Todos los derechos reservados
+        </Box>
+      </>
     );
   };
   

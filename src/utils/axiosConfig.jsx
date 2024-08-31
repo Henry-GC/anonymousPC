@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // CONFIG DE CONEXIÓN AXIOS
 const instance = axios.create({
-  baseURL: 'https://anonymous-back-end.vercel.app/',
+  baseURL: 'http://localhost:5000',
   headers: {
     'Content-Type': 'application/json',
   },

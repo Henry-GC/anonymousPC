@@ -3,10 +3,13 @@ import "../Assets/Styles/Productos.css"
 import { Box } from "@chakra-ui/react";
 import useFetch from "../Hooks/useFetch";
 import Footer from "../Footer";
+import { useContext } from "react";
+import { ThemeContext } from "../Context/ThemeContext";
 
 function Productos() {
 
   const {items,setPage,setTypeSort,bd,page} = useFetch()
+  const {theme} = useContext(ThemeContext)
 
   const handleSort = (e) => {
     setTypeSort(e.target.value);
@@ -46,7 +49,7 @@ function Productos() {
             >
               <Box
                 display="flex"
-                color="#fff"
+                color={theme.color}
                 gap="0.5rem"
                 fontSize="1.3rem"
                 alignContent="center"

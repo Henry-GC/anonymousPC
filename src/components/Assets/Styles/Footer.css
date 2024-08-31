@@ -1,71 +1,43 @@
 .container-footer{
     display: flex;
-    text-align: center;
-    background-color: black;
-    color: #fff;
-	width: 100%;
-	height: 7vw;
+	width: 90%;
 	align-items: center;
-    gap: 2vw;
-}
-.footer-items{
-    margin: auto;
-}
-.sep-bar{
-    background-color: #fff;
-    height: 60%;
-    width: .2vw;
-}
-.footer-logo{
-    display: flex;
-	align-items: center;
-	color: #fff;
-    margin-left: 2vw;
-    gap: 3vw;
+    gap: 15rem;
+    align-self: center;
+    border-top: solid 1px #b8b8b885;
+    margin-top: 5rem;
+    padding-top: 3rem;
 }
 .logo-picture{
     display: flex;
-    width: 5vw
+    width: 10rem
 }
-.footer-correo{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-#logo-mail{
-	font-size: 2vw;
-}
-#support-mail{
-    font-size: 1.2vw;
-}
-.footer-redes{
+.bottom-footer{
     display: flex;
-    gap: 4vw;
-}
-.footer-social{
-    font-size: 2.5vw;
-}
-.firma-dev{
-    display: flex;
-    flex-direction: column;
-    gap: .4vw;
-}
-.firma-dev section{
-    display: flex;
-    gap: 1vw;
-    align-self: center;
-    font-size: 1.7vw;
-}
-.footer-form{
-    display: flex;
+    padding: 1rem 0;
     justify-content: center;
+    align-items: center;
 }
-.footer-form form{
+.footer-main{
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+}
+.footer-section{
+    width: 12rem;
+}
+.title-footer-section{
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding-bottom: 1rem;
+}
+.footer-section-links{
     display: flex;
     flex-direction: column;
-	align-items: center;
-	color: #fff;
+    gap: 0.5rem;
 }
-#footer-input{
-    width: 20vw;
+.social-media-links{
+    display: flex;
+    gap: 1.5rem;
 }

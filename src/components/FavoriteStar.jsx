@@ -17,6 +17,7 @@ function FavoriteStar({ product, className }) {
                 border='none'
                 fontSize='1.5rem'
                 background='transparent'
+                zIndex='auto'
             />
         </div>
     );
