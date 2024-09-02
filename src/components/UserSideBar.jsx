@@ -1,28 +1,55 @@
 import { Box } from "@chakra-ui/react";
-import { Link, Navigate } from "react-router-dom";
-import "./Assets/Styles/UserSideBar.css"
-import Axios from "../utils/axiosConfig"
+import { Link, useNavigate } from "react-router-dom";
+import Axios from "../utils/axiosConfig";
+import { useContext, useState } from "react";
+import { ThemeContext } from "./Context/ThemeContext";
+import "./Assets/Styles/UserSideBar.css";
 
-function UserSideBar (){
+function UserSideBar() {
+  const { theme } = useContext(ThemeContext);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+  const navigate = useNavigate();
 
-    const handleButton = async() =>{
-        localStorage.removeItem('token')
-        await Axios.get('/api/logout')
-        return <Navigate to="/login" replace/>
-    }
-    return(
-        <Box className="userSideBar-container">
-            <Link id="userSideBar-link" to="/usuario/">DASHBOARD</Link>
-            <Link id="userSideBar-link" to="/usuario/micarrito" >MI CARRITO</Link>
-            <Link id="userSideBar-link" to="/usuario/mispedidos" >MIS PEDIDOS</Link>
-            <Link id="userSideBar-link" to="/usuario/misdeseos" >LISTA DE DESEOS</Link>
-            <Link id="userSideBar-link" to="/usuario/direcciones" >DIRECCIONES</Link>
-            {/* <Link id="userSideBar-link" >MÉTODOS DE PAGO</Link> */}
-            <Link id="userSideBar-link" to="/usuario/perfil">PERFIL</Link>
-            <Link id="userSideBar-link" to="/usuario/ayuda">CENTRO DE AYUDA</Link>
-            <Link id="userSideBar-link" to="/login" onClick={handleButton}>CERRAR SESIÓN</Link>
-        </Box>
-    )
+  const handleLogout = async () => {
+    localStorage.removeItem("token");
+    await Axios.get("/api/logout");
+    setIsLoggedOut(true);
+  };
+
+  const links = [
+    { to: "/usuario/", label: "DASHBOARD" },
+    { to: "/usuario/micarrito", label: "MI CARRITO" },
+    { to: "/usuario/mispedidos", label: "MIS PEDIDOS" },
+    { to: "/usuario/misdeseos", label: "LISTA DE DESEOS" },
+    { to: "/usuario/direcciones", label: "DIRECCIONES" },
+    { to: "/usuario/perfil", label: "PERFIL" },
+    { to: "/usuario/ayuda", label: "CENTRO DE AYUDA" },
+  ];
+
+  if (isLoggedOut) {
+    navigate("/login", { replace: true });
+  }
+
+  return (
+    <Box
+        className="userSideBar-container"
+        bg={theme.secondaryBackground}
+    >
+      {links.map(({ to, label }) => (
+        <Link key={to} bg={theme.secondaryBackground} id="userSideBar-link" to={to}>
+          {label}
+        </Link>
+      ))}
+      <Link
+        bg={theme.secondaryBackground}
+        id="userSideBar-link"
+        to="#"
+        onClick={handleLogout}
+      >
+        CERRAR SESIÓN
+      </Link>
+    </Box>
+  );
 }
 
 export default UserSideBar;

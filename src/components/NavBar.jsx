@@ -1,6 +1,6 @@
 import './Assets/Styles/NavBar.css'
 import { Link } from "react-router-dom"
-import { Button, Popover, PopoverTrigger, PopoverContent, PopoverBody, PopoverArrow, Text, VStack, Box } from '@chakra-ui/react'
+import { Button, Menu, MenuButton, MenuList, MenuItem, Text, VStack, Box } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { useContext } from 'react'
 import { ThemeContext } from './Context/ThemeContext'
@@ -13,7 +13,7 @@ function NavBar (){
         <Box className='navBar'>
             <Box className="navBar-container">
                 <Box>
-                    <Popover trigger="hover" placement="bottom-start">
+                    {/* <Popover trigger="hover" placement="bottom-start">
                         <PopoverTrigger>
                             <Button rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
                                 Ensambles
@@ -28,9 +28,9 @@ function NavBar (){
                                 </VStack>
                             </PopoverBody>
                         </PopoverContent>
-                    </Popover>
+                    </Popover> */}
 
-                    <Popover trigger="hover" placement="bottom-start">
+                    {/* <Popover trigger="hover" placement="bottom-start">
                         <PopoverTrigger>
                             <Button rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
                                 Portátiles
@@ -45,31 +45,26 @@ function NavBar (){
                                 </VStack>
                             </PopoverBody>
                         </PopoverContent>
-                    </Popover>
+                    </Popover> */}
 
-                    <Popover trigger="hover" placement="bottom-start">
-                        <PopoverTrigger>
-                            <Button rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
-                                Componentes
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent>
-                            <PopoverArrow />
-                            <PopoverBody>
-                                <VStack>
-                                    <Link to="productos/procesador">Procesadores</Link>
-                                    <Link to="productos/placa-madre">Placa Madre</Link>
-                                    <Link to="productos/tarjeta-grafica">Tarjetas de Video</Link>
-                                    <Link to="productos/memoria-ram">Memoria Ram</Link>
-                                    <Link to="productos/almacenamiento">Almacenamiento</Link>
-                                    <Link to="productos/fuente-de-poder">Fuente de Poder</Link>
-                                    <Link to="productos/carcasa">Carcasa</Link>
-                                </VStack>
-                            </PopoverBody>
-                        </PopoverContent>
-                    </Popover>
+                    <Menu>
+                        <MenuButton as={Button} rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
+                            Componentes
+                        </MenuButton>
+                        <MenuList>
+                            <VStack align="start" spacing={2} p={2}>
+                            <MenuItem as={Link} to="productos/procesador">Procesadores</MenuItem>
+                            <MenuItem as={Link} to="productos/placa-madre">Placa Madre</MenuItem>
+                            <MenuItem as={Link} to="productos/tarjeta-grafica">Tarjetas de Video</MenuItem>
+                            <MenuItem as={Link} to="productos/memoria-ram">Memoria Ram</MenuItem>
+                            <MenuItem as={Link} to="productos/almacenamiento">Almacenamiento</MenuItem>
+                            <MenuItem as={Link} to="productos/fuente-de-poder">Fuente de Poder</MenuItem>
+                            <MenuItem as={Link} to="productos/carcasa">Carcasa</MenuItem>
+                            </VStack>
+                        </MenuList>
+                    </Menu>
 
-                    <Popover trigger="hover" placement="bottom-start">
+                    {/* <Popover trigger="hover" placement="bottom-start">
                         <PopoverTrigger>
                             <Button rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
                                 Accesorios
@@ -89,7 +84,7 @@ function NavBar (){
                                 </VStack>
                             </PopoverBody>
                         </PopoverContent>
-                    </Popover>
+                    </Popover> */}
                 </Box>
 
                 <Box>

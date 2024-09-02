@@ -16,7 +16,6 @@
 .user-order{
     /* display: flex; */
     border: none;
-    background: linear-gradient(to right,#2d0047,#2e034615);
     box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.205);
     border-radius: 1rem;
     padding: 1rem;
@@ -34,21 +33,19 @@
 .user-order-text{
     display: flex;
     flex-direction: column;
-    color: #fff;
     width: 70%;
     gap: 1rem;
 }
 .user-order-text strong{
-    color: #fff;
     font-family: 'Montserrat';
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 700;
 }
 .user-order-description{
     display: flex;
     justify-content: space-between;
     padding-left: 2rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .user-order-data button{
     
@@ -65,7 +62,7 @@
 }
 .orden-entregada{
     align-self: center;
-    color: #ffffff;
+    color: #006eb8;
     font-weight: 700;
 }
 .user-order-data button{
@@ -77,7 +74,6 @@
 .user-order-panel{
     display: flex;
     flex-direction: column;
-    color: #fff;
     box-shadow: 5rem 5rem 5rem rgb(0, 0, 0);
 }
 .user-order-details-container{

@@ -1,9 +1,11 @@
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box, Button } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box, Button, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import "./Assets/Styles/UserPedidos.css"
+import { useContext } from "react";
+import { ThemeContext } from "./Context/ThemeContext";
 
 function UserPedidos (props) {
-
+    const {theme} = useContext(ThemeContext)
     const orders = props.user.orders
     const order_detail = props.user.order_detail
     console.log(order_detail);
@@ -35,21 +37,27 @@ function UserPedidos (props) {
                 {orders.map((order)=>{
                     return(
                         <AccordionItem  key={order.id} sx={{border:'none'}}>
-                            <AccordionButton className="user-order">
-                                <div className="user-order-data">
-                                    <div className="user-order-text">
-                                        <strong>Orden # {order.id.toString().padStart(5,'0')}</strong>
-                                        <div className="user-order-description">
+                            <AccordionButton
+                                className="user-order"
+                                bg={theme.secondaryBackground}
+                            >
+                                <Box className="user-order-data">
+                                    <Box
+                                        className="user-order-text"
+                                        color={theme.color}
+                                    >
+                                        <Text as='strong'>Orden # {order.id.toString().padStart(5,'0')}</Text>
+                                        <Box className="user-order-description">
                                             <span>{`Fecha: ${order.time_order.split('T')[0]}`}</span>
                                             <span>{`Total: ${order.total_price}`}</span>
-                                        </div>
-                                    </div>
+                                        </Box>
+                                    </Box>
                                     {order.state === "CANCELADO" ? <></>: (
                                         <Button isLoading={isLoading} onClick={()=>handleButton(order.id)}>
                                             CANCELAR
                                         </Button>
                                     )}
-                                </div>
+                                </Box>
                                 
                                 <Box
                                     className={

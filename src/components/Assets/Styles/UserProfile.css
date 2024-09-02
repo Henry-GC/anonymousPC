@@ -4,13 +4,10 @@
     gap: 1rem;
     padding-top: 3rem;
 }
-.user-section-title{
-    font-size: 2rem;
-}
 .user-section-rows{
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
+    gap: 3rem;
 }
 .user-section-row{
     padding-left: 2rem;
@@ -18,21 +15,19 @@
 .user-section-row-title{
     color: #05A2BC;
     font-family: 'Roboto';
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
 }
 .user-section-row-value{
     padding-left: 3rem;
-    color: #fff;
     font-family: 'Montserrat';
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 700;
 }
 .user-section-date{
     display: flex;
     padding-left: 3rem;
-    color: #fff;
     font-family: 'Montserrat';
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 700;
     gap: 1rem;
 }
@@ -43,7 +38,6 @@
     margin-left: 10rem;
     width: fit-content;
     padding: 1rem;
-    background: #bd4500;
     border: none;
     border-radius: 1rem;
     color: #fff;

@@ -1,7 +1,10 @@
 import { Box, Spinner, Text, Button } from "@chakra-ui/react";
 import './Assets/Styles/UserAddresses.css'
+import { useContext } from "react";
+import { ThemeContext } from "./Context/ThemeContext";
 
 function UserAddresses ({user}) {
+    const {theme} = useContext(ThemeContext)
     const addresses = user.addresses
     if (!addresses) return <Spinner/>
 
@@ -13,10 +16,10 @@ function UserAddresses ({user}) {
 
     return (
         <Box className="user-addresses-container">
-            <Text as="h1" className="user-addresses-tittle">DIRECCIONES</Text>
+            <Text as="h1" color={theme.color} className="user-section-title">DIRECCIONES</Text>
             <Box>
                 {addresses.map((address)=>(
-                    <Box key={address.id} className="address-item-container" onClick={handleButton(address.is_default)}>
+                    <Box key={address.id} bg={theme.secondaryBackground} color={theme.color} className="address-item-container" onClick={handleButton(address.is_default)}>
                         <Box className="address-text-rows">
                             <Box className="address-text-row-city">
                                 <Box className="address-text-row" width="50%">

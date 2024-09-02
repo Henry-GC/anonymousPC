@@ -5,7 +5,7 @@ import useFetch from "./Hooks/useFetch"
 import "./Assets/Styles/RelevantProducts.css"
 import pruv from "./Assets/Image/work.png"
 import useCart from "./Hooks/useCart"
-
+import FavoriteStar from "./FavoriteStar"
 
 function RelevantProducts () {
 
@@ -30,8 +30,9 @@ function RelevantProducts () {
                                 border={`solid 1px ${theme.backgroundColor}`}
                                 sx={{_hover:{border:`solid 1px ${theme.highlightColor}`}}}
                             >
+                                <FavoriteStar product={producto} className={`main-fav-star`}/>
                                 <Box className="img-product-container">
-                                    <img src={relevantProducts.img_url||pruv} alt="IMAGEN DEL PRODUCTO" width="100%"/>
+                                    <img src={producto.img_url||pruv} alt="IMAGEN DEL PRODUCTO" width="100%"/>
                                 </Box>
                                 <Box className="text-product-container">
                                     <Box className="name-product-container">{producto.name}</Box>

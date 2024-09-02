@@ -6,7 +6,7 @@
 }
 .container-prod-main{
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Define 3 columnas de igual ancho */
+    grid-template-columns: repeat(5, 1fr); /* Define 3 columnas de igual ancho */
     row-gap: 1vw; /* Espaciado entre los elementos (opcional) */
     column-gap: 2vw;
 }

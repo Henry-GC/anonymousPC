@@ -7,7 +7,7 @@
 .user-wish-items-container{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    height: 72vh;
+    max-height: 72vh;
     overflow-y: scroll;
     scrollbar-width: none;
     row-gap: 1rem;

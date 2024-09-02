@@ -4,7 +4,7 @@ import "./Assets/Styles/Header.css"
 import { ShopCart } from "./ShopCart";
 import { Link, useLocation } from "react-router-dom";
 import useCart from "./Hooks/useCart";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Link as ChakraLink } from "@chakra-ui/react";
 import { ThemeContext } from "./Context/ThemeContext";
 import ThemeToggleSwitch from "./toggleThemeSwitch";
 
@@ -74,7 +74,7 @@ export default function Header (props){
                 className="header-container"
             >
                 <Box className="home-container">
-                    <Box className="logo-container"><Link to="/"><img alt="ISOLOGO" src="/multimedia/isologo.png" width="100%"/></Link></Box>
+                    <Box className="logo-container"><ChakraLink href="/"><img alt="ISOLOGO" src="/multimedia/isologo.png" width="100%"/></ChakraLink></Box>
                     <Box className="search-container">
                         <form onSubmit={searchSubmit}>
                             <button type='submit'>

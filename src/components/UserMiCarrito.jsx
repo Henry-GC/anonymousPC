@@ -37,56 +37,58 @@ function UserMiCarrito () {
         <Box className="user-cart-container">
             <h1 className="user-section-title">MI CARRITO</h1>
             <ul className="user-cart-items-container">
-                {addCart.map((item,index)=>{
-                    return(
-                        <li className="user-item-shopCart" key={item.id}>
-                            <div className="user-image-item">
-                                <img src={Pruv} width="100%" alt="PRODUCTO CARRITO"/>
-                            </div>
-                            <div className="user-text-item">
-                                <div className="user-text-body">
-                                    <strong>{item.name}</strong>
-                                    <div className="user-count-item">
-                                        <div className="user-delete-button">
-                                            <button onClick={()=>delToCart(index)}>
-                                                Quitar
-                                            </button>
-                                        </div>
-                                        <p>Cantidad</p>
-                                        <div>
-                                            <button onClick={()=>minusCart(index)}><i className="fa-solid fa-minus"></i></button>
-                                                <span>{item.count}</span>
-                                            <button onClick={()=>plusCart(index)}><i className="fa-solid fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="user-price-item">$ {parseFloat(item.price*item.count).toFixed(2)}</div>
-                            </div>
-                        </li>
-                    )
-                })}
-                <div className="user-total-cart-container">   
+                {addCart.map((item,index)=>(
+                    <Box
+                        className="user-item-shopCart"
+                        key={item.id}
+                        bg={theme.secondaryBackground}
+                    >
+                        <Box className="user-image-item">
+                            <img src={Pruv} width="100%" alt="PRODUCTO CARRITO"/>
+                        </Box>
+                        <Box className="user-text-item">
+                            <Box className="user-text-body">
+                                <strong>{item.name}</strong>
+                                <Box className="user-count-item">
+                                    <Box className="delete-button-cart">
+                                        <button onClick={()=>delToCart(index)}>
+                                            Quitar
+                                        </button>
+                                    </Box>
+                                    <p>Cantidad</p>
+                                    <Box display='flex' gap='1rem'>
+                                        <button onClick={()=>minusCart(index)}><i className="fa-solid fa-minus"></i></button>
+                                            <span>{item.count}</span>
+                                        <button onClick={()=>plusCart(index)}><i className="fa-solid fa-plus"></i></button>
+                                    </Box>
+                                </Box>
+                            </Box>
+                            <Box className="user-price-item">$ {parseFloat(item.price*item.count).toFixed(2)}</Box>
+                        </Box>
+                    </Box>
+                ))}
+                <Box className="user-total-cart-container">   
                 <Box
                     className="user-total-cart-rows"
                     color={theme.color}
                 >
-                    <div className="user-total-cart-row1">
+                    <Box className="user-total-cart-row1">
                         <p>SUBTOTAL</p>
                         <p>$ {totalPrice}</p>
-                    </div>
-                    <div className="user-total-cart-row1">
+                    </Box>
+                    <Box className="user-total-cart-row1">
                         <p>DESCUENTO</p>
                         <p>$ 0.00</p>
-                    </div>
-                    <div className="user-total-cart-row1">
+                    </Box>
+                    <Box className="user-total-cart-row1">
                         <h2>TOTAL</h2>
                         <h2><strong color={theme.accentColor}>$ {totalPrice}</strong></h2>
-                    </div>
+                    </Box>
                 </Box>
-                <Button isLoading={isLoading} onClick={handleButton} bgColor={theme.accentColor}>
+                <Button color={theme.backgroundColor} isLoading={isLoading} onClick={handleButton} bgColor={theme.accentColor}>
                     HACER PEDIDO
                 </Button>
-            </div>
+            </Box>
             </ul>
         </Box>
     )

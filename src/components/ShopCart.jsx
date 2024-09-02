@@ -62,7 +62,7 @@ export const ShopCart = (props) => {
 
             <Box
                 className="shop-cart"
-                background={theme.secondaryBackground}
+                background={theme.backgroundColor}
             >
                 <Box className="title-cart">
                     <h1>Carrito</h1>
@@ -91,7 +91,7 @@ export const ShopCart = (props) => {
                                                 <p>Cantidad</p>
                                                 <Box>
                                                     <button onClick={()=>minusCart(index)}><i className="fa-solid fa-minus"></i></button>
-                                                        <span>{item.count}</span>
+                                                        <Text color={theme.highlightColor}>{item.count}</Text>
                                                     <button onClick={()=>plusCart(index)}><i className="fa-solid fa-plus"></i></button>
                                                 </Box>
                                             </Box>
@@ -120,7 +120,14 @@ export const ShopCart = (props) => {
                                     <h1 className="footer-cart-price">$ {totalPrice}</h1>
                                 </Box>
                             </Box>
-                            <Button isLoading={isLoading} className="send-cart" onClick={()=>handleButton()}>FINALIZAR COMPRA</Button>
+                            <Button
+                                isLoading={isLoading}
+                                className="send-cart"
+                                onClick={()=>handleButton()}
+                                bg={theme.backgroundColor}
+                                color={theme.color}
+                                border={`solid 1px ${theme.color}`}
+                            >FINALIZAR COMPRA</Button>
                         </Box>
                 </Box>
             </Box>

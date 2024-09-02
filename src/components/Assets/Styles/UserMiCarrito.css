@@ -7,7 +7,7 @@
 .user-section-title{
     font-family: 'Montserrat';
     font-weight: 900;
-    color: #fff;
+    font-size: 1.2rem;
 }
 .user-cart-items-container{
     display: flex;
@@ -22,10 +22,10 @@
 .user-item-shopCart{
     list-style: none;
     display: flex;
-    background: linear-gradient(to right,#2d0047,#2e034615);
     box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.205);
     border-radius: 1rem;
     padding: 1rem;
+    gap: 1rem;
 }
 .user-image-item{
     width: 7vw;
@@ -39,7 +39,6 @@
     justify-content: space-between;
 }
 .user-text-body{
-    color: #fff;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -47,10 +46,13 @@
 }
 .user-count-item{
     display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 .user-price-item{
     align-self: center;
-    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 .user-total-cart-container{
     display: flex;
@@ -72,7 +74,6 @@
 .user-total-cart-container button{
     border-radius: 0.5rem;
     padding: 1rem;
-    color: rgb(255, 255, 255);
     font-size: 1.2rem;
     font-weight: 700;
     border: none;

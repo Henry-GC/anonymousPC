@@ -117,12 +117,10 @@
 }
 .text-body-cart strong{
     font-size: 1rem;
-    color: rgb(0, 0, 0);
 }
 .price-item-total{
     display: flex;
     font-size: 1.2rem;
-    color: rgb(255, 255, 255);
     font-weight: bolder;
     height: 100%;
     align-items: center;
@@ -130,7 +128,6 @@
 .count-item-cart{
     display: flex;
     align-items: center;
-    color: aliceblue;
     gap: 1vw;
 }
 .count-item-cart div{
@@ -138,19 +135,19 @@
     gap: 1vw;
     align-items: center;
 }
-.count-item-cart span{
-    color: aqua;
-}
 .count-item-cart button{
     display: flex;
     background-color: transparent;
+    color: #474747a9;
     border: none;
     height: fit-content;
     width: fit-content;
     justify-content: center;
     align-items: center;
-    color: aliceblue;
     cursor: pointer;
+}
+.count-item-cart button i{
+    font-size: 1rem;
 }
 .delete-button-cart{
     display: flex;
@@ -194,13 +191,7 @@
     font-size: 1.2rem;
     color: #000000;
 }
-.footer-cart-price{
-    color: rgb(233, 205, 47);
-}
 .body-cart .send-cart{
-    background-color: rgb(233, 205, 47);
-    border: none;
-    color: rgb(0, 0, 0);
     font-weight: 900;
     width: fit-content;
     height: fit-content;
