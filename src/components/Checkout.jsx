@@ -1,135 +1,153 @@
-import { useState } from 'react';
-import { Button, Input, FormLabel, RadioGroup, Radio, Stack, Select, Box, Text, Heading } from '@chakra-ui/react';
-import { MapPin, CreditCard, Package, ChevronRight, Lock } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Button, Input, FormLabel, Box, Text, Heading, Select, Checkbox, Stack, Alert, AlertIcon, Image } from '@chakra-ui/react';
 
-// Direcciones guardadas de ejemplo
-const savedAddresses = [
-  { id: 1, provincia: "Buenos Aires", ciudad: "La Plata", calle: "Calle 7 1234", referencia: "Cerca del parque" },
-  { id: 2, provincia: "Córdoba", ciudad: "Córdoba", calle: "Av. Colón 5678", referencia: "Frente al centro comercial" },
-  { id: 3, provincia: "Santa Fe", ciudad: "Rosario", calle: "Bv. Oroño 9012", referencia: "Esquina con Pellegrini" },
-];
+const bankAccounts = {
+  pichincha: {
+    name: 'Banco Pichincha',
+    type: 'Cuenta Ahorro',
+    number: '2200305319',
+    holder: 'Henry Clemente Gonzalez Cevallos',
+  },
+  guayaquil: {
+    name: 'Banco Guayaquil',
+    type: 'Cuenta Ahorro',
+    number: '0045493283',
+    holder: 'Henry Clemente González Cevallos',
+  },
+};
 
 export default function Checkout() {
-  const [step, setStep] = useState(1);
-  const [orderTotal] = useState(1299.99);
-  const [selectedAddress, setSelectedAddress] = useState(savedAddresses[0]);
-  const [useNewAddress, setUseNewAddress] = useState(false);
+  const [phase, setPhase] = useState(1);
+  const [form, setForm] = useState({
+    nombres: '',
+    apellidos: '',
+    celular: '',
+    ci: '',
+    direccion: '',
+    referencia: '',
+    banco: '',
+    terminos: false,
+  });
+  const [formError, setFormError] = useState('');
+  const [comprobante, setComprobante] = useState('');
+  const [comprobanteImg, setComprobanteImg] = useState(null);
+  const [timer, setTimer] = useState(1800); // 30 minutos en segundos
+  const [pedidoCancelado, setPedidoCancelado] = useState(false);
+  const timerRef = useRef();
+  const [finalizado, setFinalizado] = useState(false);
 
-  const nextStep = () => setStep(step + 1);
+  useEffect(() => {
+    if (phase === 2 && !finalizado && !pedidoCancelado) {
+      timerRef.current = setInterval(() => {
+        setTimer((prev) => {
+          if (prev <= 1) {
+            clearInterval(timerRef.current);
+            setPedidoCancelado(true);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      return () => clearInterval(timerRef.current);
+    }
+  }, [phase, finalizado, pedidoCancelado]);
 
-  const handleAddressChange = (addressId) => {
-    const address = savedAddresses.find(addr => addr.id === addressId);
-    if (address) {
-      setSelectedAddress(address);
-      setUseNewAddress(false);
+  const handleInput = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleComprobanteImg = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setComprobanteImg(URL.createObjectURL(e.target.files[0]));
     }
   };
 
+  const validateForm = () => {
+    if (!form.nombres || !form.apellidos || !form.celular || !form.ci || !form.direccion || !form.referencia || !form.banco) {
+      setFormError('Por favor, completa todos los campos.');
+      return false;
+    }
+    if (!form.terminos) {
+      setFormError('Debes aceptar los términos y condiciones.');
+      return false;
+    }
+    setFormError('');
+    return true;
+  };
+
+  const handlePagar = () => {
+    if (validateForm()) {
+      setPhase(2);
+      setTimer(1800);
+      setPedidoCancelado(false);
+    }
+  };
+
+  const handleFinalizar = () => {
+    setFinalizado(true);
+  };
+
+  // Formatear el tiempo mm:ss
+  const formatTime = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+
   return (
-    <Box className="container mx-auto px-4 py-8">
-      <Heading as="h1" size="xl" mb={8}>Checkout - Anonymous PC</Heading>
-      <Box display="flex" flexDirection={{ base: 'column', md: 'row' }} gap={8}>
-        <Box w={{ base: '100%', md: '66%' }}>
-          {step === 1 && (
-            <Box mb={8}>
-              <Heading as="h2" size="lg" mb={4} display="flex" alignItems="center">
-                <MapPin className="mr-2" /> 1. Dirección de envío
-              </Heading>
-              <Box border="1px" borderRadius="md" borderColor="gray.200" p={4} mb={4}>
-                <RadioGroup value={selectedAddress.id.toString()} onChange={(value) => handleAddressChange(parseInt(value))}>
-                  <Stack spacing={2}>
-                    {savedAddresses.map((address) => (
-                      <Radio key={address.id} value={address.id.toString()}>
-                        {address.calle}, {address.ciudad}, {address.provincia} - {address.referencia}
-                      </Radio>
-                    ))}
-                    <Radio value="new" onClick={() => setUseNewAddress(true)}>Usar una dirección nueva</Radio>
-                  </Stack>
-                </RadioGroup>
+    <Box className="container mx-auto px-4 py-8" maxW="lg">
+      <Heading as="h1" size="xl" mb={8} textAlign="center">Checkout - Anonymous PC</Heading>
+      {phase === 1 && (
+        <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md">
+          <Stack spacing={4}>
+            <Input placeholder="Nombres" name="nombres" value={form.nombres} onChange={handleInput} />
+            <Input placeholder="Apellidos" name="apellidos" value={form.apellidos} onChange={handleInput} />
+            <Input placeholder="Celular" name="celular" value={form.celular} onChange={handleInput} />
+            <Input placeholder="Cédula de Identidad" name="ci" value={form.ci} onChange={handleInput} />
+            <Input placeholder="Dirección" name="direccion" value={form.direccion} onChange={handleInput} />
+            <Input placeholder="Referencia" name="referencia" value={form.referencia} onChange={handleInput} />
+            <FormLabel>Selecciona un método de pago</FormLabel>
+            <Select name="banco" value={form.banco} onChange={handleInput} placeholder="Selecciona banco">
+              <option value="pichincha">Banco Pichincha</option>
+              <option value="guayaquil">Banco Guayaquil</option>
+            </Select>
+            {form.banco && (
+              <Box bg="gray.50" p={3} borderRadius="md" border="1px" borderColor="gray.200">
+                <Text fontWeight="bold">{bankAccounts[form.banco].name}</Text>
+                <Text>{bankAccounts[form.banco].type}</Text>
+                <Text>N° {bankAccounts[form.banco].number}</Text>
+                <Text>{bankAccounts[form.banco].holder}</Text>
               </Box>
-              {useNewAddress && (
-                <Stack spacing={4} mb={4}>
-                  <Input placeholder="Provincia" />
-                  <Input placeholder="Ciudad" />
-                  <Input placeholder="Calle" />
-                  <Input placeholder="Referencia" />
-                </Stack>
-              )}
-              <Button onClick={nextStep} rightIcon={<ChevronRight />} colorScheme="blue">
-                Continuar
-              </Button>
-            </Box>
-          )}
-
-          {step === 2 && (
-            <Box mb={8}>
-              <Heading as="h2" size="lg" mb={4} display="flex" alignItems="center">
-                <CreditCard className="mr-2" /> 2. Método de pago
-              </Heading>
-              <Box border="1px" borderRadius="md" borderColor="gray.200" p={4} mb={4}>
-                <RadioGroup defaultValue="card1">
-                  <Stack spacing={2}>
-                    <Radio value="card1">Visa terminada en 1234</Radio>
-                    <Radio value="card2">MasterCard terminada en 5678</Radio>
-                    <Radio value="new">Usar una tarjeta nueva</Radio>
-                  </Stack>
-                </RadioGroup>
-              </Box>
-              <Button onClick={nextStep} rightIcon={<ChevronRight />} colorScheme="blue">
-                Continuar
-              </Button>
-            </Box>
-          )}
-
-          {step === 3 && (
-            <Box mb={8}>
-              <Heading as="h2" size="lg" mb={4} display="flex" alignItems="center">
-                <Package className="mr-2" /> 3. Revisar y realizar pedido
-              </Heading>
-              <Box border="1px" borderRadius="md" borderColor="gray.200" p={4} mb={4}>
-                <Heading as="h3" size="md" mb={2}>Detalles del envío</Heading>
-                <Text>{selectedAddress.calle}, {selectedAddress.ciudad}, {selectedAddress.provincia}</Text>
-                <Text>Referencia: {selectedAddress.referencia}</Text>
-                <Heading as="h3" size="md" mt={4} mb={2}>Método de pago</Heading>
-                <Text>Visa terminada en 1234</Text>
-              </Box>
-              <Button w="100%" colorScheme="yellow" color="black">
-                Realizar pedido
-              </Button>
-            </Box>
-          )}
-        </Box>
-
-        <Box w={{ base: '100%', md: '33%' }}>
-          <Box border="1px" borderRadius="md" borderColor="gray.200" p={4} position="sticky" top={4}>
-            <Heading as="h2" size="lg" mb={4}>Resumen del pedido</Heading>
-            <Box display="flex" justifyContent="space-between" mb={2}>
-              <Text>PC Personalizada Anonymous</Text>
-              <Text>${orderTotal.toFixed(2)}</Text>
-            </Box>
-            <Box display="flex" justifyContent="space-between" mb={2}>
-              <Text>Envío</Text>
-              <Text>Gratis</Text>
-            </Box>
-            <Box display="flex" justifyContent="space-between" fontWeight="bold" mt={4}>
-              <Text>Total del pedido</Text>
-              <Text>${orderTotal.toFixed(2)}</Text>
-            </Box>
-            <Box mt={4}>
-              <FormLabel htmlFor="shippingMethod">Método de envío</FormLabel>
-              <Select placeholder="Selecciona un método de envío">
-                <option value="standard">Estándar (3-5 días hábiles)</option>
-                <option value="express">Express (1-2 días hábiles)</option>
-              </Select>
-            </Box>
-            {step === 3 && (
-              <Button w="100%" mt={4} colorScheme="yellow" color="black" display="flex" alignItems="center" justifyContent="center">
-                <Lock className="mr-2 h-4 w-4" /> Realizar pedido
-              </Button>
             )}
-          </Box>
+            <Checkbox name="terminos" isChecked={form.terminos} onChange={handleInput}>
+              Acepto los términos y condiciones
+            </Checkbox>
+            {formError && <Alert status="error"><AlertIcon />{formError}</Alert>}
+            <Button colorScheme="yellow" color="black" onClick={handlePagar}>Pagar</Button>
+          </Stack>
         </Box>
-      </Box>
+      )}
+      {phase === 2 && !pedidoCancelado && !finalizado && (
+        <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md" textAlign="center">
+          <Heading as="h2" size="lg" mb={4}>Sube tu comprobante de pago</Heading>
+          <Text mb={2}>Tienes <b>{formatTime(timer)}</b> minutos para completar el pago.</Text>
+          <Input placeholder="Número de comprobante" value={comprobante} onChange={e => setComprobante(e.target.value)} mb={3} />
+          <FormLabel>Foto del comprobante (opcional)</FormLabel>
+          <Input type="file" accept="image/*" onChange={handleComprobanteImg} mb={3} />
+          {comprobanteImg && <Image src={comprobanteImg} alt="Comprobante" maxH="150px" mx="auto" mb={3} />}
+          <Button colorScheme="yellow" color="black" onClick={handleFinalizar} isDisabled={!comprobante}>Finalizar Compra</Button>
+        </Box>
+      )}
+      {pedidoCancelado && (
+        <Alert status="error" mt={8} justifyContent="center">
+          <AlertIcon />Pedido cancelado por tiempo excedido.
+        </Alert>
+      )}
+      {finalizado && (
+        <Alert status="success" mt={8} justifyContent="center">
+          <AlertIcon />¡Compra finalizada con éxito! Pronto nos comunicaremos contigo.
+        </Alert>
+      )}
     </Box>
   );
 }

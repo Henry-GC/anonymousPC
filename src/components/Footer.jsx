@@ -27,7 +27,7 @@ import './Assets/Styles/Footer.css'
         >
           <Box>
             <Box className='logo-picture'>
-              <img src='/multimedia/logo.png' width='100%'/>
+              <img src='https://ax8vpotqikpi.objectstorage.us-phoenix-1.oci.customer-oci.com/n/ax8vpotqikpi/b/anonymouspc/o/src%2Fpublic%2FlogoLogo.png' width='100%'/>
             </Box>
             <Box>
               <Text>support@anonymouspc.net</Text>
