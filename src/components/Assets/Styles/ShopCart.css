@@ -191,13 +191,6 @@
     font-size: 1.2rem;
     color: #000000;
 }
-.body-cart .send-cart{
-    font-weight: 900;
-    width: fit-content;
-    height: fit-content;
-    padding: 1rem 1rem;
-    align-self: center;
-}
 .cart-button ~ input:checked ~ .shop-cart{
     transform: translateX(0);
 }

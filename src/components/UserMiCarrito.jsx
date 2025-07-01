@@ -5,23 +5,22 @@ import Pruv from "./Assets/Image/work.png"
 import { useContext, useState } from "react";
 import Axios from "../utils/axiosConfig"
 import { ThemeContext } from "./Context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 function UserMiCarrito () {
     
     const {addCart, setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart} = useCart()
     const [isLoading,setIsLoading] = useState(false)
     const {theme} = useContext(ThemeContext)
+    const navigate = useNavigate()
 
     const handleBuy = async() => {
-        const {cartDetails} = buyCart()
-        const data = {
-            details: cartDetails,
-            total: totalPrice
+        try {
+            setIsLoading(false)
+            navigate('/checkout',{replace:true})
+        } catch (error) {
+            console.error("Error al crear la orden:", error);
         }
-        const response = await Axios.post('/api/user/createorder',data)
-        localStorage.removeItem('cart')
-        setAddCart([])
-        console.log(response);
     }
 
     const handleButton = () => {

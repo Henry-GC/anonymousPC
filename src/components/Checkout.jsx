@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button, Input, FormLabel, Box, Text, Heading, Select, Checkbox, Stack, Alert, AlertIcon, Image } from '@chakra-ui/react';
+import Footer from './Footer';
+import useCart from './Hooks/useCart';
+import Axios from '../utils/axiosConfig';
+
 
 const bankAccounts = {
   pichincha: {
@@ -20,7 +24,7 @@ export default function Checkout() {
   const [phase, setPhase] = useState(1);
   const [form, setForm] = useState({
     nombres: '',
-    apellidos: '',
+    email: '',
     celular: '',
     ci: '',
     direccion: '',
@@ -31,10 +35,11 @@ export default function Checkout() {
   const [formError, setFormError] = useState('');
   const [comprobante, setComprobante] = useState('');
   const [comprobanteImg, setComprobanteImg] = useState(null);
-  const [timer, setTimer] = useState(1800); // 30 minutos en segundos
+  const [timer, setTimer] = useState(1800); // 30 minutos en segundos 
   const [pedidoCancelado, setPedidoCancelado] = useState(false);
   const timerRef = useRef();
   const [finalizado, setFinalizado] = useState(false);
+  const {addCart,setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart } = useCart()
 
   useEffect(() => {
     if (phase === 2 && !finalizado && !pedidoCancelado) {
@@ -67,7 +72,7 @@ export default function Checkout() {
   };
 
   const validateForm = () => {
-    if (!form.nombres || !form.apellidos || !form.celular || !form.ci || !form.direccion || !form.referencia || !form.banco) {
+    if (!form.nombres || !form.apellidos || !form.celular || !form.ci || !form.direccion) {
       setFormError('Por favor, completa todos los campos.');
       return false;
     }
@@ -87,67 +92,193 @@ export default function Checkout() {
     }
   };
 
-  const handleFinalizar = () => {
-    setFinalizado(true);
+  const handleFinalizar = async () => {
+    const {cartDetails} = buyCart()
+    const data = {
+        details: cartDetails,
+        total: totalPrice
+    }
+    try {
+        const response = await Axios.post('/api/user/createorder',data)
+        localStorage.removeItem('cart')
+        setAddCart([])
+        setFinalizado(true);
+    } catch (error) {
+        console.error("Error al crear la orden:", error);
+    }
   };
 
   // Formatear el tiempo mm:ss
   const formatTime = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
   return (
-    <Box className="container mx-auto px-4 py-8" maxW="lg">
-      <Heading as="h1" size="xl" mb={8} textAlign="center">Checkout - Anonymous PC</Heading>
-      {phase === 1 && (
-        <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md">
-          <Stack spacing={4}>
-            <Input placeholder="Nombres" name="nombres" value={form.nombres} onChange={handleInput} />
-            <Input placeholder="Apellidos" name="apellidos" value={form.apellidos} onChange={handleInput} />
-            <Input placeholder="Celular" name="celular" value={form.celular} onChange={handleInput} />
-            <Input placeholder="Cédula de Identidad" name="ci" value={form.ci} onChange={handleInput} />
-            <Input placeholder="Dirección" name="direccion" value={form.direccion} onChange={handleInput} />
-            <Input placeholder="Referencia" name="referencia" value={form.referencia} onChange={handleInput} />
-            <FormLabel>Selecciona un método de pago</FormLabel>
-            <Select name="banco" value={form.banco} onChange={handleInput} placeholder="Selecciona banco">
-              <option value="pichincha">Banco Pichincha</option>
-              <option value="guayaquil">Banco Guayaquil</option>
-            </Select>
-            {form.banco && (
-              <Box bg="gray.50" p={3} borderRadius="md" border="1px" borderColor="gray.200">
-                <Text fontWeight="bold">{bankAccounts[form.banco].name}</Text>
-                <Text>{bankAccounts[form.banco].type}</Text>
-                <Text>N° {bankAccounts[form.banco].number}</Text>
-                <Text>{bankAccounts[form.banco].holder}</Text>
+    <Box display={'flex'} flexDirection={'column'}>
+      <Box display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>
+        <Box>
+          <Heading as="h1" fontSize={'1.5rem'} fontWeight={'500'}>Resumen de Compra</Heading>
+
+          <Box>
+            {addCart.map((item, index) => (
+              <li key={item.id} className="item-shopCart">
+                <Box className="item-cart">
+                  <Box className="image-item-cart">
+                    <img src={item.image} width="100%" alt={item.name} />
+                  </Box>
+                  <Box className="text-item-cart">
+                    <Box className="text-body-cart">
+                      <strong>{item.name}</strong>
+                      <Box className="count-item-cart">
+                        <Box className="delete-button-cart">
+                          <button onClick={() => delToCart(index)}>Quitar</button>
+                        </Box>
+                        <p>Cantidad</p>
+                        <Box>
+                          <button onClick={() => minusCart(index)}><i className="fa-solid fa-minus"></i></button>
+                          <Text color="yellow.500">{item.count}</Text>
+                          <button onClick={() => plusCart(index)}><i className="fa-solid fa-plus"></i></button>
+                        </Box>
+                      </Box>
+                    </Box>
+                    <Box className="price-item-total">$ {parseFloat(item.price * item.count).toFixed(2)}</Box>
+                  </Box>
+                </Box>
+              </li>
+            ))}
+          </Box>
+          <Box>
+            <Box className="footer-cart-column">
+              <Box className="footer-cart-row">
+                <p>SUBTOTAL</p>
+                <p>$ {totalPrice}</p>
               </Box>
-            )}
-            <Checkbox name="terminos" isChecked={form.terminos} onChange={handleInput}>
-              Acepto los términos y condiciones
-            </Checkbox>
-            {formError && <Alert status="error"><AlertIcon />{formError}</Alert>}
-            <Button colorScheme="yellow" color="black" onClick={handlePagar}>Pagar</Button>
-          </Stack>
+              <Box className="footer-cart-row">
+                <p>DESCUENTO</p>
+                <p>$ 0.00</p>
+              </Box>
+              <Box className="footer-cart-row-total">
+                <h1>TOTAL</h1>
+                <h1 className="footer-cart-price">$ {totalPrice}</h1>
+              </Box>
+            </Box>
+          </Box>
         </Box>
-      )}
-      {phase === 2 && !pedidoCancelado && !finalizado && (
-        <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md" textAlign="center">
-          <Heading as="h2" size="lg" mb={4}>Sube tu comprobante de pago</Heading>
-          <Text mb={2}>Tienes <b>{formatTime(timer)}</b> minutos para completar el pago.</Text>
-          <Input placeholder="Número de comprobante" value={comprobante} onChange={e => setComprobante(e.target.value)} mb={3} />
-          <FormLabel>Foto del comprobante (opcional)</FormLabel>
-          <Input type="file" accept="image/*" onChange={handleComprobanteImg} mb={3} />
-          {comprobanteImg && <Image src={comprobanteImg} alt="Comprobante" maxH="150px" mx="auto" mb={3} />}
-          <Button colorScheme="yellow" color="black" onClick={handleFinalizar} isDisabled={!comprobante}>Finalizar Compra</Button>
+        <Box maxW="lg" width={'100%'}>
+          <Heading as="h1" fontSize={'1.5rem'} fontWeight={'500'}>Datos de Facturacion y Envio</Heading>
+          {phase === 1 && (
+            <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md">
+              <Stack spacing={4}>
+                <Box>
+                  <Text>Nombres Completos</Text>
+                  <Input placeholder="Escribir..." name="nombres" value={form.nombres} onChange={handleInput} />
+                </Box>
+                <Box>
+                  <Text>E-MAIL</Text>
+                  <Input placeholder="e-mail" name="email" value={form.email} onChange={handleInput} />
+                </Box>
+                <Box>
+                  <Text>Celular</Text>
+                  <Input placeholder="Celular" name="celular" value={form.celular} onChange={handleInput} />
+                </Box>
+                <Box>
+                  <Text>Cédula de Identidad</Text>
+                  <Input placeholder="Cédula de Identidad" name="ci" value={form.ci} onChange={handleInput} />
+                </Box>
+                <Box>
+                  <Text>Dirección</Text>
+                  <Input placeholder="Dirección" name="direccion" value={form.direccion} onChange={handleInput} />
+                </Box>
+                <Box>
+                  <Text>Referencia (Opcional)</Text>
+                  <Input placeholder="Referencia" name="referencia" value={form.referencia} onChange={handleInput} />
+                </Box>
+                <Checkbox name="terminos" isChecked={form.terminos} onChange={handleInput}>
+                  Acepto los términos y condiciones
+                </Checkbox>
+                {formError && <Alert status="error"><AlertIcon />{formError}</Alert>}
+                <Button colorScheme="yellow" color="black" onClick={handlePagar}>Pagar</Button>
+              </Stack>
+            </Box>
+          )}
+          {phase === 2 && !pedidoCancelado && !finalizado && (
+            <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md" textAlign="center">
+              <Box display={'flex'}>
+                  {Object.entries(bankAccounts).map(([key,banco])=>(
+                    <Box key={key} bg="gray.50" p={3} borderRadius="md" border="1px" borderColor="gray.200">
+                      <Text fontWeight="bold">{banco.name}</Text>
+                      <Text>{banco.type}</Text>
+                      <Text>N° {banco.number}</Text>
+                      <Text>{banco.holder}</Text>
+                    </Box>
+                  ))}
+              </Box>
+              <Heading as="h2" size="lg" mb={4}>Sube tu comprobante de pago</Heading>
+              <Text mb={2}>Tienes <b>{formatTime(timer)}</b> minutos para completar el pago.</Text>
+              <Input placeholder="Número de comprobante" value={comprobante} onChange={e => setComprobante(e.target.value)} mb={3} />
+              <FormLabel>Foto del comprobante (opcional)</FormLabel>
+              <Input type="file" accept="image/*" onChange={handleComprobanteImg} mb={3} />
+              {comprobanteImg && <Image src={comprobanteImg} alt="Comprobante" maxH="150px" mx="auto" mb={3} />}
+              <Button colorScheme="yellow" color="black" onClick={handleFinalizar} isDisabled={!comprobante}>Finalizar Compra</Button>
+            </Box>
+          )}
+          {pedidoCancelado && (
+            <Alert status="error" mt={8} justifyContent="center">
+              <AlertIcon />Pedido cancelado por tiempo excedido.
+            </Alert>
+          )}
+          {finalizado && (
+            <Alert status="success" mt={8} justifyContent="center">
+              <AlertIcon />¡Compra finalizada con éxito! Pronto nos comunicaremos contigo.
+            </Alert>
+          )}
         </Box>
-      )}
-      {pedidoCancelado && (
-        <Alert status="error" mt={8} justifyContent="center">
-          <AlertIcon />Pedido cancelado por tiempo excedido.
-        </Alert>
-      )}
-      {finalizado && (
-        <Alert status="success" mt={8} justifyContent="center">
-          <AlertIcon />¡Compra finalizada con éxito! Pronto nos comunicaremos contigo.
-        </Alert>
-      )}
+        {/* <Box>
+          <Box>
+            {addCart.map((item, index) => (
+              <li key={item.id} className="item-shopCart">
+                <Box className="item-cart">
+                  <Box className="image-item-cart">
+                    <img src={item.image} width="100%" alt={item.name} />
+                  </Box>
+                  <Box className="text-item-cart">
+                    <Box className="text-body-cart">
+                      <strong>{item.name}</strong>
+                      <Box className="count-item-cart">
+                        <Box className="delete-button-cart">
+                          <button onClick={() => delToCart(index)}>Quitar</button>
+                        </Box>
+                        <p>Cantidad</p>
+                        <Box>
+                          <button onClick={() => minusCart(index)}><i className="fa-solid fa-minus"></i></button>
+                          <Text color="yellow.500">{item.count}</Text>
+                          <button onClick={() => plusCart(index)}><i className="fa-solid fa-plus"></i></button>
+                        </Box>
+                      </Box>
+                    </Box>
+                    <Box className="price-item-total">$ {parseFloat(item.price * item.count).toFixed(2)}</Box>
+                  </Box>
+                </Box>
+              </li>
+            ))}
+          </Box>
+          <Box>
+            <Box className="footer-cart-column">
+              <Box className="footer-cart-row">
+                <p>SUBTOTAL</p>
+                <p>$ {totalPrice}</p>
+              </Box>
+              <Box className="footer-cart-row">
+                <p>DESCUENTO</p>
+                <p>$ 0.00</p>
+              </Box>
+              <Box className="footer-cart-row-total">
+                <h1>TOTAL</h1>
+                <h1 className="footer-cart-price">$ {totalPrice}</h1>
+              </Box>
+            </Box>
+          </Box>
+        </Box> */}
+      </Box>
+      <Footer />
     </Box>
   );
 }

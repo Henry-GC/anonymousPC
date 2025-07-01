@@ -39,7 +39,6 @@ function Carousel() {
             backgroundSize='cover'
             borderRadius='1rem'
         >
-          <Text color="white">Slide 1</Text>
         </Box>
         <Box
             height='35rem'
@@ -48,7 +47,6 @@ function Carousel() {
             backgroundPosition='center'
             borderRadius='1rem'
         >
-          <Text color="white">Slide 2</Text>
         </Box>
         <Box
             height='35rem'
@@ -57,7 +55,6 @@ function Carousel() {
             backgroundPosition='center'
             borderRadius='1rem'
         >
-          <Text color="white">Slide 3</Text>
         </Box>
       </Slider>
     </Box>

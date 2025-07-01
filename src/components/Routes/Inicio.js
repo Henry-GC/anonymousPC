@@ -6,6 +6,8 @@ import { ThemeContext } from "../Context/ThemeContext";
 import Carousel from "../BannerSlider";
 import RelevantProducts from "../RelevantProducts";
 import RelevantBuilds from "../RelevantBuilds";
+import { Link as ChakraLink } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function Inicio(){
 
@@ -25,12 +27,12 @@ function Inicio(){
                     bg={theme.secondaryBackground}
                 >
                     <Box className="direct-access-container">
-                        <Box
-                            className="direct-access"
-                        >
-                            <i class="fas fa-desktop"></i>
-                            <h2>PC Gamer</h2>
-                        </Box>
+                        <ChakraLink as={Link} to='/ensambles' _hover={{textDecoration:'none'}}>
+                            <Box className="direct-access">
+                                <i class="fas fa-desktop"></i>
+                                <h2>PC Gamer</h2>
+                            </Box>
+                        </ChakraLink>
                         <Box
                             className="direct-access"
                         >
@@ -53,13 +55,13 @@ function Inicio(){
                             className="direct-access"
                         >
                             <i class="fas fa-camera"></i>
-                            <h2>Videovigilancia</h2>
+                            <Box textAlign={'center'} width={'min-content'} lineHeight={'1.2rem'}><h2>Calculadora de Rendimieto</h2></Box>
                         </Box>
                         <Box
                             className="direct-access"
                         >
                             <i class="fas fa-gamepad"></i>
-                            <h2>Juegos</h2>
+                            <h2>Nosotros</h2>
                         </Box>
                     </Box>
 

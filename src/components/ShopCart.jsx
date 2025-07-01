@@ -16,20 +16,12 @@ export const ShopCart = (props) => {
     const navigate = useNavigate()
 
     const handleBuy = async() => {
-        const {cartDetails} = buyCart()
-        const data = {
-            details: cartDetails,
-            total: totalPrice
-        }
         try {
-            const response = await Axios.post('/api/user/createorder',data)
-            localStorage.removeItem('cart')
-            setAddCart([])
             setIsLoading(false)
             props.setChecked(false)
             navigate('/checkout',{replace:true})
         } catch (error) {
-            
+            console.error("Error al crear la orden:", error);
         }
     }
 
@@ -66,7 +58,7 @@ export const ShopCart = (props) => {
             >
                 <Box className="title-cart">
                     <h1>Carrito</h1>
-                    <button onClick={()=>props.setChecked(false)}><i class="fa-solid fa-right-long"></i></button>
+                    <button onClick={()=>props.setChecked(false)}><i className="fa-solid fa-right-long"></i></button>
                 </Box>
                 
                 <Box className="body-cart">
@@ -122,12 +114,15 @@ export const ShopCart = (props) => {
                             </Box>
                             <Button
                                 isLoading={isLoading}
-                                className="send-cart"
-                                onClick={()=>handleButton()}
+                                onClick={handleButton}
                                 bg={theme.backgroundColor}
                                 color={theme.color}
                                 border={`solid 1px ${theme.color}`}
-                            >FINALIZAR COMPRA</Button>
+                                isDisabled={numCart < 1}
+                                padding={'1rem 3rem'}
+                                alignSelf={'center'}
+                                fontWeight={'500'}
+                            >COMPRAR</Button>
                         </Box>
                 </Box>
             </Box>

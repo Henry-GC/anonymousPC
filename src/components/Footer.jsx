@@ -30,7 +30,7 @@ import './Assets/Styles/Footer.css'
               <img src='https://ax8vpotqikpi.objectstorage.us-phoenix-1.oci.customer-oci.com/n/ax8vpotqikpi/b/anonymouspc/o/src%2Fpublic%2FlogoLogo.png' width='100%'/>
             </Box>
             <Box>
-              <Text>support@anonymouspc.net</Text>
+              <Text>soporte@anonymouspc.net</Text>
               <Box>
                 
               </Box>
@@ -41,11 +41,11 @@ import './Assets/Styles/Footer.css'
             <Box className='footer-section'>
               <Text className='title-footer-section'>Navegación</Text>
               <Box className='footer-section-links'>
-                <ChakraLink as={Link} to='#' width='fit-content'>Inicio</ChakraLink>
+                <ChakraLink as={Link} to='/' width='fit-content'>Inicio</ChakraLink>
                 <ChakraLink as={Link} to='/productos' width='fit-content'>Productos</ChakraLink>
                 <ChakraLink as={Link} to='/ensambles' width='fit-content'>Ensambles</ChakraLink>
-                <ChakraLink as={Link} to='#' width='fit-content'>Nosotros</ChakraLink>
-                <ChakraLink as={Link} to='#' width='fit-content'>Usuario</ChakraLink>
+                <ChakraLink as={Link} to='/nosotros' width='fit-content'>Nosotros</ChakraLink>
+                <ChakraLink as={Link} to='/login' width='fit-content'>Usuario</ChakraLink>
               </Box>
             </Box>
             <Box className='footer-section'>
