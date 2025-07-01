@@ -13,6 +13,7 @@ import Header from './components/Header';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Box, ChakraProvider } from '@chakra-ui/react';
 import Checkout from './components/Checkout';
+import OAuthCallback from './components/Routes/oAuthGoogle';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                 <Route path='/productos/accesorios' element={<Productos />} />
                 <Route path='/ensambles' element={<Ensambles />} />
                 <Route path='/nosotros' element={<Nosotros />} />
+                <Route path='/oauth-callback' element={<OAuthCallback/>}/>
                 <Route path='/usuario/*' element={
                   <ProtectedRoute>
                     <Usuario/>

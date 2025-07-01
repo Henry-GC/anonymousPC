@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import FormLogin from "../FormLogin";
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { Link, Route, Routes} from "react-router-dom";
 import FormRegister from "../FormRegister";
 import FormRecovery from "../FormRecovery";
@@ -28,14 +28,18 @@ function Login() {
                     <Box className="login-data-container">
                         <Box className="login-data-title">
                             <h2>
-                                <Link id="log-link" to="/login/" onClick={()=>setRecovery(false)}>
-                                    Ingresar
+                                <Link  to="/login/" onClick={()=>setRecovery(false)}>
+                                    <Button>
+                                        Iniciar Sesión
+                                    </Button>
                                 </Link>
                             </h2>
                             <h2>/</h2>
                             <h2>
                                 <Link id="log-link" to="/login/register" onClick={()=>setRecovery(true)}>
-                                    Registrar
+                                    <Button>
+                                        Registrarse
+                                    </Button>
                                 </Link>
                             </h2>
                         </Box>

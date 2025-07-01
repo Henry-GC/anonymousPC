@@ -5,12 +5,18 @@ import * as Yup from "yup";
 import React, { useContext, useState } from "react";
 import Axios from "../utils/axiosConfig";
 import { ThemeContext } from "./Context/ThemeContext";
+import { FcGoogle } from "react-icons/fc";
 
 const FormLogin = () => {
   const {theme} = useContext(ThemeContext)
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
+
+
+  const login = () => {
+    window.open("https://api.anonymouspc.net/auth/google");
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -46,6 +52,20 @@ const FormLogin = () => {
         display='flex'
         flexDirection='column'
       >
+        <Button
+          leftIcon={<FcGoogle />}
+          // colorScheme="gray"
+          bgColor={'white'}
+          variant="outline"
+          onClick={login}
+          size="lg"
+          borderRadius="md"
+          marginBottom='1rem'
+          border={`solid 1px #ccc`}
+          _hover={{ bg: "gray.100" }}
+        >
+          Iniciar sesión con Google
+        </Button>
         <FormControl isInvalid={formik.touched.user && formik.errors.user}>
           <FormLabel htmlFor="user">Usuario</FormLabel>
           <Input id="user" name="user" {...formik.getFieldProps("user")} />
