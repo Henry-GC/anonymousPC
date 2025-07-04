@@ -1,14 +1,12 @@
 import { IconButton, useToast } from "@chakra-ui/react";
 import useFavorite from "./Hooks/useFavorite";
-import useDataUser from "./Hooks/useDataUser";
 
 function FavoriteStar({ product, className }) {
     const { isFavorited, handleToggleFavorite } = useFavorite(product);
-    const { user } = useDataUser();
     const toast = useToast();
+    let token = localStorage.getItem('token')
 
     const handleClick = () => {
-        let token = localStorage.getItem('token')
         if (token == null || token === '') {
             toast({
                 title: "Debes registrarte o iniciar sesión",
@@ -36,7 +34,7 @@ function FavoriteStar({ product, className }) {
                 fontSize='1.5rem'
                 background='transparent'
                 zIndex='auto'
-                isDisabled={user == null}
+                // isDisabled={!token}
             />
         </div>
     );

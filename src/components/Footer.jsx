@@ -72,19 +72,19 @@ import './Assets/Styles/Footer.css'
                   target='_blank'
                   fontSize='2.5rem'
                 >
-                  <i class="fa-brands fa-facebook"></i>
+                  <i className="fa-brands fa-facebook"></i>
                 </ChakraLink>
                 <ChakraLink
                   href='https://www.instagram.com/anypcstore?igsh=YmExbjFramp3eWM3'
                   target='_blank'
                   fontSize='2.5rem'
                 >
-                  <i class="fa-brands fa-instagram"></i>
+                  <i className="fa-brands fa-instagram"></i>
                 </ChakraLink>
                 <ChakraLink
                   fontSize='2.5rem'
                 >
-                  <i class="fa-brands fa-tiktok"></i>
+                  <i className="fa-brands fa-tiktok"></i>
                   </ChakraLink>
               </Box>
             </Box>

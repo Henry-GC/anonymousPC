@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // CONFIG DE CONEXIÓN AXIOS
 const instance = axios.create({
-  baseURL: 'https://api.anonymouspc.net/',
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

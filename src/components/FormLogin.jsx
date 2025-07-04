@@ -15,7 +15,7 @@ const FormLogin = () => {
 
 
   const login = () => {
-    window.open("https://api.anonymouspc.net/auth/google");
+    window.open(`${process.env.REACT_APP_API_URL}/auth/google`);
   };
 
   const formik = useFormik({
@@ -66,6 +66,9 @@ const FormLogin = () => {
         >
           Iniciar sesión con Google
         </Button>
+        <Box textAlign='center' marginBottom='1rem'>
+          <strong>O</strong>
+        </Box>
         <FormControl isInvalid={formik.touched.user && formik.errors.user}>
           <FormLabel htmlFor="user">Usuario</FormLabel>
           <Input id="user" name="user" {...formik.getFieldProps("user")} />

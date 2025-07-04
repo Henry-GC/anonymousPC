@@ -29,38 +29,38 @@ function Inicio(){
                     <Box className="direct-access-container">
                         <ChakraLink as={Link} to='/ensambles' _hover={{textDecoration:'none'}}>
                             <Box className="direct-access">
-                                <i class="fas fa-desktop"></i>
+                                <i className="fas fa-desktop"></i>
                                 <h2>PC Gamer</h2>
                             </Box>
                         </ChakraLink>
                         <Box
                             className="direct-access"
                         >
-                            <i class="fas fa-laptop"></i>
+                            <i className="fas fa-laptop"></i>
                             <h2>Laptop</h2>
                         </Box>
                         <Box
                             className="direct-access"
                         >
-                            <i class="far fa-keyboard"></i>
+                            <i className="far fa-keyboard"></i>
                             <h2>Combos</h2>
                         </Box>
                         <Box
                             className="direct-access"
                         >
-                            <i class="fas fa-wrench"></i>
+                            <i className="fas fa-wrench"></i>
                             <h2>Refurbished</h2>
                         </Box>
                         <Box
                             className="direct-access"
                         >
-                            <i class="fas fa-camera"></i>
+                            <i className="fas fa-camera"></i>
                             <Box textAlign={'center'} width={'min-content'} lineHeight={'1.2rem'}><h2>Calculadora de Rendimieto</h2></Box>
                         </Box>
                         <Box
                             className="direct-access"
                         >
-                            <i class="fas fa-gamepad"></i>
+                            <i className="fas fa-gamepad"></i>
                             <h2>Nosotros</h2>
                         </Box>
                     </Box>

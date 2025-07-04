@@ -1,9 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
-import { Button, Input, FormLabel, Box, Text, Heading, Select, Checkbox, Stack, Alert, AlertIcon, Image } from '@chakra-ui/react';
+import { Button, Input, FormLabel, Box, Text, Heading, Checkbox, Stack, Alert, AlertIcon, Image } from '@chakra-ui/react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react'
 import Footer from './Footer';
 import useCart from './Hooks/useCart';
 import Axios from '../utils/axiosConfig';
-
 
 const bankAccounts = {
   pichincha: {
@@ -37,6 +45,7 @@ export default function Checkout() {
   const [comprobanteImg, setComprobanteImg] = useState(null);
   const [timer, setTimer] = useState(1800); // 30 minutos en segundos 
   const [pedidoCancelado, setPedidoCancelado] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const timerRef = useRef();
   const [finalizado, setFinalizado] = useState(false);
   const {addCart,setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart } = useCart()
@@ -56,6 +65,13 @@ export default function Checkout() {
       return () => clearInterval(timerRef.current);
     }
   }, [phase, finalizado, pedidoCancelado]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setOpenModal(true);
+    }
+  },[])
 
   const handleInput = (e) => {
     const { name, value, type, checked } = e.target;
@@ -113,9 +129,23 @@ export default function Checkout() {
 
   return (
     <Box display={'flex'} flexDirection={'column'}>
+      <Modal isOpen={openModal} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Bienvenido a AnonymousPC</ModalHeader>
+          <ModalBody>
+            <Text>Por favor, completa tus datos para continuar con la compra.</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="yellow" color="black" onClick={() => setOpenModal(false)}>
+              Continuar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Box display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>
         <Box>
-          <Heading as="h1" fontSize={'1.5rem'} fontWeight={'500'}>Resumen de Compra</Heading>
+          <Heading as="h1" fontSize={'1.5rem'} fontWeight={'500'} mb={'1rem'}>Resumen de Compra</Heading>
 
           <Box>
             {addCart.map((item, index) => (
@@ -231,52 +261,6 @@ export default function Checkout() {
             </Alert>
           )}
         </Box>
-        {/* <Box>
-          <Box>
-            {addCart.map((item, index) => (
-              <li key={item.id} className="item-shopCart">
-                <Box className="item-cart">
-                  <Box className="image-item-cart">
-                    <img src={item.image} width="100%" alt={item.name} />
-                  </Box>
-                  <Box className="text-item-cart">
-                    <Box className="text-body-cart">
-                      <strong>{item.name}</strong>
-                      <Box className="count-item-cart">
-                        <Box className="delete-button-cart">
-                          <button onClick={() => delToCart(index)}>Quitar</button>
-                        </Box>
-                        <p>Cantidad</p>
-                        <Box>
-                          <button onClick={() => minusCart(index)}><i className="fa-solid fa-minus"></i></button>
-                          <Text color="yellow.500">{item.count}</Text>
-                          <button onClick={() => plusCart(index)}><i className="fa-solid fa-plus"></i></button>
-                        </Box>
-                      </Box>
-                    </Box>
-                    <Box className="price-item-total">$ {parseFloat(item.price * item.count).toFixed(2)}</Box>
-                  </Box>
-                </Box>
-              </li>
-            ))}
-          </Box>
-          <Box>
-            <Box className="footer-cart-column">
-              <Box className="footer-cart-row">
-                <p>SUBTOTAL</p>
-                <p>$ {totalPrice}</p>
-              </Box>
-              <Box className="footer-cart-row">
-                <p>DESCUENTO</p>
-                <p>$ 0.00</p>
-              </Box>
-              <Box className="footer-cart-row-total">
-                <h1>TOTAL</h1>
-                <h1 className="footer-cart-price">$ {totalPrice}</h1>
-              </Box>
-            </Box>
-          </Box>
-        </Box> */}
       </Box>
       <Footer />
     </Box>
