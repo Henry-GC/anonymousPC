@@ -36,6 +36,12 @@ function Inicio(){
                         <Box
                             className="direct-access"
                         >
+                            <i className="fas fa-hand-spock"></i>
+                            <Box textAlign={'center'} width={'min-content'} lineHeight={'1.2rem'}><h2>Calculadora de Rendimieto</h2></Box>
+                        </Box>
+                        <Box
+                            className="direct-access"
+                        >
                             <i className="fas fa-laptop"></i>
                             <h2>Laptop</h2>
                         </Box>
@@ -50,12 +56,6 @@ function Inicio(){
                         >
                             <i className="fas fa-wrench"></i>
                             <h2>Refurbished</h2>
-                        </Box>
-                        <Box
-                            className="direct-access"
-                        >
-                            <i className="fas fa-camera"></i>
-                            <Box textAlign={'center'} width={'min-content'} lineHeight={'1.2rem'}><h2>Calculadora de Rendimieto</h2></Box>
                         </Box>
                         <Box
                             className="direct-access"

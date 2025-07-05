@@ -69,7 +69,7 @@ export const ShopCart = (props) => {
                             <li className="item-shopCart" key={item.id}>
                                 <Box className="item-cart">
                                     <Box className="image-item-cart">
-                                        <img src={Pruv} width="100%" alt="PRODUCTO CARRITO"/>
+                                        <img src={item.img_url} width="100%" alt="PRODUCTO CARRITO"/>
                                     </Box>
                                     <Box className="text-item-cart">
                                         <Box className="text-body-cart">
