@@ -1,33 +1,19 @@
 import Main from "../Main"
 import "../Assets/Styles/Productos.css"
 import { Box } from "@chakra-ui/react";
-import useFetch from "../Hooks/useFetch";
 import Footer from "../Footer";
 import { useContext } from "react";
 import { ThemeContext } from "../Context/ThemeContext";
+import { useProducts } from "../Context/ProductContext";
+import useScrollToTop from "../Hooks/useScrollToTop";
 
 function Productos() {
-
-  const {items,setPage,setTypeSort,bd,page} = useFetch()
-  const {theme} = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
+  const { setTypeSort } = useProducts();
+  useScrollToTop();
 
   const handleSort = (e) => {
     setTypeSort(e.target.value);
-  }
-
-  const nextPage = () =>{
-    if (page*12<bd.length){
-      setPage(page+1);
-    }
-  }
-
-  const prevPage = () =>{
-    if (page === 1){
-      return;
-    } else {
-      const newPage = page - 1;
-      setPage(newPage)
-    }
   }
   
   return (
@@ -73,13 +59,7 @@ function Productos() {
                 <i className="fa-solid fa-table-cells"></i>
               </Box>
             </Box>
-            <Main
-              resultado={items}
-              prevPage={prevPage}
-              nextPage={nextPage}
-              currentPage={page}
-              bd={bd}
-            />
+            <Main />
         </Box>
       </div>
     </Box>

@@ -7,11 +7,13 @@ import FormRecovery from "../FormRecovery";
 import Footer from "../Footer"
 import "../Assets/Styles/Login.css"
 import { ThemeContext } from "../Context/ThemeContext";
+import useScrollToTop from "../Hooks/useScrollToTop";
 
 function Login() {
 
     const {theme} = useContext(ThemeContext)
     const [recovery, setRecovery] = useState(false);
+    useScrollToTop();
 
     return (
         <>

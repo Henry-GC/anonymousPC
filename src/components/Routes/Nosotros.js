@@ -2,9 +2,11 @@ import { Box } from "@chakra-ui/react"
 import "../Assets/Styles/Nosotros.css"
 import useResources from "../Hooks/useResources"
 import Footer from "../Footer";
+import useScrollToTop from "../Hooks/useScrollToTop";
 
 function Nosotros(){
     const {videoAdv,imageAdv,brands} = useResources();
+    useScrollToTop();
     return (
         <>
         <Box className="about-section-container">

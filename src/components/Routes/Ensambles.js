@@ -5,11 +5,13 @@ import useFetch from "../Hooks/useFetch";
 import build1 from "../Assets/Image/case 1.png"
 import useRender from "../Hooks/useRender";
 import Footer from "../Footer";
+import useScrollToTop from "../Hooks/useScrollToTop";
 
 function Ensambles(){
 
     const {builds} = useFetch()
     const {renderComponents} = useRender()
+    useScrollToTop();
 
     return (
         <>

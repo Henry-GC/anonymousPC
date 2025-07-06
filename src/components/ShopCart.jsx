@@ -1,8 +1,20 @@
-import { useContext, useId, useState } from "react"
+import { useContext, useState } from "react"
 import "./Assets/Styles/ShopCart.css"
 import Pruv from "./Assets/Image/work.png"
 import useCart from "./Hooks/useCart"
-import { Box, Button, Text } from "@chakra-ui/react"
+import { 
+  Box, 
+  Button, 
+  Text,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  IconButton
+} from "@chakra-ui/react"
 import Axios from "../utils/axiosConfig"
 import { ThemeContext } from "./Context/ThemeContext"
 import { useNavigate } from "react-router-dom"
@@ -12,7 +24,6 @@ export const ShopCart = (props) => {
     const [isLoading,setIsLoading] = useState(false)
     const {addCart,setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart } = useCart()
     const numCart = addCart.length
-    const CartId = useId()
     const navigate = useNavigate()
 
     const handleBuy = async() => {
@@ -32,10 +43,11 @@ export const ShopCart = (props) => {
 
     return (
         <Box className="cart-container">
-            <label
-                htmlFor={CartId}
+            <Box
                 className="cart-button"
                 color={theme.color}
+                onClick={() => props.setChecked(true)}
+                cursor="pointer"
             >
                 <Box color={theme.color}>
                     <i className="fa-solid fa-cart-shopping"></i>
@@ -49,67 +61,76 @@ export const ShopCart = (props) => {
                     <Text as='h2' fontWeight='300'>Mi carrito</Text>
                     <Text as='strong'>${totalPrice}</Text>
                 </Box>
-            </label>
-            <input id={CartId} type="checkbox" checked={props.isCheked} onChange={(e)=>props.setChecked(e.target.checked)} hidden />
+            </Box>
 
-            <Box
-                className="shop-cart"
-                background={theme.backgroundColor}
+            <Drawer
+                isOpen={props.isCheked}
+                placement="right"
+                onClose={() => props.setChecked(false)}
+                size="md"
             >
-                <Box className="title-cart">
-                    <h1>Carrito</h1>
-                    <button onClick={()=>props.setChecked(false)}><i className="fa-solid fa-right-long"></i></button>
-                </Box>
-                
-                <Box className="body-cart">
-                    <ul>
-                    {numCart>0 ? (
-                        <>
-                        {addCart.map((item,index)=>(
-                            <li className="item-shopCart" key={item.id}>
-                                <Box className="item-cart">
-                                    <Box className="image-item-cart">
-                                        <img src={item.img_url} width="100%" alt="PRODUCTO CARRITO"/>
-                                    </Box>
-                                    <Box className="text-item-cart">
-                                        <Box className="text-body-cart">
-                                            <strong>{item.name}</strong>
-                                            <Box className="count-item-cart">
-                                                <Box className="delete-button-cart">
-                                                    <button onClick={()=>delToCart(index)}>
-                                                        Quitar
-                                                    </button>
+                <DrawerOverlay />
+                <DrawerContent bg={theme.backgroundColor}>
+                    <DrawerCloseButton color={theme.color} />
+                    <DrawerHeader borderBottomWidth="1px" color={theme.color}>
+                        Carrito
+                    </DrawerHeader>
+
+                    <DrawerBody>
+                        <Box>
+                            {numCart > 0 ? (
+                                <>
+                                {addCart.map((item,index)=>(
+                                    <Box key={item.id} className="item-shopCart">
+                                        <Box className="item-cart">
+                                            <Box className="image-item-cart">
+                                                <img src={item.img_url} width="100%" alt="PRODUCTO CARRITO"/>
+                                            </Box>
+                                            <Box className="text-item-cart">
+                                                <Box className="text-body-cart">
+                                                    <strong>{item.name}</strong>
+                                                    <Box className="count-item-cart">
+                                                        <Box className="delete-button-cart">
+                                                            <button onClick={()=>delToCart(index)}>
+                                                                Quitar
+                                                            </button>
+                                                        </Box>
+                                                        <p>Cantidad</p>
+                                                        <Box>
+                                                            <button onClick={()=>minusCart(index)}><i className="fa-solid fa-minus"></i></button>
+                                                                <Text color={theme.highlightColor}>{item.count}</Text>
+                                                            <button onClick={()=>plusCart(index)}><i className="fa-solid fa-plus"></i></button>
+                                                        </Box>
+                                                    </Box>
                                                 </Box>
-                                                <p>Cantidad</p>
-                                                <Box>
-                                                    <button onClick={()=>minusCart(index)}><i className="fa-solid fa-minus"></i></button>
-                                                        <Text color={theme.highlightColor}>{item.count}</Text>
-                                                    <button onClick={()=>plusCart(index)}><i className="fa-solid fa-plus"></i></button>
-                                                </Box>
+                                                <Box className="price-item-total">$ {parseFloat(item.price*item.count).toFixed(2)}</Box>
                                             </Box>
                                         </Box>
-                                        <Box className="price-item-total">$ {parseFloat(item.price*item.count).toFixed(2)}</Box>
                                     </Box>
+                                ))}
+                                </>
+                            ) : (
+                                <Text textAlign="center" fontSize="lg" color={theme.color}>
+                                    Aún no hay artículos agregados
+                                </Text>
+                            )}
+                        </Box>
+                    </DrawerBody>
+
+                    <DrawerFooter borderTopWidth="1px" p={4}>
+                        <Box width="100%">   
+                            <Box mb={4}>
+                                <Box display="flex" justifyContent="space-between" mb={2}>
+                                    <Text color={theme.color}>SUBTOTAL</Text>
+                                    <Text color={theme.color}>$ {totalPrice}</Text>
                                 </Box>
-                            </li>
-                        ))}
-                        </>
-                        ) : <h2>Aún no hay artículos agregados</h2>}
-                        
-                    </ul>
-                        <Box className="footer-cart">   
-                            <Box className="footer-cart-column">
-                                <Box className="footer-cart-row">
-                                    <p>SUBTOTAL</p>
-                                    <p>$ {totalPrice}</p>
+                                <Box display="flex" justifyContent="space-between" mb={2}>
+                                    <Text color={theme.color}>DESCUENTO</Text>
+                                    <Text color={theme.color}>$ 0.00</Text>
                                 </Box>
-                                <Box className="footer-cart-row">
-                                    <p>DESCUENTO</p>
-                                    <p>$ 0.00</p>
-                                </Box>
-                                <Box className="footer-cart-row-total">
-                                    <h1>TOTAL</h1>
-                                    <h1 className="footer-cart-price">$ {totalPrice}</h1>
+                                <Box display="flex" justifyContent="space-between" borderTopWidth="1px" pt={2}>
+                                    <Text fontWeight="bold" fontSize="lg" color={theme.color}>TOTAL</Text>
+                                    <Text fontWeight="bold" fontSize="lg" color={theme.color}>$ {totalPrice}</Text>
                                 </Box>
                             </Box>
                             <Button
@@ -120,12 +141,19 @@ export const ShopCart = (props) => {
                                 border={`solid 1px ${theme.color}`}
                                 isDisabled={numCart < 1}
                                 padding={'1rem 3rem'}
-                                alignSelf={'center'}
                                 fontWeight={'500'}
-                            >COMPRAR</Button>
+                                width="100%"
+                                _hover={{
+                                    bg: theme.color,
+                                    color: theme.backgroundColor
+                                }}
+                            >
+                                COMPRAR
+                            </Button>
                         </Box>
-                </Box>
-            </Box>
+                    </DrawerFooter>
+                </DrawerContent>
+            </Drawer>
         </Box>
     )
 }

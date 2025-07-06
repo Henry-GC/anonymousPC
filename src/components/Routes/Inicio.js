@@ -8,10 +8,12 @@ import RelevantProducts from "../RelevantProducts";
 import RelevantBuilds from "../RelevantBuilds";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import useScrollToTop from "../Hooks/useScrollToTop";
 
 function Inicio(){
 
     const {theme} = useContext(ThemeContext)
+    useScrollToTop();
     
     return(
         <>
@@ -36,7 +38,7 @@ function Inicio(){
                         <Box
                             className="direct-access"
                         >
-                            <i className="fas fa-hand-spock"></i>
+                            <i className="fas fa-gamepad"></i>
                             <Box textAlign={'center'} width={'min-content'} lineHeight={'1.2rem'}><h2>Calculadora de Rendimieto</h2></Box>
                         </Box>
                         <Box
@@ -60,7 +62,7 @@ function Inicio(){
                         <Box
                             className="direct-access"
                         >
-                            <i className="fas fa-gamepad"></i>
+                            <i className="fas fa-hand-spock"></i>
                             <h2>Nosotros</h2>
                         </Box>
                     </Box>

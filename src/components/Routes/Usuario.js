@@ -12,11 +12,13 @@ import useDataUser from "../Hooks/useDataUser"
 import UserAddresses from "../UserAddresses"
 import { useContext } from "react"
 import { ThemeContext } from "../Context/ThemeContext"
+import useScrollToTop from "../Hooks/useScrollToTop"
 
 function Usuario (){
 
     const {user, cancelOrder} = useDataUser();
     const {theme} = useContext(ThemeContext)
+    useScrollToTop();
     
     return (
         <Box

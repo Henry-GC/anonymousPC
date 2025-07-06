@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Box, Button } from "@chakra-ui/react";
 import { ThemeContext } from "./Context/ThemeContext";
-import useFetch from "./Hooks/useFetch";
 import useCart from "./Hooks/useCart";
 import useResources from "./Hooks/useResources";
 import "./Assets/Styles/RelevantBuilds.css";
 import pruv from "./Assets/Image/work.png";
+import { useProducts } from "./Context/ProductContext";
 
 const BuildComponent = ({ icon, label, value }) => (
   value ? (
@@ -22,7 +22,7 @@ const BuildComponent = ({ icon, label, value }) => (
 );
 
 function RelevantBuilds() {
-  const { builds } = useFetch();
+  const { builds } = useProducts();
   const { sections } = useResources();
   const { theme } = useContext(ThemeContext);
   const { addCart, loading, handleButtonCart } = useCart();

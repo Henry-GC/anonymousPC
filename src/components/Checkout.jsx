@@ -9,9 +9,11 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import useCart from './Hooks/useCart';
 import Axios from '../utils/axiosConfig';
+import useScrollToTop from './Hooks/useScrollToTop';
 
 const bankAccounts = {
   pichincha: {
@@ -29,6 +31,7 @@ const bankAccounts = {
 };
 
 export default function Checkout() {
+  const navigate = useNavigate();
   const [phase, setPhase] = useState(1);
   const [form, setForm] = useState({
     nombres: '',
@@ -49,6 +52,7 @@ export default function Checkout() {
   const timerRef = useRef();
   const [finalizado, setFinalizado] = useState(false);
   const {addCart,setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart } = useCart()
+  useScrollToTop();
 
   useEffect(() => {
     if (phase === 2 && !finalizado && !pedidoCancelado) {
@@ -71,7 +75,17 @@ export default function Checkout() {
     if (!token) {
       setOpenModal(true);
     }
-  },[])
+  }, []);
+
+  const handleGoToLogin = () => {
+    setOpenModal(false);
+    navigate('/login');
+  };
+
+  const handleGoToHome = () => {
+    setOpenModal(false);
+    navigate('/');
+  };
 
   const handleInput = (e) => {
     const { name, value, type, checked } = e.target;
@@ -88,7 +102,7 @@ export default function Checkout() {
   };
 
   const validateForm = () => {
-    if (!form.nombres || !form.apellidos || !form.celular || !form.ci || !form.direccion) {
+    if (!form.nombres || !form.email || !form.celular || !form.ci || !form.direccion) {
       setFormError('Por favor, completa todos los campos.');
       return false;
     }
@@ -129,16 +143,21 @@ export default function Checkout() {
 
   return (
     <Box display={'flex'} flexDirection={'column'}>
-      <Modal isOpen={openModal} isCentered>
+      <Modal isOpen={openModal} isCentered onClose={() => {}}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Bienvenido a AnonymousPC</ModalHeader>
-          <ModalBody>
-            <Text>Por favor, completa tus datos para continuar con la compra.</Text>
+          <ModalHeader textAlign="center">🛍️ ¡Ups! Aún no has iniciado sesión</ModalHeader>
+          <ModalBody textAlign="center">
+            <Text mb={4}>
+              Para seguir con tu compra, por favor inicia sesión o crea una cuenta. Así podremos guardar tu carrito y asegurarnos de que todo llegue a la dirección correcta. ¡Es rápido y fácil!
+            </Text>
           </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="yellow" color="black" onClick={() => setOpenModal(false)}>
-              Continuar
+          <ModalFooter justifyContent="center" gap={4}>
+            <Button colorScheme="blue" onClick={handleGoToLogin}>
+              Iniciar Sesión
+            </Button>
+            <Button colorScheme="gray" onClick={handleGoToHome}>
+              Volver al Inicio
             </Button>
           </ModalFooter>
         </ModalContent>
