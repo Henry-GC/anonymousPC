@@ -44,6 +44,18 @@ function Inicio(){
 
                     {/* Accesos directos desktop */}
                     <Box className="direct-access-container" display={{ base: "none", md: "flex" }}>
+                        <ChakraLink as={Link} to='/productos' _hover={{textDecoration:'none'}}>
+                            <Box className="direct-access">
+                                <i className="fas fa-desktop"></i>
+                                <h2>Productos</h2>
+                            </Box>
+                        </ChakraLink>
+                        <Box
+                            className="direct-access"
+                        >
+                            <i className="fas fa-gamepad"></i>
+                            <Box textAlign={'center'} width={'min-content'} lineHeight={'1.2rem'}><h2>Calculadora de Rendimieto</h2></Box>
+                        </Box>
                         <ChakraLink as={Link} to='/ensambles' _hover={{textDecoration:'none'}}>
                             <Box className="direct-access">
                                 <i className="fas fa-desktop"></i>
@@ -53,20 +65,8 @@ function Inicio(){
                         <Box
                             className="direct-access"
                         >
-                            <i className="fas fa-gamepad"></i>
-                            <Box textAlign={'center'} width={'min-content'} lineHeight={'1.2rem'}><h2>Calculadora de Rendimieto</h2></Box>
-                        </Box>
-                        <Box
-                            className="direct-access"
-                        >
                             <i className="fas fa-laptop"></i>
                             <h2>Laptop</h2>
-                        </Box>
-                        <Box
-                            className="direct-access"
-                        >
-                            <i className="far fa-keyboard"></i>
-                            <h2>Combos</h2>
                         </Box>
                         <Box
                             className="direct-access"
@@ -74,12 +74,12 @@ function Inicio(){
                             <i className="fas fa-wrench"></i>
                             <h2>Refurbished</h2>
                         </Box>
-                        <Box
-                            className="direct-access"
-                        >
-                            <i className="fas fa-hand-spock"></i>
-                            <h2>Nosotros</h2>
-                        </Box>
+                        <ChakraLink as={Link} to='/nosotros' _hover={{textDecoration:'none'}}>
+                            <Box className="direct-access">
+                                <i className="fas fa-hand-spock"></i>
+                                <h2>Nosotros</h2>
+                            </Box>
+                        </ChakraLink>
                     </Box>
 
                     <Carousel/>

@@ -26,9 +26,12 @@ import './Assets/Styles/Footer.css'
           bg={theme.backgroundColor}
         >
           <Box>
-            <Box className='logo-picture'>
-              <img src='https://ax8vpotqikpi.objectstorage.us-phoenix-1.oci.customer-oci.com/n/ax8vpotqikpi/b/anonymouspc/o/src%2Fpublic%2FlogoLogo.png' width='100%'/>
-            </Box>
+            <ChakraLink href='/'>
+              <Box className='logo-picture'>
+                <img src='https://ax8vpotqikpi.objectstorage.us-phoenix-1.oci.customer-oci.com/n/ax8vpotqikpi/b/anonymouspc/o/src%2Fpublic%2FlogoLogo.png' width='100%'/>
+              </Box>
+            </ChakraLink>
+            
             <Box>
               <Text>soporte@anonymouspc.net</Text>
               <Box>
@@ -41,7 +44,7 @@ import './Assets/Styles/Footer.css'
             <Box className='footer-section'>
               <Text className='title-footer-section'>Navegación</Text>
               <Box className='footer-section-links'>
-                <ChakraLink as={Link} to='/' width='fit-content'>Inicio</ChakraLink>
+                <ChakraLink href='/' width='fit-content'>Inicio</ChakraLink>
                 <ChakraLink as={Link} to='/productos' width='fit-content'>Productos</ChakraLink>
                 <ChakraLink as={Link} to='/ensambles' width='fit-content'>Ensambles</ChakraLink>
                 <ChakraLink as={Link} to='/nosotros' width='fit-content'>Nosotros</ChakraLink>

@@ -26,7 +26,8 @@ function App() {
               <CartProvider>
                 <Box className='container'>
                 <Header/>
-                <Routes>
+                <Box pt={{ base: '10rem', md: '0rem' }}>
+                  <Routes>
                   <Route path='/' element={<Inicio />} />
                   <Route path='/productos' element={<Productos />} />
                   <Route path='/productos/procesador' element={<Productos />} />
@@ -48,6 +49,8 @@ function App() {
                   <Route path='/login/*' element={<Login/>}/>
                   <Route path='/checkout' element={<Checkout/>}/>
                 </Routes>
+                </Box>
+                
                 </Box>
               </CartProvider>
             </FavoriteProvider>
