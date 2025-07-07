@@ -13,42 +13,8 @@ function NavBar (){
         <Box className='navBar'>
             <Box className="navBar-container">
                 <Box>
-                    {/* <Popover trigger="hover" placement="bottom-start">
-                        <PopoverTrigger>
-                            <Button rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
-                                Ensambles
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent>
-                            <PopoverArrow />
-                            <PopoverBody>
-                                <VStack>
-                                    <Link to="productos/procesador">GAMER</Link>
-                                    <Link to="/placa-madre">WORKSTATION</Link>
-                                </VStack>
-                            </PopoverBody>
-                        </PopoverContent>
-                    </Popover> */}
-
-                    {/* <Popover trigger="hover" placement="bottom-start">
-                        <PopoverTrigger>
-                            <Button rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
-                                Portátiles
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent>
-                            <PopoverArrow />
-                            <PopoverBody>
-                                <VStack>
-                                    <Link to="productos/procesador">Laptops</Link>
-                                    <Link to="/placa-madre">Todo en Uno</Link>
-                                </VStack>
-                            </PopoverBody>
-                        </PopoverContent>
-                    </Popover> */}
-
                     <Menu>
-                        <MenuButton as={Button} rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
+                        <MenuButton as={Button} rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor} color={theme.color}>
                             Componentes
                         </MenuButton>
                         <MenuList>
@@ -63,32 +29,10 @@ function NavBar (){
                             </VStack>
                         </MenuList>
                     </Menu>
-
-                    {/* <Popover trigger="hover" placement="bottom-start">
-                        <PopoverTrigger>
-                            <Button rightIcon={<ChevronDownIcon />} bg={theme.backgroundColor}>
-                                Accesorios
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent>
-                            <PopoverArrow />
-                            <PopoverBody>
-                                <VStack>
-                                    <Link to="productos/procesador">Mouse</Link>
-                                    <Link to="productos/placa-madre">Teclado</Link>
-                                    <Link to="productos/tarjeta-grafica">Parlantes</Link>
-                                    <Link to="productos/memoria-ram">Monitores</Link>
-                                    <Link to="productos/almacenamiento">Auriculares</Link>
-                                    <Link to="productos/tarjeta-grafica">Sillas</Link>
-                                    <Link to="productos/memoria-ram">Cámaras</Link>
-                                </VStack>
-                            </PopoverBody>
-                        </PopoverContent>
-                    </Popover> */}
                 </Box>
 
                 <Box>
-                    <Text>Favoritos</Text>
+                    <Text color={theme.color}>Favoritos</Text>
                 </Box>
             </Box>
         </Box>

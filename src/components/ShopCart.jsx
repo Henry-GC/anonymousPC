@@ -67,7 +67,7 @@ export const ShopCart = (props) => {
                 isOpen={props.isCheked}
                 placement="right"
                 onClose={() => props.setChecked(false)}
-                size="md"
+                size={{ base: "sm", md: "md" }} // Cambia 'full' por 'sm' en mobile
             >
                 <DrawerOverlay />
                 <DrawerContent bg={theme.backgroundColor}>

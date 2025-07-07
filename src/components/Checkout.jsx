@@ -14,6 +14,7 @@ import Footer from './Footer';
 import useCart from './Hooks/useCart';
 import Axios from '../utils/axiosConfig';
 import useScrollToTop from './Hooks/useScrollToTop';
+import './Assets/Styles/Checkout.css';
 
 const bankAccounts = {
   pichincha: {
@@ -142,7 +143,7 @@ export default function Checkout() {
   const formatTime = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
   return (
-    <Box display={'flex'} flexDirection={'column'}>
+    <Box className="checkout-container">
       <Modal isOpen={openModal} isCentered onClose={() => {}}>
         <ModalOverlay />
         <ModalContent>
@@ -162,56 +163,47 @@ export default function Checkout() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Box display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>
-        <Box>
+      <Box className="checkout-content">
+        <Box className="cart-summary">
           <Heading as="h1" fontSize={'1.5rem'} fontWeight={'500'} mb={'1rem'}>Resumen de Compra</Heading>
 
           <Box>
             {addCart.map((item, index) => (
-              <li key={item.id} className="item-shopCart">
-                <Box className="item-cart">
-                  <Box className="image-item-cart">
-                    <img src={item.image} width="100%" alt={item.name} />
-                  </Box>
-                  <Box className="text-item-cart">
-                    <Box className="text-body-cart">
-                      <strong>{item.name}</strong>
-                      <Box className="count-item-cart">
-                        <Box className="delete-button-cart">
-                          <button onClick={() => delToCart(index)}>Quitar</button>
-                        </Box>
-                        <p>Cantidad</p>
-                        <Box>
-                          <button onClick={() => minusCart(index)}><i className="fa-solid fa-minus"></i></button>
-                          <Text color="yellow.500">{item.count}</Text>
-                          <button onClick={() => plusCart(index)}><i className="fa-solid fa-plus"></i></button>
-                        </Box>
-                      </Box>
-                    </Box>
-                    <Box className="price-item-total">$ {parseFloat(item.price * item.count).toFixed(2)}</Box>
-                  </Box>
+              <Box key={item.id} className="cart-item">
+                <Box className="cart-item-image">
+                  <img src={item.image} alt={item.name} />
                 </Box>
-              </li>
+                <Box className="cart-item-details">
+                  <strong>{item.name}</strong>
+                  <Box className="cart-item-controls">
+                    <button onClick={() => delToCart(index)}>Quitar</button>
+                    <Box className="cart-item-quantity">
+                      <button onClick={() => minusCart(index)}><i className="fa-solid fa-minus"></i></button>
+                      <Text color="yellow.500">{item.count}</Text>
+                      <button onClick={() => plusCart(index)}><i className="fa-solid fa-plus"></i></button>
+                    </Box>
+                  </Box>
+                  <Box className="price-item-total">$ {parseFloat(item.price * item.count).toFixed(2)}</Box>
+                </Box>
+              </Box>
             ))}
           </Box>
-          <Box>
-            <Box className="footer-cart-column">
-              <Box className="footer-cart-row">
-                <p>SUBTOTAL</p>
-                <p>$ {totalPrice}</p>
-              </Box>
-              <Box className="footer-cart-row">
-                <p>DESCUENTO</p>
-                <p>$ 0.00</p>
-              </Box>
-              <Box className="footer-cart-row-total">
-                <h1>TOTAL</h1>
-                <h1 className="footer-cart-price">$ {totalPrice}</h1>
-              </Box>
+          <Box className="cart-summary-footer">
+            <Box className="cart-summary-row">
+              <span>SUBTOTAL</span>
+              <span>$ {totalPrice}</span>
+            </Box>
+            <Box className="cart-summary-row">
+              <span>DESCUENTO</span>
+              <span>$ 0.00</span>
+            </Box>
+            <Box className="cart-summary-total">
+              <span>TOTAL</span>
+              <span>$ {totalPrice}</span>
             </Box>
           </Box>
         </Box>
-        <Box maxW="lg" width={'100%'}>
+        <Box className="checkout-form">
           <Heading as="h1" fontSize={'1.5rem'} fontWeight={'500'}>Datos de Facturacion y Envio</Heading>
           {phase === 1 && (
             <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md">
@@ -250,9 +242,9 @@ export default function Checkout() {
           )}
           {phase === 2 && !pedidoCancelado && !finalizado && (
             <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md" textAlign="center">
-              <Box display={'flex'}>
+              <Box className="bank-accounts">
                   {Object.entries(bankAccounts).map(([key,banco])=>(
-                    <Box key={key} bg="gray.50" p={3} borderRadius="md" border="1px" borderColor="gray.200">
+                    <Box key={key} className="bank-account">
                       <Text fontWeight="bold">{banco.name}</Text>
                       <Text>{banco.type}</Text>
                       <Text>N° {banco.number}</Text>

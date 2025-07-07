@@ -107,6 +107,22 @@ export default function Header (props){
                     <ShopCart isCheked={isCheked} setChecked={setChecked}/>
                 </Box>
             </Box>
+            
+            {/* Barra de búsqueda móvil */}
+            <Box className="mobile-search-container">
+                <form onSubmit={searchSubmit}>
+                    <input 
+                        type="text" 
+                        value={buscar} 
+                        onChange={searchChange} 
+                        placeholder='Buscar productos...'
+                    />
+                    <button type='submit'>
+                        <i className="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </Box>
+            
             <NavBar/>
         </Box>
     )

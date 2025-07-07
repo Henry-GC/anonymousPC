@@ -31,17 +31,17 @@ function Carousel() {
   };
 
   return (
-    <Box width="90%" mx="auto" pb='2rem'>
+    <Box width="90%" mx="auto" pb='2rem' h={{ base: '25rem', md: '35rem' }} position='relative'>
       <Slider {...settings}>
         <Box
-            height='35rem'
+            height={{ base:'25rem', md: '35rem' }}
             backgroundImage={banner}
             backgroundSize='cover'
             borderRadius='1rem'
         >
         </Box>
         <Box
-            height='35rem'
+            height={{ base:'25rem', md: '35rem' }}
             backgroundImage={`/multimedia/advBig.jpg`}
             backgroundSize='cover'
             backgroundPosition='center'
@@ -49,7 +49,7 @@ function Carousel() {
         >
         </Box>
         <Box
-            height='35rem'
+            height={{ base:'25rem', md: '35rem' }}
             backgroundImage='/multimedia/adv_1.jpg'
             backgroundSize='cover'
             backgroundPosition='center'

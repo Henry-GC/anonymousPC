@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 html{
-  font-size: 1vw;
+  font-size: 16px;
   max-width: 100vw;
   min-height: 100vh;
 }
@@ -16,6 +16,7 @@ body{
 }
 img{
   max-width: 100%;
+  height: auto;
 }
 a{
 	text-decoration: none;
@@ -28,4 +29,41 @@ a:link{
 }
 #reset{
   color: rgb(255, 255, 255);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 10px;
+  }
 }
