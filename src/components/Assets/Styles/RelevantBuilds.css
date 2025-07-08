@@ -234,7 +234,7 @@
 
 @media (max-width: 480px) {
     .gamer-container {
-        padding: 0 0.2rem;
+        padding: 0 1rem;
     }
     .builds-destacados {
         gap: 0.3rem;

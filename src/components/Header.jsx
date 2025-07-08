@@ -4,7 +4,8 @@ import "./Assets/Styles/Header.css"
 import { ShopCart } from "./ShopCart";
 import { Link, useLocation } from "react-router-dom";
 import useCart from "./Hooks/useCart";
-import { Box, Text, Link as ChakraLink } from "@chakra-ui/react";
+import { Box, Text, Link as ChakraLink, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, VStack } from "@chakra-ui/react";
+import { HamburgerIcon } from '@chakra-ui/icons';
 import { ThemeContext } from "./Context/ThemeContext";
 import ThemeToggleSwitch from "./toggleThemeSwitch";
 
@@ -63,6 +64,11 @@ export default function Header (props){
         setBuscar("");
     };
 
+    // Drawer para menú hamburguesa móvil
+    const [isOpen, setIsOpen] = useState(false);
+    const onOpen = () => setIsOpen(true);
+    const onClose = () => setIsOpen(false);
+
     return(
         <Box
             className={`header ${isCheked ? 'sticky' : ''}`}
@@ -99,6 +105,7 @@ export default function Header (props){
                         <Box
                             color={theme.color}
                             fontSize='.8rem'
+                            className="login-text"
                         >
                             <Text as='h2' fontWeight='300'>Mi cuenta</Text>
                             <Text as='strong'>Ingresar</Text>
@@ -107,9 +114,63 @@ export default function Header (props){
                     <ShopCart isCheked={isCheked} setChecked={setChecked}/>
                 </Box>
             </Box>
-            
+            {/* Drawer para menú móvil */}
+            <Drawer isOpen={isOpen} placement="left" onClose={onClose} size="xs">
+                <DrawerOverlay />
+                <DrawerContent bg={theme.backgroundColor}>
+                    <DrawerCloseButton color={theme.color} />
+                    <DrawerHeader borderBottomWidth="1px" color={theme.color}>
+                        Accesos Directos
+                    </DrawerHeader>
+                    <DrawerBody>
+                        <VStack spacing={4} align="stretch" mt={4}>
+                            <ChakraLink as={Link} to='/productos' onClick={onClose} _hover={{textDecoration:'none'}}>
+                                <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
+                                    <i className="fas fa-desktop" style={{fontSize: '1.5rem', color: theme.color}}></i>
+                                    <Text color={theme.color} fontWeight="bold">Productos</Text>
+                                </Box>
+                            </ChakraLink>
+                            <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
+                                <i className="fas fa-gamepad" style={{fontSize: '1.5rem', color: theme.color}}></i>
+                                <Text color={theme.color} fontWeight="bold">Calculadora de Rendimiento</Text>
+                            </Box>
+                            <ChakraLink as={Link} to='/ensambles' onClick={onClose} _hover={{textDecoration:'none'}}>
+                                <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
+                                    <i className="fas fa-desktop" style={{fontSize: '1.5rem', color: theme.color}}></i>
+                                    <Text color={theme.color} fontWeight="bold">PC Gamer</Text>
+                                </Box>
+                            </ChakraLink>
+                            <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
+                                <i className="fas fa-laptop" style={{fontSize: '1.5rem', color: theme.color}}></i>
+                                <Text color={theme.color} fontWeight="bold">Laptop</Text>
+                            </Box>
+                            <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
+                                <i className="fas fa-wrench" style={{fontSize: '1.5rem', color: theme.color}}></i>
+                                <Text color={theme.color} fontWeight="bold">Refurbished</Text>
+                            </Box>
+                            <ChakraLink as={Link} to='/nosotros' onClick={onClose} _hover={{textDecoration:'none'}}>
+                                <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
+                                    <i className="fas fa-hand-spock" style={{fontSize: '1.5rem', color: theme.color}}></i>
+                                    <Text color={theme.color} fontWeight="bold">Nosotros</Text>
+                                </Box>
+                            </ChakraLink>
+                        </VStack>
+                    </DrawerBody>
+                </DrawerContent>
+            </Drawer>
             {/* Barra de búsqueda móvil */}
-            <Box className="mobile-search-container">
+            <Box className="mobile-search-container" display={'flex'} w={'100%'}>
+                <Box className="mobile-menu-butto" display={{ base: "block", md: "none" }}>
+                    {/* Menú hamburguesa para móviles */}
+                    <IconButton
+                        icon={<HamburgerIcon />}
+                        onClick={onOpen}
+                        bg={theme.backgroundColor}
+                        color={theme.color}
+                        aria-label="Abrir menú de accesos directos"
+                        size="lg"
+                    />
+                </Box>
                 <form onSubmit={searchSubmit}>
                     <input 
                         type="text" 
@@ -122,7 +183,6 @@ export default function Header (props){
                     </button>
                 </form>
             </Box>
-            
             <NavBar/>
         </Box>
     )

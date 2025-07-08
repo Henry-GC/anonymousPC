@@ -63,25 +63,29 @@ function RelevantProducts () {
                                             >
                                                 ${parseFloat(producto.price).toFixed(2)}
                                             </Text>
-                                            {addCart.some((arr)=>arr.id === producto.id)?(
-                                                <Button
-                                                    bg={theme.backgroundColor}
-                                                    color={theme.highlightColor}
-                                                    isDisabled
-                                                >
-                                                    Articulo añadido
-                                                </Button>
-                                            ):(
-                                                <Button
-                                                    bg={theme.backgroundColor}
-                                                    color={theme.color}
-                                                    isLoading={producto.id === loading ? true : null}
-                                                    onClick={()=>handleButtonCart(producto)}
-                                                    sx={{_hover:{bg:theme.highlightColor, color:theme.backgroundColor}}}
-                                                >
-                                                    Añadir al carrito <i className="fa-solid fa-cart-shopping"></i>
-                                                </Button>
-                                            )}
+                                             <Box mt={{ base: 'auto', md: 2 }} p={{ base: '1rem', md: '0'}} width="100%">
+                                                {addCart.some((arr) => arr.id === producto.id) ? (
+                                                    <Button
+                                                        bg={theme.backgroundColor}
+                                                        color={theme.highlightColor}
+                                                        isDisabled
+                                                        width="100%"
+                                                    >
+                                                        Articulo añadido
+                                                    </Button>
+                                                ) : (
+                                                    <Button
+                                                        bg={theme.backgroundColor}
+                                                        color={theme.color}
+                                                        isLoading={producto.id === loading}
+                                                        onClick={() => handleButtonCart(producto)}
+                                                        sx={{ _hover: { bg: theme.highlightColor, color: theme.backgroundColor } }}
+                                                        width="100%"
+                                                    >
+                                                        Añadir al carrito <i className="fa-solid fa-cart-shopping"></i>
+                                                    </Button>
+                                                )}
+                                            </Box>
                                         </Box>
                                     </Box>
                                 </Box>

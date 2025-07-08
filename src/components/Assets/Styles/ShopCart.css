@@ -194,3 +194,10 @@
 .cart-button ~ input:checked ~ .shop-cart{
     transform: translateX(0);
 }
+
+@media (max-width: 768px) {
+    .cart-button{
+        display: flex;
+        align-items: center;
+    }
+}

@@ -151,7 +151,7 @@
 
 @media (max-width: 480px) {
     .relevant-products-container {
-        padding: 0 0.2rem;
+        padding: 0 1rem;
     }
     .relevant-products {
         gap: 0.3rem;
