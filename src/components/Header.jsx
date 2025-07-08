@@ -159,7 +159,7 @@ export default function Header (props){
                 </DrawerContent>
             </Drawer>
             {/* Barra de búsqueda móvil */}
-            <Box className="mobile-search-container" display={'flex'} w={'100%'}>
+            <Box className="mobile-search-container" display={{ base: "flex", md: "none" }} w={'100%'}>
                 <Box className="mobile-menu-butto" display={{ base: "block", md: "none" }}>
                     {/* Menú hamburguesa para móviles */}
                     <IconButton
