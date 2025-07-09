@@ -140,14 +140,18 @@ export default function Header (props){
                                     <Text color={theme.color} fontWeight="bold">PC Gamer</Text>
                                 </Box>
                             </ChakraLink>
-                            <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
-                                <i className="fas fa-laptop" style={{fontSize: '1.5rem', color: theme.color}}></i>
-                                <Text color={theme.color} fontWeight="bold">Laptop</Text>
-                            </Box>
-                            <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
-                                <i className="fas fa-wrench" style={{fontSize: '1.5rem', color: theme.color}}></i>
-                                <Text color={theme.color} fontWeight="bold">Refurbished</Text>
-                            </Box>
+                            <ChakraLink as={Link} to='/laptops' onClick={onClose} _hover={{textDecoration:'none'}}>
+                                <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
+                                    <i className="fas fa-laptop" style={{fontSize: '1.5rem', color: theme.color}}></i>
+                                    <Text color={theme.color} fontWeight="bold">Laptop</Text>
+                                </Box>
+                            </ChakraLink>
+                            <ChakraLink as={Link} to='/refurbished' onClick={onClose} _hover={{textDecoration:'none'}}>
+                                <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
+                                    <i className="fas fa-wrench" style={{fontSize: '1.5rem', color: theme.color}}></i>
+                                    <Text color={theme.color} fontWeight="bold">Refurbished</Text>
+                                </Box>
+                            </ChakraLink>
                             <ChakraLink as={Link} to='/nosotros' onClick={onClose} _hover={{textDecoration:'none'}}>
                                 <Box display="flex" alignItems="center" gap={3} p={3} borderRadius="md" _hover={{bg: theme.secondaryBackground}}>
                                     <i className="fas fa-hand-spock" style={{fontSize: '1.5rem', color: theme.color}}></i>

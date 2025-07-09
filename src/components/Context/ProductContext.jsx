@@ -167,7 +167,13 @@ export const ProductProvider = ({ children }) => {
         setFilter(7);
         break;
       case "/productos/accesorios":
+        setFilter(8);
+        break;
+      case "/laptops":
         setFilter(9);
+        break;
+      case "/refurbished":
+        setFilter(10);
         break;
       default:
         setFilter("destacado");

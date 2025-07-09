@@ -50,14 +50,22 @@ function Inicio(){
                         <Box
                             className="direct-access"
                         >
-                            <i className="fas fa-laptop"></i>
-                            <h2>Laptop</h2>
+                            <ChakraLink as={Link} to='/laptops' _hover={{textDecoration:'none'}}>
+                                <Box className="direct-access">
+                                    <i className="fas fa-laptop"></i>
+                                    <h2>Laptop</h2>
+                                </Box>
+                            </ChakraLink>
                         </Box>
                         <Box
                             className="direct-access"
-                        >
-                            <i className="fas fa-wrench"></i>
-                            <h2>Refurbished</h2>
+                        >   
+                            <ChakraLink as={Link} to='/refurbished' _hover={{textDecoration:'none'}}>
+                                <Box className="direct-access">
+                                    <i className="fas fa-wrench"></i>
+                                    <h2>Refurbished</h2>
+                                </Box>
+                            </ChakraLink>
                         </Box>
                         <ChakraLink as={Link} to='/nosotros' _hover={{textDecoration:'none'}}>
                             <Box className="direct-access">

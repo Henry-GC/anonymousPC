@@ -15,6 +15,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { Box, ChakraProvider } from '@chakra-ui/react';
 import Checkout from './components/Checkout';
 import OAuthCallback from './components/Routes/oAuthGoogle';
+import Laptops from './components/Routes/Laptops';
+import Refurbished from './components/Routes/Refurbished';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
                   <Route path='/productos/carcasa' element={<Productos />} />
                   <Route path='/productos/accesorios' element={<Productos />} />
                   <Route path='/ensambles' element={<Ensambles />} />
+                  <Route path='/laptops' element={<Laptops />} />
+                  <Route path='/refurbished' element={<Refurbished />} />
                   <Route path='/nosotros' element={<Nosotros />} />
                   <Route path='/oauth-callback' element={<OAuthCallback/>}/>
                   <Route path='/usuario/*' element={
