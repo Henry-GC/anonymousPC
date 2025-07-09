@@ -31,15 +31,19 @@ function Productos() {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              padding="0 10rem"
+              padding={{base:'0 0', md:"0 10rem"}}
+              // bgColor={'blue'}
+              w={{base:'100%', md:'80%'}}
             >
               <Box
                 display="flex"
                 color={theme.color}
                 gap="0.5rem"
-                fontSize="1.3rem"
+                fontSize={{base:'0.8rem', md:"1.3rem"}}
                 alignContent="center"
                 alignItems="center"
+                w={{base:'100%', md:'fit-content'}}
+                // bgColor={'red'}
               >
                 <strong>Ordenar por: </strong>
                 <select className="select-container" onChange={handleSort}>

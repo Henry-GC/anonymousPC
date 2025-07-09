@@ -6,9 +6,27 @@
 }
 .container-prod-main{
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Define 3 columnas de igual ancho */
-    row-gap: 1vw; /* Espaciado entre los elementos (opcional) */
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 1vw;
     column-gap: 2vw;
+}
+
+@media (max-width: 992px) {
+    .container-prod-main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container-prod-main {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .container-prod-main {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 .item-prod-main{
     display: flex;

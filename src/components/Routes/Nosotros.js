@@ -62,10 +62,7 @@ function Nosotros(){
                         <h1>ENTENDEMOS LO QUE BUSCAS</h1>
                     </div>
                     <p>
-                        Comprometidos con la satisfacción de nuestros clientes, en Anonymous PC no solo vendemos productos, sino que también brindamos asesoramiento y soporte técnico continuo. Sabemos lo importante que es tener un equipo confiable para tus proyectos y entretenimiento, por eso trabajamos arduamente para ser tu aliado de confianza en el mundo de la informática.
-                    </p>
-                    <p>
-                        Nuestro objetivo es transformar la manera en que se adquieren y utilizan los equipos de computación en Esmeraldas, brindando una experiencia de compra única y satisfactoria. Desde nuestra fundación, hemos crecido gracias a la confianza de nuestros clientes y seguimos dedicándonos a superar sus expectativas con cada producto y servicio que ofrecemos.
+                        Comprometidos con la satisfacción de nuestros clientes, en Anonymous PC no solo vendemos productos, sino que también brindamos asesoramiento y soporte técnico continuo. Sabemos lo importante que es tener un equipo confiable para tus proyectos.
                     </p>
                 </div>
             </Box>

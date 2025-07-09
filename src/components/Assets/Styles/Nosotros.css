@@ -1,6 +1,6 @@
 .about-section-container{
     width: 100%;
-    background: #190425;
+    background: #fff;
     padding-bottom: 2vw;
 }
 
@@ -18,7 +18,7 @@
 }
 .video-overlay {
     position: absolute;
-    top: 55%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
@@ -49,15 +49,18 @@
     padding: 10vh 0 30vh 0;
 }
 .about-history-container h2{
-    color: #fff;
+    color: #7c3aed;
     font-size: 4rem;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
 }
 .about-history-container p{
     width: 80%;
     text-align: center;
-    color: #fff;
+    color: #111;
     font-size: 2rem;
     line-height: 1.6;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* ADVERTISMENT IMAGES SECTION */
@@ -147,16 +150,21 @@
     display: flex;
     flex-direction: column;
     gap: 1vw;
-    color: #fff;
+    color: #111;
     font-size: 1.4rem;
+    font-family: 'Montserrat', sans-serif;
 }
 .text-adv-title p{
-    color: #F0E82C;
-    font-size: 2rem;
+    color: #000000; /* DE GAMERS PARA GAMERS blanco */
+    font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 .text-adv-title h1{
-    color: #fff;
-    font-size: 3.5rem;
+    color: #7c3aed;
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
 }
 
 /* BRANDS SECTION */
@@ -165,18 +173,21 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    color: #fff;
+    color: #111;
     padding: 30vh 0 20vh 0;
+    background: #fff;
 }
 .about-brand-container h1{
     font-family: "Montserrat";
     font-size: 2vw;
     font-weight: 800;
+    color: #05A2BC; /* ANONYMOUS PC celeste */
 }
 .about-brand-container p{
     font-size: 2vw;
     font-family: "Montserrat";
     font-weight: 800;
+    color: #111;
 }
 .about-brand-images{
     display: flex;
@@ -192,4 +203,176 @@
 .about-image-brand{
     width: 10vw;
     height: auto;
+}
+
+@media (max-width: 900px) {
+    .about-section-container {
+        padding-bottom: 0;
+    }
+    .about-video-container {
+        width: 100vw;
+        padding-bottom: 0;
+        position: relative;
+        overflow: hidden;
+    }
+    .video-about-us {
+        width: 360vw;
+        height: auto;
+        min-height: 432px;
+        max-height: 216vw;
+        object-fit: cover;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+    }
+    .video-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        width: 98vw;
+        z-index: 2;
+        padding: 0 0.5rem;
+    }
+    .video-overlay h1 {
+        font-family: 'Montserrat';
+        font-size: 2rem;
+        font-weight: 600;
+        padding-bottom: 0.5vw;
+        color: #05A2BC;
+    }
+    .video-overlay p {
+        font-family: 'Roboto';
+        font-weight: 900;
+        font-size: 3rem;
+        letter-spacing: 0.1rem;
+        line-height: 3rem;
+    }
+    .about-history-container {
+        padding: 5rem 0;
+        gap: 1rem;
+        /* font-size: 5rem; */
+    }
+    .about-history-container h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        font-family: 'Montserrat', sans-serif;
+        color: #7c3aed;
+        text-align: center;
+        width: 100%;
+    }
+    .about-history-container p {
+        font-size: 1.5rem;
+        line-height: 1.4;
+        font-family: 'Montserrat', sans-serif;
+        color: #111;
+        font-weight: 500;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .about-adv-container {
+        flex-direction: column;
+        padding: 0 1vw;
+        gap: 1vw;
+        align-items: center;
+    }
+    .pictures-adv-container {
+        flex-direction: column;
+        gap: 1vw;
+        max-width: 100%;
+        align-items: center;
+        /* background-color: #05A2BC; */
+    }
+    .pic-adv-1  {
+        width: 50vw;
+        height: 25vw;
+        overflow: hidden;
+        border-radius: .5rem;
+    }
+    .pic-adv-2{
+        width: 25vw;
+        height: 25vw;
+        overflow: hidden;
+        border-radius: .5vw;
+    }
+    .pic-adv-3{
+        width: 25vw;
+        height: 25vw;
+        overflow: hidden;
+        border-radius: .5vw;
+    }
+    .pic-adv-4{
+        width: 40vw;
+        height: 50vw;
+        overflow: hidden;
+        border-radius: .5vw;
+    }
+    .pic-adv-5{
+        width: 35vw;
+        height: 20vw;
+        overflow: hidden;
+        border-radius: .5vw;
+    }
+    .pic-adv-6{
+        width: 20vw;
+        height: 20vw;
+        overflow: hidden;
+        border-radius: .5vw;
+    }
+    .pic-adv-7{
+        width: 35vw;
+        height: 20vw;
+        overflow: hidden;
+        border-radius: .5vw;
+    }
+    .text-adv-container {
+        font-size: 1rem;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+        padding: 5rem 0;
+    }
+    .text-adv-container p {
+        font-size: 1.5rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        width: 90%;
+    }
+    .text-adv-title p {
+        width: 100%;
+        font-size: 1.5rem;
+        color: #000000; /* DE GAMERS PARA GAMERS blanco */
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+    }
+    .text-adv-title h1 {
+        font-size: 1.7rem;
+    }
+    .about-brand-container {
+        padding: 4vh 0 4vh 0;
+    }
+    .about-brand-container h1 {
+        font-size: 1rem;
+        text-align: center;
+    }
+    .about-brand-container p {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    .about-brand-images {
+        padding: 2vh 0;
+    }
+    .about-images-row {
+        gap: 1vw;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .about-image-brand {
+        width: 28vw;
+        min-width: 40px;
+        max-width: 70px;
+    }
 }

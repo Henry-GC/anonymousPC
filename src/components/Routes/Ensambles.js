@@ -30,6 +30,7 @@ function Ensambles(){
                                     <div className="render-components-container">
                                         {renderComponents(build)}
                                     </div>
+                                    <button className="add-to-cart-btn">Añadir al carrito</button>
                                 </div>
                                 <div className="img-gamer-build-container">
                                     <img src={build1} alt="IMAGEN ENSAMBLE" width="100%"/>
@@ -47,6 +48,7 @@ function Ensambles(){
                                     <div className="render-components-container">
                                         {renderComponents(build)}
                                     </div>
+                                    <button className="add-to-cart-btn">Añadir al carrito</button>
                                 </div>
                             </div>
                         )}

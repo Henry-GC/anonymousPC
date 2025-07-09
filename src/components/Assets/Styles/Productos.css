@@ -27,3 +27,29 @@
     cursor: pointer;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
+
+@media (max-width: 768px) {
+    .container-product{
+        padding: 0;
+    }
+    .container-product-body{
+        padding: 0;
+    }
+    .container-side{
+        padding: 0;
+    }
+    .select-container {
+        /* width: 100%; */
+        padding: 0rem;
+        font-size: 0.8rem;
+    }
+    .select-container option {
+        font-size: 0.8rem;
+    }
+    .container-product{
+        padding: 0 1rem;
+    }
+    .container-product-body{
+        padding: 0 1rem;
+    }
+}

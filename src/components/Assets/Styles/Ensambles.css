@@ -31,31 +31,31 @@
     align-items: center;
 }
 .text-gamer-build-container h1{
-    color: #fff;
-    font-size: 3rem;
+    color: #7c3aed;
+    font-size: 2rem;
     font-weight: 700;
     font-family: 'Montserrat';
-    filter:drop-shadow(1px 1px 5px #000000);
+    /*filter:drop-shadow(1px 1px 5px #000000);*/
 }
 .text-gamer-build-container p{
     align-self: flex-start;
-    color: #fff;
+    color: #05A2BC;
     font-family: 'Roboto';
     font-weight: 400;
-    padding-left: 5vw;
+    padding-left: 3rem;
 }
 .text-gamer-build-container strong{
-    color: #009317;
-    font-size: 2.5rem;
+    color: #7c3aed;
+    font-size: 2rem;
     font-family: 'Montserrat';
     font-weight: 900;
-    filter:drop-shadow(1px 1px 5px #000000);
+    /*filter:drop-shadow(1px 1px 5px #000000);*/
 }
 .render-components-container{
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 1vw;
+    gap: 1rem;
 }
 .row-component-container{
     display: flex;
@@ -63,8 +63,8 @@
     gap: 1vw;
 }
 .row-component-img{
-    width: 4vw;
-    height: 4vw;
+    width: 2rem;
+    height: 2rem;
 }
 .row-component-title{
     display: flex;
@@ -73,14 +73,64 @@
 .row-component-title p{
     font-family: 'Roboto';
     font-weight: 400;
-    font-size: 1.5rem;
-    color: #05A2BC;
+    font-size: 0.8rem;
+    color: #7c3aed;
     padding-left: 0;
 }
 .row-component-title h2{
     font-family: "Roboto";
     font-weight: 500;
-    font-size: 2rem;
-    color: #fff;
+    font-size: 1rem;
+    color: #111;
     line-height: 90%;
+}
+/* ADD TO CART BUTTON */
+.add-to-cart-btn {
+    margin-top: 1.5rem;
+    padding: 0.7rem 2.2rem;
+    background: linear-gradient(90deg, #7c3aed 60%, #05A2BC 100%);
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 12px 0 rgba(124,58,237,0.10);
+    transition: background 0.2s, transform 0.2s;
+}
+.add-to-cart-btn:hover {
+    background: linear-gradient(90deg, #05A2BC 60%, #7c3aed 100%);
+    transform: scale(1.04);
+}
+
+@media (max-width: 900px) {
+    .builds-gamer-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 5rem;
+        /* padding: 2rem 10rem; */
+    }
+    .build-gamer-container{
+        width: 90%;
+    }
+    .img-gamer-build-container {
+        width: 30rem;
+    }
+    .text-gamer-build-container {
+        width: 90%;
+        align-items: center;
+    }
+    .text-gamer-build-container h1 {
+        font-size: 1.5rem;
+    }
+    .text-gamer-build-container p {
+        font-size: 0.9rem;
+        padding-left: 1rem;
+    }
+    .text-gamer-build-container strong {
+        font-size: 1.5rem;
+    }
+
 }
