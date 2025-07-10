@@ -42,7 +42,8 @@
     color: #05A2BC;
     font-family: 'Roboto';
     font-weight: 400;
-    padding-left: 3rem;
+    font-size: 1.2rem;
+    padding-left: 6rem;
 }
 .text-gamer-build-container strong{
     color: #7c3aed;
@@ -54,6 +55,7 @@
 .render-components-container{
     display: flex;
     flex-direction: column;
+    padding: 0 3rem;
     width: 100%;
     gap: 1rem;
 }
@@ -73,14 +75,14 @@
 .row-component-title p{
     font-family: 'Roboto';
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #7c3aed;
     padding-left: 0;
 }
 .row-component-title h2{
     font-family: "Roboto";
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #111;
     line-height: 90%;
 }
@@ -132,5 +134,13 @@
     .text-gamer-build-container strong {
         font-size: 1.5rem;
     }
-
+    .render-components-container {
+        padding: 0;
+    }
+    .row-component-title p{
+        font-size: 0.8rem;
+    }
+    .row-component-title h2{
+        font-size: 1rem;
+    }
 }

@@ -22,7 +22,7 @@ function useRender (){
                             <img src={sections[1].icon} alt="MBO ICON" width="100%"/>
                         </div>
                         <div className="row-component-title">
-                            <p>Procesador</p>
+                            <p>Placa madre</p>
                             <h2>{build.MBO}</h2>
                         </div>
                     </div>
@@ -33,7 +33,7 @@ function useRender (){
                             <img src={sections[2].icon} alt="GPU ICON" width="100%"/>
                         </div>
                         <div className="row-component-title">
-                            <p>Procesador</p>
+                            <p>Tarjeta de video</p>
                             <h2>{build.GPU}</h2>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ function useRender (){
                             <img src={sections[3].icon} alt="RAM ICON" width="100%"/>
                         </div>
                         <div className="row-component-title">
-                            <p>Procesador</p>
+                            <p>Memoria ram</p>
                             <h2>{build.RAM}</h2>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ function useRender (){
                             <img src={sections[4].icon} alt="SSD ICON" width="100%"/>
                         </div>
                         <div className="row-component-title">
-                            <p>Procesador</p>
+                            <p>Almacenamiento</p>
                             <h2>{build.SSD}</h2>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ function useRender (){
                             <img src={sections[5].icon} alt="CPU ICON" width="100%"/>
                         </div>
                         <div className="row-component-title">
-                            <p>Procesador</p>
+                            <p>Fuente de poder</p>
                             <h2>{build.PSU}</h2>
                         </div>
                     </div>

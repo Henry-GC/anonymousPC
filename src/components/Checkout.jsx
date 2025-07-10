@@ -171,7 +171,7 @@ export default function Checkout() {
             {addCart.map((item, index) => (
               <Box key={item.id} className="cart-item">
                 <Box className="cart-item-image">
-                  <img src={item.image} alt={item.name} />
+                  <img src={item.img_url} alt={item.name} />
                 </Box>
                 <Box className="cart-item-details">
                   <strong>{item.name}</strong>
