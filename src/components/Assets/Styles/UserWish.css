@@ -7,8 +7,14 @@
 .user-wish-items-container{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    max-height: 72vh;
+    max-height: 40rem;
     overflow-y: scroll;
     scrollbar-width: none;
     row-gap: 1rem;
+}
+@media (max-width: 900px) {
+    .user-wish-items-container{
+        grid-template-columns: repeat(2,1fr);
+        max-height: 50rem ;
+    }
 }

@@ -7,7 +7,7 @@
 .user-helpCenter-section{
     display: flex;
     flex-direction: column;
-    height: 75vh;
+    height: 40rem;
     overflow-y: scroll;
     scrollbar-width: none;
 }

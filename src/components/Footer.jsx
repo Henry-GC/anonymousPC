@@ -28,7 +28,7 @@ import './Assets/Styles/Footer.css'
           <Box px={{ base: '0.5rem', md: '2rem' }} className='footer-logo'>
             <ChakraLink href='/'>
               <Box className='logo-picture'>
-                <img src='https://ax8vpotqikpi.objectstorage.us-phoenix-1.oci.customer-oci.com/n/ax8vpotqikpi/b/anonymouspc/o/src%2Fpublic%2FlogoLogo.png' width='100%'/>
+                <img src='https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/Logo.png' width='100%'/>
               </Box>
             </ChakraLink>
             

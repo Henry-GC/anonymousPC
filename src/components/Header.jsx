@@ -1,10 +1,12 @@
 import NavBar from "./NavBar";
 import { useState, useRef, useEffect, useContext } from "react";
+import { useProducts } from "./Context/ProductContext";
+import { useNavigate } from "react-router-dom";
 import "./Assets/Styles/Header.css"
 import { ShopCart } from "./ShopCart";
 import { Link, useLocation } from "react-router-dom";
 import useCart from "./Hooks/useCart";
-import { Box, Text, Link as ChakraLink, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, VStack } from "@chakra-ui/react";
+import { Box, Text, Link as ChakraLink, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, VStack, FormControl } from "@chakra-ui/react";
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { ThemeContext } from "./Context/ThemeContext";
 import ThemeToggleSwitch from "./toggleThemeSwitch";
@@ -13,6 +15,9 @@ export default function Header (props){
     const {theme} = useContext(ThemeContext);
     const [isCheked, setChecked] = useState(false);
     const [buscar, setBuscar] = useState("");
+    const [resultados, setResultados] = useState([]);
+    const { allProducts } = useProducts();
+    const navigate = useNavigate();
     const location = useLocation();
     const headerRef = useRef(null);
 
@@ -56,12 +61,28 @@ export default function Header (props){
       }, [isCheked]);
 
     const searchChange = (e) => {
-        setBuscar(e.target.value);
+        const value = e.target.value;
+        setBuscar(value);
+        if (value.trim() === "") {
+            setResultados([]);
+        } else {
+            setResultados(
+                allProducts.filter(prod =>
+                    prod.name && prod.name.toLowerCase().includes(value.toLowerCase())
+                )
+            );
+        }
     };
     const searchSubmit = (e) => {
         e.preventDefault();
-        props.onSearch(buscar);
+        // Si quieres hacer búsqueda tradicional, puedes dejar esto
+        // props.onSearch(buscar);
+        // setBuscar("");
+    };
+    const handleProductClick = (id) => {
         setBuscar("");
+        setResultados([]);
+        navigate(`/producto/${id}`);
     };
 
     // Drawer para menú hamburguesa móvil
@@ -76,22 +97,57 @@ export default function Header (props){
             bg={theme.backgroundColor}
         >
             {/* <ThemeToggleSwitch/> */}
-            <Box
-                className="header-container"
-            >
+            <Box className="header-container">
                 <Box className="home-container">
                     <Box className="logo-container">
                         <ChakraLink href="/">
-                            <img alt="ISOLOGO" src="https://ax8vpotqikpi.objectstorage.us-phoenix-1.oci.customer-oci.com/n/ax8vpotqikpi/b/anonymouspc/o/src%2Fpublic%2Fisologoisologo.png" width="100%"/>
+                            <img alt="ISOLOGO" src="https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/isologo.png" width="100%"/>
                         </ChakraLink>
                     </Box>
-                    <Box className="search-container">
-                        <form onSubmit={searchSubmit}>
-                            <button type='submit'>
-                                <i id="lupa" className="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                            <input type="text" value={buscar} onChange={searchChange} placeholder='Buscar...'/>
+                    <Box className="search-container" style={{ position: "relative" }}>
+                        <form onSubmit={searchSubmit} autoComplete="off">
+                            <FormControl
+                                display="flex"
+                                alignItems="center"
+                                bg={theme.secondaryBackground}
+                                borderRadius="md"
+                                boxShadow="md"
+                                p={2}
+                                gap={'1rem'}
+                                // w={'100%'}
+                            >
+                                <button type='submit'>
+                                    <i id="lupa" className="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <input type="text" value={buscar} onChange={searchChange} placeholder='Buscar...'/>
+                            </FormControl>
                         </form>
+                        {buscar && (
+                            <Box className="search-preview" position="absolute" zIndex={20} bg="white" w="100%" boxShadow="md" borderRadius="md" mt={2} maxH="350px" overflowY="auto">
+                                {resultados.length === 0 ? (
+                                    <Text p={3} color="gray.500">No se encontraron productos.</Text>
+                                ) : (
+                                    resultados.slice(0, 6).map(prod => (
+                                        <Box
+                                            key={prod.id}
+                                            display="flex"
+                                            alignItems="center"
+                                            p={2}
+                                            borderBottom="1px solid #eee"
+                                            cursor="pointer"
+                                            _hover={{ bg: "gray.100" }}
+                                            onClick={() => handleProductClick(prod.id)}
+                                        >
+                                            <img src={prod.img_url} alt={prod.name} width={40} height={40} style={{ objectFit: "cover", borderRadius: 8, marginRight: 12 }} />
+                                            <Box>
+                                                <Text color={theme.accentColor} fontSize='medium' fontWeight="bold">{prod.name}</Text>
+                                                <Text color="purple.500" fontSize="sm">${parseFloat(prod.price).toFixed(2)}</Text>
+                                            </Box>
+                                        </Box>
+                                    ))
+                                )}
+                            </Box>
+                        )}
                     </Box>
                 </Box>
                 <Box className="bar-container">
@@ -163,9 +219,8 @@ export default function Header (props){
                 </DrawerContent>
             </Drawer>
             {/* Barra de búsqueda móvil */}
-            <Box className="mobile-search-container" display={{ base: "flex", md: "none" }} w={'100%'}>
+            <Box className="mobile-search-container" display={{ base: "flex", md: "none" }} w={'100%'} position="relative">
                 <Box className="mobile-menu-butto" display={{ base: "block", md: "none" }}>
-                    {/* Menú hamburguesa para móviles */}
                     <IconButton
                         icon={<HamburgerIcon />}
                         onClick={onOpen}
@@ -175,17 +230,44 @@ export default function Header (props){
                         size="lg"
                     />
                 </Box>
-                <form onSubmit={searchSubmit}>
+                <form onSubmit={searchSubmit} style={{ width: '100%' }} autoComplete="off">
                     <input 
                         type="text" 
                         value={buscar} 
                         onChange={searchChange} 
                         placeholder='Buscar productos...'
+                        style={{ width: '100%', borderRadius: '1rem', border: '1px solid #7c3aed', padding: '0.5rem', fontSize: '1rem' }}
                     />
-                    <button type='submit'>
+                    <button type='submit' style={{ background: 'none', border: 'none', color: '#7c3aed', fontSize: '1.3rem', marginLeft: '0.5rem' }}>
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
+                {buscar && (
+                    <Box className="search-preview" position="absolute" zIndex={30} bg="white" w="100%" boxShadow="md" borderRadius="md" mt={2} maxH="350px" overflowY="auto" left={0} top={{ base: '2.5rem', md: '2.5rem' }}>
+                        {resultados.length === 0 ? (
+                            <Text p={3} color="gray.500">No se encontraron productos.</Text>
+                        ) : (
+                            resultados.slice(0, 6).map(prod => (
+                                <Box
+                                    key={prod.id}
+                                    display="flex"
+                                    alignItems="center"
+                                    p={2}
+                                    borderBottom="1px solid #eee"
+                                    cursor="pointer"
+                                    _hover={{ bg: "gray.100" }}
+                                    onClick={() => handleProductClick(prod.id)}
+                                >
+                                    <img src={prod.img_url} alt={prod.name} width={40} height={40} style={{ objectFit: "cover", borderRadius: 8, marginRight: 12 }} />
+                                    <Box>
+                                        <Text color={theme.accentColor} fontSize='medium' fontWeight="bold">{prod.name}</Text>
+                                        <Text color="purple.500" fontSize="sm">${parseFloat(prod.price).toFixed(2)}</Text>
+                                    </Box>
+                                </Box>
+                            ))
+                        )}
+                    </Box>
+                )}
             </Box>
             <NavBar/>
         </Box>

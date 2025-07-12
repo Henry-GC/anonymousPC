@@ -17,6 +17,7 @@ import Checkout from './components/Checkout';
 import OAuthCallback from './components/Routes/oAuthGoogle';
 import Laptops from './components/Routes/Laptops';
 import Refurbished from './components/Routes/Refurbished';
+import DetailProduct from './components/DetailProduct';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                   }/>
                   <Route path='/login/*' element={<Login/>}/>
                   <Route path='/checkout' element={<Checkout/>}/>
+                  <Route path='/producto/:id' element={<DetailProduct/>}/>
                 </Routes>
                 </Box>
                 

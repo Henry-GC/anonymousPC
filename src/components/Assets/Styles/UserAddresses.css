@@ -50,3 +50,27 @@
     font-family: 'Montserrat';
     font-weight: 700;
 }
+@media (max-width: 900px) {
+    .user-addresses-container{
+        padding: 1rem;
+        width: 100%;
+    }
+    .user-addresses-tittle{
+        font-size: 1rem;
+    }
+    .address-item-container{
+        /* flex-direction: column; */
+        gap: 0.5rem;
+    }
+    .address-text-rows{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .address-text-row{
+        flex-direction: column;
+    }
+    .address-text-row-city{
+        flex-direction: column;
+    }
+}

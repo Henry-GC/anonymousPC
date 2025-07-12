@@ -81,7 +81,7 @@ function Inicio(){
                 <Box className="adv-container" pt='5rem'>
                     <Box className="adv-inside">
                         <Box className="big-adv">
-                            <img alt="big Adv" src="/multimedia/advBig.jpg" width="110%"/>
+                            <img alt="big Adv" src="https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/advBig.jpg" width="110%"/>
                         </Box>
                         <Box className="sb-column">
                             <Box className="sb-row">
@@ -89,7 +89,7 @@ function Inicio(){
                                     <img alt="small adv" src="/multimedia/adv1.jpg" width="100%"/>
                                 </Box>
                                 <Box className="small-box">
-                                    <img alt="small adv" src="/multimedia/adv2.jpg" width="100%"/>
+                                    <img alt="small adv" src="https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv2.jpg" width="100%"/>
                                 </Box>
                             </Box>
                             <Box className="sb-row">
@@ -97,7 +97,7 @@ function Inicio(){
                                     <img alt="small adv" src="/multimedia/adv3.png" width="100%"/>
                                 </Box>
                                 <Box className="small-box">
-                                    <img alt="small adv" src="/multimedia/adv4.png" width="100%"/>
+                                    <img alt="small adv" src="https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv4.png" width="100%"/>
                                 </Box>
                             </Box>
                         </Box>

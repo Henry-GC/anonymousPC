@@ -7,7 +7,7 @@
 .user-section-rows{
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1rem;
 }
 .user-section-row{
     padding-left: 2rem;
@@ -45,4 +45,32 @@
     font-weight: 700;
     box-shadow: 1rem 1rem 1rem #00000025;
     cursor: pointer;
+}
+@media (max-width: 900px) {
+    .user-profile-section{
+        padding: 1rem;
+        width: 100%;
+    }
+    .user-section-rows{
+        gap: 1rem;
+    }
+    .user-section-row{
+        padding-left: 0;
+        padding: 0;
+    }
+    .user-section-row-title{
+        font-size: 1rem !important;
+    }
+    .user-section-row input{
+        font-size: 1.2rem;
+    }
+    .user-section-row-value{
+        font-size: 1rem;
+    }
+    .reset-pass-button{
+        margin-left: 0;
+        width: fit-content;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
 }

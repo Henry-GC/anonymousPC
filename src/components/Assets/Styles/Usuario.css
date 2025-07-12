@@ -3,10 +3,11 @@
     flex-grow: 1;
     width: 100%;
     justify-content: center;
+    gap: 1rem;
 }
 .user-main-container-col1{
     width: 30%;
-    align-self: center;
+    /* align-self: center; */
 }
 .user-main-container-col2{
     width: 60%;

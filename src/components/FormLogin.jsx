@@ -15,7 +15,7 @@ const FormLogin = () => {
 
 
   const login = () => {
-    window.open(`${process.env.REACT_APP_API_URL}/auth/google`);
+    window.open(`${process.env.REACT_APP_API_URL}/auth/google`, '_self');
   };
 
   const formik = useFormik({

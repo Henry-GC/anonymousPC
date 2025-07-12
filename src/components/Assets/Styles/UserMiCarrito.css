@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 1rem;
     padding-top: 3rem;
+    width: 100%;
 }
 .user-section-title{
     font-family: 'Montserrat';
@@ -13,7 +14,6 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 75vh;
     overflow-y: scroll;
 }
 .user-cart-items-container::-webkit-scrollbar{
@@ -49,6 +49,9 @@
     align-items: center;
     gap: 1rem;
 }
+.user-count-item-btns{
+    color: red;
+}
 .user-price-item{
     align-self: center;
     font-size: 1.2rem;
@@ -77,4 +80,48 @@
     font-size: 1.2rem;
     font-weight: 700;
     border: none;
+}
+
+@media (max-width: 900px) {
+    .user-cart-container{
+        padding: 1rem;
+        width: 100%;
+    }
+    .user-section-title{
+        font-size: 1rem;
+    }
+    .user-cart-items-container{
+        max-height: 50vh;
+    }
+    .user-item-shopCart{
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .user-text-item{
+        align-items: center;
+        width: 100%;
+    }
+    .user-text-body{
+        width: 80%;
+    }
+    .user-text-body strong{
+        font-size: 0.9rem;
+        width: 90%;
+    }
+    .user-count-item{
+        align-items: center;
+        font-size: 0.8rem;
+    }
+    .user-price-item{
+        display: flex;
+        justify-content: end;
+        font-size: 0.7rem;
+        width: 20%;
+    }
+    .user-total-cart-row1{
+        font-size: 1rem;
+    }
+    .user-count-item-btns{
+        font-size: 0.8rem;
+    }
 }

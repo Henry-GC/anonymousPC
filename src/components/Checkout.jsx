@@ -7,7 +7,6 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
@@ -15,6 +14,8 @@ import useCart from './Hooks/useCart';
 import Axios from '../utils/axiosConfig';
 import useScrollToTop from './Hooks/useScrollToTop';
 import './Assets/Styles/Checkout.css';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const bankAccounts = {
   pichincha: {
@@ -34,17 +35,7 @@ const bankAccounts = {
 export default function Checkout() {
   const navigate = useNavigate();
   const [phase, setPhase] = useState(1);
-  const [form, setForm] = useState({
-    nombres: '',
-    email: '',
-    celular: '',
-    ci: '',
-    direccion: '',
-    referencia: '',
-    banco: '',
-    terminos: false,
-  });
-  const [formError, setFormError] = useState('');
+  const [info, setInfo] = useState({});
   const [comprobante, setComprobante] = useState('');
   const [comprobanteImg, setComprobanteImg] = useState(null);
   const [timer, setTimer] = useState(1800); // 30 minutos en segundos 
@@ -54,6 +45,32 @@ export default function Checkout() {
   const [finalizado, setFinalizado] = useState(false);
   const {addCart,setAddCart, delToCart, plusCart, minusCart, totalPrice, buyCart } = useCart()
   useScrollToTop();
+
+  const formik = useFormik({
+    initialValues: {
+      nombres: '',
+      email: '',
+      celular: '',
+      ci: '',
+      direccion: '',
+      referencia: '',
+      terminos: false,
+    },
+    validationSchema: Yup.object({
+      nombres: Yup.string().required('Campo obligatorio'),
+      email: Yup.string().email('Correo electrónico inválido').required('Campo obligatorio'),
+      celular: Yup.string().required('Campo obligatorio'),
+      ci: Yup.string().required('Campo obligatorio'),
+      direccion: Yup.string().required('Campo obligatorio'),
+      terminos: Yup.boolean().oneOf([true], 'Debes aceptar los términos y condiciones'),
+    }),
+    onSubmit: (values) => {
+      setInfo(values);
+      setPhase(2);
+      setTimer(1800);
+      setPedidoCancelado(false);
+    },
+  });
 
   useEffect(() => {
     if (phase === 2 && !finalizado && !pedidoCancelado) {
@@ -88,46 +105,22 @@ export default function Checkout() {
     navigate('/');
   };
 
-  const handleInput = (e) => {
-    const { name, value, type, checked } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
-
   const handleComprobanteImg = (e) => {
     if (e.target.files && e.target.files[0]) {
       setComprobanteImg(URL.createObjectURL(e.target.files[0]));
     }
   };
 
-  const validateForm = () => {
-    if (!form.nombres || !form.email || !form.celular || !form.ci || !form.direccion) {
-      setFormError('Por favor, completa todos los campos.');
-      return false;
-    }
-    if (!form.terminos) {
-      setFormError('Debes aceptar los términos y condiciones.');
-      return false;
-    }
-    setFormError('');
-    return true;
-  };
-
-  const handlePagar = () => {
-    if (validateForm()) {
-      setPhase(2);
-      setTimer(1800);
-      setPedidoCancelado(false);
-    }
-  };
-
   const handleFinalizar = async () => {
+    const allInfo = {
+      ...info,
+      comprobante: comprobante,
+    }
     const {cartDetails} = buyCart()
     const data = {
         details: cartDetails,
-        total: totalPrice
+        total: totalPrice,
+        info: allInfo
     }
     try {
         const response = await Axios.post('/api/user/createorder',data)
@@ -207,37 +200,39 @@ export default function Checkout() {
           <Heading as="h1" fontSize={'1.5rem'} fontWeight={'500'}>Datos de Facturacion y Envio</Heading>
           {phase === 1 && (
             <Box border="1px" borderRadius="md" borderColor="gray.200" p={6} boxShadow="md">
-              <Stack spacing={4}>
-                <Box>
-                  <Text>Nombres Completos</Text>
-                  <Input placeholder="Escribir..." name="nombres" value={form.nombres} onChange={handleInput} />
-                </Box>
-                <Box>
-                  <Text>E-MAIL</Text>
-                  <Input placeholder="e-mail" name="email" value={form.email} onChange={handleInput} />
-                </Box>
-                <Box>
-                  <Text>Celular</Text>
-                  <Input placeholder="Celular" name="celular" value={form.celular} onChange={handleInput} />
-                </Box>
-                <Box>
-                  <Text>Cédula de Identidad</Text>
-                  <Input placeholder="Cédula de Identidad" name="ci" value={form.ci} onChange={handleInput} />
-                </Box>
-                <Box>
-                  <Text>Dirección</Text>
-                  <Input placeholder="Dirección" name="direccion" value={form.direccion} onChange={handleInput} />
-                </Box>
-                <Box>
-                  <Text>Referencia (Opcional)</Text>
-                  <Input placeholder="Referencia" name="referencia" value={form.referencia} onChange={handleInput} />
-                </Box>
-                <Checkbox name="terminos" isChecked={form.terminos} onChange={handleInput}>
-                  Acepto los términos y condiciones
-                </Checkbox>
-                {formError && <Alert status="error"><AlertIcon />{formError}</Alert>}
-                <Button colorScheme="yellow" color="black" onClick={handlePagar}>Pagar</Button>
-              </Stack>
+              <form onSubmit={formik.handleSubmit}>
+                <Stack spacing={4}>
+                  <Box>
+                    <Text>Nombres Completos</Text>
+                    <Input placeholder="Escribir..." name="nombres" value={formik.values.nombres} onChange={formik.handleChange} />
+                  </Box>
+                  <Box>
+                    <Text>E-MAIL</Text>
+                    <Input placeholder="e-mail" name="email" value={formik.values.email} onChange={formik.handleChange} />
+                  </Box>
+                  <Box>
+                    <Text>Celular</Text>
+                    <Input placeholder="Celular" name="celular" value={formik.values.celular} onChange={formik.handleChange} />
+                  </Box>
+                  <Box>
+                    <Text>Cédula de Identidad</Text>
+                    <Input placeholder="Cédula de Identidad" name="ci" value={formik.values.ci} onChange={formik.handleChange} />
+                  </Box>
+                  <Box>
+                    <Text>Dirección</Text>
+                    <Input placeholder="Dirección" name="direccion" value={formik.values.direccion} onChange={formik.handleChange} />
+                  </Box>
+                  <Box>
+                    <Text>Referencia (Opcional)</Text>
+                    <Input placeholder="Referencia" name="referencia" value={formik.values.referencia} onChange={formik.handleChange} />
+                  </Box>
+                  <Checkbox name="terminos" isChecked={formik.values.terminos} onChange={formik.handleChange}>
+                    Acepto los términos y condiciones
+                  </Checkbox>
+                  {formik.errors.terminos && <Alert status="error"><AlertIcon />{formik.errors.terminos}</Alert>}
+                  <Button type='submit' colorScheme="yellow" color="black">Pagar</Button>
+                </Stack>
+              </form>
             </Box>
           )}
           {phase === 2 && !pedidoCancelado && !finalizado && (

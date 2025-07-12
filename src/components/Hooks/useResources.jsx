@@ -59,25 +59,25 @@ export default function useResources (){
 
     const imageAdv = [
         {
-            image: "/multimedia/adv_1.jpg"
+            image: "https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv_1.jpg"
         },
         {
-            image: "/multimedia/adv_2.jpg"
+            image: "https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv_2.jpg"
         },
         {
-            image: "/multimedia/adv_3.jpg"
+            image: "https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv_3.jpg"
         },
         {
-            image: "/multimedia/adv_4.jpg"
+            image: "https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv_4.jpg"
         },
         {
-            image: "/multimedia/adv_5.jpg"
+            image: "https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv_5.png"
         },
         {
-            image: "/multimedia/adv_6.jpg"
+            image: "https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv_6.jpg"
         },
         {
-            image: "/multimedia/adv_7.jpg"
+            image: "https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/adv_7.jpg"
         }
     ]
     

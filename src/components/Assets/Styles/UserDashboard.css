@@ -37,3 +37,21 @@
     background: #aaa;
     border-radius: 1vw;
 }
+
+@media (max-width: 768px) {
+    .user-data-dashboard-container {
+        align-items: center;
+    }
+    .user-avatar-dashboard-container {
+        width: 10rem;
+        height: 10rem;
+    }
+    .user-achiev-dashboard-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .banner-temp {
+        width: 20rem;
+        top: 50%;
+        left: 65%;
+    }
+}

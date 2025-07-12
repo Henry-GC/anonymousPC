@@ -43,13 +43,13 @@ function UserMiCarrito () {
                         bg={theme.secondaryBackground}
                     >
                         <Box className="user-image-item">
-                            <img src={Pruv} width="100%" alt="PRODUCTO CARRITO"/>
+                            <img src={item.img_url} width="100%" alt="PRODUCTO CARRITO"/>
                         </Box>
                         <Box className="user-text-item">
                             <Box className="user-text-body">
                                 <strong>{item.name}</strong>
                                 <Box className="user-count-item">
-                                    <Box className="delete-button-cart">
+                                    <Box className="user-count-item-btns">
                                         <button onClick={()=>delToCart(index)}>
                                             Quitar
                                         </button>

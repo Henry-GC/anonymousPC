@@ -1,7 +1,6 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import banner from "./Assets/Image/banner 1.png"
 import { Box, Text } from "@chakra-ui/react";
 
 function Carousel() {
@@ -35,14 +34,14 @@ function Carousel() {
       <Slider {...settings}>
         <Box
             height={{ base:'25rem', md: '35rem' }}
-            backgroundImage={banner}
+            backgroundImage='https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/banner%201.png'
             backgroundSize='cover'
             borderRadius='1rem'
         >
         </Box>
         <Box
             height={{ base:'25rem', md: '35rem' }}
-            backgroundImage={`/multimedia/advBig.jpg`}
+            backgroundImage='https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/advBig.jpg'
             backgroundSize='cover'
             backgroundPosition='center'
             borderRadius='1rem'

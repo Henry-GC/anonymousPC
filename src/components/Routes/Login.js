@@ -26,7 +26,7 @@ function Login() {
                     className="login-inside-container"
                     bg={theme.secondaryBackground}
                 >
-                    <img src="/multimedia/Logo.png" alt="Logo AnonymousPC" width="200vw"/>
+                    <img src="https://pub-79b389a1ced14f01877c6591f19b2c74.r2.dev/Public/Logo.png" alt="Logo AnonymousPC" width="200vw"/>
                     <Box className="login-data-container">
                         <Box className="login-data-title">
                             <h2>
