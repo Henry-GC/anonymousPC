@@ -43,10 +43,19 @@
 }
 .search-container input{
     border: none;
-    height: fit-content;
     font-size: 1.2rem;
-    flex-grow: 1;
-    color: rgb(0, 0, 0);
+    width: 100%;
+    background: transparent;
+    outline: none;
+    padding: 0.5rem 0;
+    color: #222;
+    box-shadow: none !important;
+    caret-color: #7c3aed;
+}
+.search-container input:focus {
+    outline: none;
+    box-shadow: none !important;
+    background: transparent;
 }
 .bar-container{
     display: flex;

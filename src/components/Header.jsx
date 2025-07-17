@@ -109,12 +109,11 @@ export default function Header (props){
                             <FormControl
                                 display="flex"
                                 alignItems="center"
-                                bg={theme.secondaryBackground}
-                                borderRadius="md"
+                                borderRadius="1rem"
                                 boxShadow="md"
-                                p={2}
+                                p={'0.2rem 1rem'}
                                 gap={'1rem'}
-                                // w={'100%'}
+                                border={`1px solid ${theme.color}`}
                             >
                                 <button type='submit'>
                                     <i id="lupa" className="fa-solid fa-magnifying-glass"></i>
