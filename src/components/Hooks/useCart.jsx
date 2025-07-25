@@ -20,7 +20,7 @@ function useCart (){
     }
 
     function addToCart (prod) {
-      const elemento = addCart.some(arr => arr.id === prod.id)
+      const elemento = addCart.some(arr => arr.code === prod.code)
       if(!elemento){
         const newCart = [...addCart, {
           ...prod,
@@ -75,7 +75,7 @@ function useCart (){
     const buyCart = () => {
       const cartDetails = addCart.map((item)=>{
         return {
-          prod_id: item.id,
+          prod_id: item.code,
           count: item.count,
           price: item.price,
           total: item.count*item.price

@@ -49,12 +49,9 @@ function RelevantBuilds() {
               <p>A partir de:</p>
               <strong>$ {parseFloat(ensamble.price).toFixed(2)}</strong>
               <Box className="details-build-container">
-                <BuildComponent icon={sections[0].icon} label="Procesador" value={ensamble.CPU} />
-                <BuildComponent icon={sections[1].icon} label="Placa Madre" value={ensamble.MBO} />
-                <BuildComponent icon={sections[2].icon} label="Tarjeta Gráfica" value={ensamble.GPU} />
-                <BuildComponent icon={sections[3].icon} label="Memoria Ram" value={ensamble.RAM} />
-                <BuildComponent icon={sections[4].icon} label="Almacenamiento" value={ensamble.SSD} />
-                <BuildComponent icon={sections[5].icon} label="Fuente de Poder" value={ensamble.PSU} />
+                {ensamble.components.map((component, index) => (
+                  <BuildComponent key={index} icon={sections[component.category_id].icon} label={sections[component.category_id].section} value={component.product_name} />
+                ))}
               </Box>
             </Box>
             <Box mt={{ base: 'auto', md: 2 }} p={{ base: '1rem', md: '0'}} width="100%">

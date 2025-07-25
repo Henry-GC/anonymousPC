@@ -2,6 +2,12 @@ export default function useResources (){
 
     const sections = [
         {
+            section: "LAPTOPS",
+            image: "/multimedia/acc-image.png",
+            icon: null,
+            url: "productos/laptops"
+        },
+        {
             section: "PROCESADORES",
             image:"/multimedia/cpu-image.png",
             icon: "/multimedia/cpu-icon.png",
@@ -49,6 +55,18 @@ export default function useResources (){
             icon: null,
             url: "productos/accesorios"
         },
+        {
+            section: "LAPTOPS",
+            image: "/multimedia/acc-image.png",
+            icon: null,
+            url: "productos/laptops"
+        },
+        {
+            section: "LAPTOPS",
+            image: "/multimedia/acc-image.png",
+            icon: null,
+            url: "productos/laptops"
+        }
     ]
 
     const videoAdv = [
